@@ -8,6 +8,8 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
+import com.codingbot.shop.LocalRootNavHost
 
 
 object CustomTheme {
@@ -38,9 +40,10 @@ fun LocationShopTheme(
     }
 
     val colors = if (darkTheme) darkColors() else lightColors()
-
+    val rootNavController = rememberNavController()
     CompositionLocalProvider(
 //        LocalColors provides colors,
+        LocalRootNavHost provides rootNavController,
         LocalTypography provides typography,
     ) {
         content()

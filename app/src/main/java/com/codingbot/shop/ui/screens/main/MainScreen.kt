@@ -160,7 +160,7 @@ fun MainScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
-                    text = "Search for Hospital",
+                    text = "Today Hospital",
                     color = CustomTheme.colors.black,
                     style = CustomTheme.typography.title2RegularNonePadding,
                     textAlign = TextAlign.Center
@@ -335,7 +335,6 @@ private fun RegionChipSelectionSection(
 @Composable
 private fun RegionFilterChipContent(
     locationChipData: LocationChipData,
-//    isSelected: Boolean,
     onChipClick: (LocationChipData) -> Unit
 ) {
     FilterChip(
@@ -343,9 +342,6 @@ private fun RegionFilterChipContent(
         onClick = { onChipClick(locationChipData) },
         label = {
             Text(
-//                modifier = Modifier
-//                                        .align(Alignment.Center)
-
                 text = locationChipData.region,
                 color = CustomTheme.colors.textColorPrimary,
                 style = CustomTheme.typography.bodyRegularNonePadding,
@@ -360,35 +356,19 @@ private fun RegionFilterChipContent(
             selectedContainerColor = CustomTheme.colors.orange60
         ),
         leadingIcon = {
-            if (locationChipData.isSelected) {
-                Icon(
-                    imageVector = Icons.Filled.LocationOn,
-                    contentDescription = "Localized Description",
-                    modifier = Modifier.size(FilterChipDefaults.IconSize)
-                )
-            } else {
-
-            }
+//            if (locationChipData.isSelected) {
+//                Icon(
+//                    imageVector = Icons.Filled.LocationOn,
+//                    contentDescription = "Localized Description",
+//                    modifier = Modifier.size(FilterChipDefaults.IconSize)
+//                )
+//            } else {
+//
+//            }
         }
     )
 }
-@Composable
-fun TopIcon(
-    imageVector: ImageVector,
-    onClick: () -> Unit
-) {
-    Icon(
-        imageVector = imageVector,
-        contentDescription = null,
-        modifier = Modifier
-            .width(32.dp)
-            .aspectRatio(1f)
-            .clickableSingle {
-                onClick()
-            },
-        tint = CustomTheme.colors.textColorPrimary
-    )
-}
+
 @Composable
 private fun SelectionCell(
     itemName: String,

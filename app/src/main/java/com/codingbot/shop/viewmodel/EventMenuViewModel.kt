@@ -22,7 +22,7 @@ class EventMenuViewModel @Inject constructor()
 {
     val logger = Logger("EventMenuViewModel")
 
-    fun getEventData(id: Int) {
+    fun getAllEventData() {
         DumpServer.eventDataList?.let {
             execute(EventMenuIntent.EventDataList(it.toList()))
         }

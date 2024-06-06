@@ -51,7 +51,7 @@ fun EventDescScreen(
     context: Context = LocalContext.current,
     eventDescViewModel: EventDescViewModel = hiltViewModel(),
 ) {
-    val logger = remember { Logger("FavoriteScreen", true, "[Screen]") }
+    val logger = remember { Logger("EventDescScreen", true, "[Screen]") }
 
     val uiState = eventDescViewModel.uiState.collectAsStateWithLifecycle()
 
@@ -79,22 +79,18 @@ fun EventDescScreen(
         )
         {
 
-//            item {
-                uiState.value.detailData?.let {
-                    Image(
-                        painter = painterResource(id = imageLocalMapperTmpEvent(it.eventImg)),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(350.dp)
-//                            .aspectRatio(1f)
-                            .padding(bottom = 10.dp),
-                        contentScale = ContentScale.Crop,
-                        contentDescription = null
-                    )
-                }
-//            }
+            uiState.value.detailData?.let {
+                Image(
+                    painter = painterResource(id = imageLocalMapperTmpEvent(it.eventImg)),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(350.dp)
+                        .padding(bottom = 10.dp),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = null
+                )
+            }
 
-//            item {
             Column(
                 modifier = Modifier
                     .padding(horizontal = 10.dp)

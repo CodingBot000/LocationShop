@@ -43,7 +43,6 @@ object InitValue {
         R.drawable.surgery_pigmentation,
         R.drawable.surgery_pore,
         R.drawable.surgery_skinbooster,
-
     )
 
 

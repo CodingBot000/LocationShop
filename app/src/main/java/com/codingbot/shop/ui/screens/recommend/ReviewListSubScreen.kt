@@ -34,6 +34,7 @@ import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.core.common.imageLocalMapperTmpReview
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ReviewData
+import com.codingbot.shop.ui.component.LoadingSpinner
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.Color
 import com.codingbot.shop.ui.theme.CustomTheme
@@ -75,6 +76,7 @@ fun ReviewListSubScreen(
             )
         }
     } // End of Lazy
+
 }
 
 
@@ -135,7 +137,8 @@ private fun ReviewInfoCell(
         }
 
         Spacer(modifier = Modifier.padding(bottom = 5.dp))
-        Divider(modifier = Modifier.fillMaxWidth()
+        Divider(modifier = Modifier
+            .fillMaxWidth()
             .height(1.dp)
             .background(Color.Gray_20))
         Spacer(modifier = Modifier.padding(bottom = 5.dp))

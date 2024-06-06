@@ -67,7 +67,7 @@ fun MenuScreen(
         )
 
         Icon(
-            painter = painterResource(id = R.drawable.menu_icon),
+            painter = painterResource(id = R.drawable.icon_close),
             contentDescription = null,
             modifier = Modifier
                 .size(64.dp)
@@ -85,10 +85,6 @@ fun MenuScreen(
             .fillMaxSize()
         )
         {
-
-//            ExpandableList(
-//                sections = mainViewModel.menuData
-//            )
 
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
@@ -194,45 +190,3 @@ private fun MenuCell(
     Spacer(modifier = Modifier.width(10.dp))
 }
 
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun SideMenu(
-    drawerState: DrawerState = rememberDrawerState(initialValue = androidx.compose.material3.DrawerValue.Closed)
-) {
-//    val drawerState = rememberDrawerState(initialValue = androidx.compose.material3.DrawerValue.Closed)
-//    val drawerState = rememberDrawerState(DrawerValue.Closed)
-//    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val drawerMinOffsetAbs = -with(LocalDensity.current) { (-360).dp.toPx() }.dp
-    val width = 300.dp
-
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        gesturesEnabled = true,
-        modifier = Modifier,
-        drawerContent = {
-            Box(
-                modifier = Modifier
-                    .background(CustomTheme.colors.elementBarBackground)
-                    .width(width)
-                    .fillMaxHeight()
-                    .clickableSingle {
-
-                    }
-            ) {
-                Text("Drawer title", modifier = Modifier.padding(16.dp))
-            }
-        }
-    ) {
-        Box(
-            modifier =  Modifier
-                .offset(x = (drawerState.offset.value.dp + drawerMinOffsetAbs) * (width/drawerMinOffsetAbs))
-//                .background(color = CustomTheme.colors.black)
-//                .alpha(0.5f)
-        ) {
-            Text("Screen title",
-                modifier = Modifier.padding(16.dp)
-            )
-        }
-    }
-}

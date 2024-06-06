@@ -26,10 +26,7 @@ import androidx.navigation.NavController
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.theme.CustomTheme
-import com.codingbot.shop.viewmodel.TreatmentDetailDescViewModel
 
-
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AboutUsScreen(
     navController: NavController

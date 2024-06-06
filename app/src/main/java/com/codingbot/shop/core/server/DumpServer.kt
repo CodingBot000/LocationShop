@@ -96,10 +96,6 @@ object DumpServer {
         productDatasOrigin?.let {
             it.find { data -> data.id == id}
         }
-//        productDatasOrigin?.let { data ->
-//            datas.find { data -> data.id == id}
-//        }
-
 
     fun getFavoriteStoredDatas() = favoriteStoredDatas
     fun getFavoriteStoredData(id: Int) = favoriteStoredDatas.find { it -> it.id == id}
@@ -114,7 +110,6 @@ object DumpServer {
     fun removeFavoriteStoredData(id: Int) {
         favoriteStoredDatas.removeIf { it.id == id }
     }
-
 
     fun getProductData(id: Int) =
         productDatasOrigin?.find { data -> data.id == id}

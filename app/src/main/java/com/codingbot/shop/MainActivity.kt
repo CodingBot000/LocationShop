@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -16,6 +18,7 @@ import com.codingbot.shop.ui.screens.SplashScreen
 import com.codingbot.shop.ui.screens.aboutus.AboutUsScreen
 import com.codingbot.shop.ui.screens.detail.DetailScreen
 import com.codingbot.shop.ui.screens.event.EventDescScreen
+import com.codingbot.shop.ui.screens.event.EventMenuScreen
 import com.codingbot.shop.ui.screens.favorite.FavoriteScreen
 import com.codingbot.shop.ui.screens.location.LocationScreen
 import com.codingbot.shop.ui.screens.menu.MenuScreen
@@ -26,6 +29,10 @@ import com.codingbot.shop.ui.screens.recommend.RecommendSurgeryScreen
 import com.codingbot.shop.ui.screens.recommend.ReviewListSubScreen
 import com.codingbot.shop.ui.theme.LocationShopTheme
 import dagger.hilt.android.AndroidEntryPoint
+
+val LocalRootNavHost =
+    staticCompositionLocalOf<NavHostController>{ error("Nav host controller is not provided") }
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -169,6 +176,13 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+
+                        composable(
+                            route = Screen.EventMenuScreen.route)
+                        {
+                            EventMenuScreen(navController = navController)
+                        }
+
                         composable(
                             route = Screen.AboutUsScreen.route)
                         {
@@ -185,9 +199,6 @@ class MainActivity : ComponentActivity() {
                                 id = id,
                             )
                         }
-
-
-
                     }
                 }
             }

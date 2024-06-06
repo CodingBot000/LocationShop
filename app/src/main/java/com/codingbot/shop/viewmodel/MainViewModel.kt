@@ -170,14 +170,12 @@ class MainViewModel @Inject constructor()
     }
     fun initBannerSliderOld() {
         val bannerSliderList = mutableListOf<ProductData>()
-        InitValue.BANNER_SLIDERS.forEachIndexed { _, id ->
-            val data = DumpServer.productDatasOrigin!!.find { it -> it.id == id }
-
-//            bannerSliderList.add(DumpServer.productDatasOrigin!!.datas[index])
-            data?.let {
-                bannerSliderList.add(it)
+//        InitValue.BANNER_SLIDERS.forEachIndexed { _, id ->
+//            val data = DumpServer.productDatasOrigin!!.find { it -> it.id == id }
+        for (i in 0..8) {
+            DumpServer.productDatasOrigin?.let { list ->
+                bannerSliderList.add(list[i])
             }
-
         }
 
         execute(MainIntent.BannerSliderListOld(bannerSliderList.toMutableList()))
