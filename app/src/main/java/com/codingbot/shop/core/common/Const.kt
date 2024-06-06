@@ -97,6 +97,26 @@ sealed interface Screen {
             return "${route}/$id/$productName/$productImg"
         }
     }
+
+
+    object HospitalListByRegionScreen : Screen {
+        override val route: String = ScreenRoutes.HospitalListByRegionScreen
+
+        const val region = "region"
+
+
+        val routeWithArgs = "$route/{$region}"
+        val arguments = listOf(
+              navArgument(region) { type = NavType.StringType }
+            )
+
+        fun route(
+            region: String
+        ): String {
+            return "${route}/$region"
+        }
+    }
+
     object TreatmentDetailDescScreen : Screen {
         override val route: String = ScreenRoutes.TreatmentDetailDescScreen
 
@@ -228,5 +248,6 @@ private object ScreenRoutes {
     const val EventDescScreen = "EventDescScreen"
     const val AboutUsScreen = "AboutUsScreen"
     const val EventMenuScreen = "EventMenuScreen"
+    const val HospitalListByRegionScreen = "HospitalListByRegionScreen"
 }
 

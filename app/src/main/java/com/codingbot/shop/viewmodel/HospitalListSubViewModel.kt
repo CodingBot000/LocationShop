@@ -21,16 +21,6 @@ class HospitalListSubViewModel @Inject constructor()
     val logger = Logger("HospitalListSubViewModel")
 
     fun getHospitalListData(id: Int) {
-//        val list = mutableListOf<ProductData>()
-//        productDatasOrigin?.let { productList ->
-//            productList.map { productData ->
-//                productData.surgeries.find { surgeryId -> surgeryId == id }
-//                    ?.let {
-//                        list.add(productData)
-//                    }
-//
-//                }
-//            }
         val list = productDatasOrigin
             ?.filter { productData ->
                 productData.surgeries

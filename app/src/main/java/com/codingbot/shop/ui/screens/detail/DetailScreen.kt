@@ -18,6 +18,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -29,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -70,9 +72,8 @@ fun DetailScreen(
     LaunchedEffect(key1 = Unit) {
         detailViewModel.getDetailData(id)
     }
-    if (uiState.value.detailData == null) {
-        return
-    }
+
+
     Box(
         modifier = Modifier
             .background(color = CustomTheme.colors.bg)
@@ -109,6 +110,18 @@ fun DetailScreen(
                     )
                 }
             )
+
+            if (uiState.value.detailData == null) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    text = "Failed Show Data",
+                    color = CustomTheme.colors.black,
+                    style = CustomTheme.typography.title1Bold,
+                    textAlign = TextAlign.Center
+                    )
+                return
+            }
 
             BoxWithConstraints {
                 val screenHeight = maxHeight
@@ -206,15 +219,15 @@ fun DetailScreen(
 //                        }
 //                    }
 ////                    item {
-////                        Text(
-////                            modifier = Modifier
-////                                .fillMaxWidth()
-////                                .padding(top = 15.dp, start = 10.dp, end = 10.dp),
-////                            text = uiState.value.detailData?.desc ?: "",
-////                            color = CustomTheme.colors.black,
-////                            style = CustomTheme.typography.caption2RegularNonPadding,
-////
-////                            )
+//                        Text(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(top = 15.dp, start = 10.dp, end = 10.dp),
+//                            text = uiState.value.detailData?.desc ?: "",
+//                            color = CustomTheme.colors.black,
+//                            style = CustomTheme.typography.caption2RegularNonPadding,
+//
+//                            )
 ////                    }
 ////
 ////                    item {

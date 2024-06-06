@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,11 +28,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -44,7 +41,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScrollModifierNode
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -60,16 +57,14 @@ import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
+import com.codingbot.shop.ui.component.Grid2ItemsByRowCell
 import com.codingbot.shop.ui.component.MainHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.ui.theme.CustomTheme.colors
+import com.codingbot.shop.viewmodel.MainIntent
 import com.codingbot.shop.viewmodel.MainViewModel
-import com.google.accompanist.pager.ExperimentalPagerApi
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class,
-    ExperimentalLayoutApi::class
-)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -125,7 +120,8 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
-                    color = CustomTheme.colors.bg),
+                    color = CustomTheme.colors.bg
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
 //                verticalArrangement = Arrangement.Center
         )
@@ -220,12 +216,33 @@ fun MainScreen(
             item {
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
             }
-
+//
+//            item {
+//                ChooseRegion(
+//                    searchingList = uiState.value.searchingList,
+//                    onClick = { id ->
+//                        navController.navigate(
+//                            Screen.DetailScreen.route(
+//                                id = id,
+//                            )
+//                        )
+//                    })
+//
+//            }
+            item {
+                Text(text = "See All >",
+                    modifier = Modifier
+                        .clickableSingle {
+                            navController.navigate(
+                                Screen.HospitalListByRegionScreen.route(uiState.value.region)
+                            )
+                        })
+            }
             item {
                 LazyVerticalGrid(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(400.dp)
+                        .height(500.dp)
                         .background(colors.bg)
                         .padding(start = 10.dp, end = 10.dp),
                     horizontalArrangement = Arrangement.spacedBy(14.dp),
@@ -233,41 +250,23 @@ fun MainScreen(
                     state = rememberLazyGridState(),
                     columns = GridCells.Fixed(2),
                     content = {
-                        items(uiState.value.searchingList.size) { index ->
+                        items(4) { index ->
+                            if (uiState.value.searchingList.size -1 < index) {
+                                return@items
+                            }
                             val data = uiState.value.searchingList[index]
-                            Column(
-                                modifier = Modifier.clickableSingle {
+                            Grid2ItemsByRowCell(
+                                id = data.id,
+                                resImgId = imageLocalMapperTmpHospital(data.images[0]),
+                                descString = data.productName,
+                                onClick = { id ->
                                     navController.navigate(
                                         Screen.DetailScreen.route(
-                                            id = data.id,
+                                            id = id,
                                         )
                                     )
                                 }
-                            ) {
-                                AsyncImage(
-                                    model = ImageRequest
-                                        .Builder(context)
-                                        .data(imageLocalMapperTmpHospital(data.images[0]))
-                                        .build(),
-                                    contentDescription = null,
-                                    modifier = Modifier
-//                                        .padding(end = 10.dp)
-//                                        .size(150.dp)
-                                        .fillMaxSize()
-                                        .aspectRatio(1f)
-                                        .clip(shape = RoundedCornerShape(15.dp)),
-                                    contentScale = ContentScale.Crop,
-                                )
-                                Text(
-                                    modifier = Modifier
-                                        .padding(horizontal = 3.dp)
-                                        .fillMaxWidth(),
-                                    text = data.productName,
-                                    color = CustomTheme.colors.black,
-                                    style = CustomTheme.typography.bodyRegular,
-                                    textAlign = TextAlign.Center
-                                )
-                            }
+                            )
 
                         }
                     }
@@ -275,10 +274,57 @@ fun MainScreen(
             }
         }
     }
-//    SideMenu(drawerState = drawerState)
-//    }
 }
 
+//@Composable
+//private fun ChooseRegion(
+//    searchingList: List<ProductData>,
+//    onClick: (Int) -> Unit
+//) {
+//    var index = remember { 0 }
+//    val maxIdx = searchingList.size
+//    if (searchingList.isEmpty()) {
+//        return
+//    }
+//    Column(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .background(colors.bg)
+//            .padding(start = 10.dp, end = 10.dp),
+//    ) {
+//
+//        Row(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .background(colors.bg)
+//                .padding(start = 10.dp, end = 10.dp),
+//            horizontalArrangement = Arrangement.spacedBy(14.dp),
+//
+//            ) {
+//                val data = searchingList[index]
+//                Grid2ItemsByRowCell(
+//                    id = data.id,
+//                    resImgId = imageLocalMapperTmpHospital(data.images[0]),
+//                    descString = data.productName,
+//                    onClick = { id ->
+//                        onClick(id)
+//                    }
+//                )
+//                index++
+//                Grid2ItemsByRowCell(
+//                    id = data.id,
+//                    resImgId = imageLocalMapperTmpHospital(data.images[0]),
+//                    descString = data.productName,
+//                    onClick = { id ->
+//                        onClick(id)
+//                    }
+//                )
+//                index++
+//            }
+//        }
+//    }
+//    Spacer(modifier = Modifier.padding(bottom = 10.dp))
+//}
 @Composable
 private fun NewBeautyHorizontalList(
     list: MutableList<ProductData>,

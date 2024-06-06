@@ -3,6 +3,11 @@ package com.codingbot.shop
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -21,6 +26,7 @@ import com.codingbot.shop.ui.screens.event.EventDescScreen
 import com.codingbot.shop.ui.screens.event.EventMenuScreen
 import com.codingbot.shop.ui.screens.favorite.FavoriteScreen
 import com.codingbot.shop.ui.screens.location.LocationScreen
+import com.codingbot.shop.ui.screens.main.HospitalListByRegionScreen
 import com.codingbot.shop.ui.screens.menu.MenuScreen
 import com.codingbot.shop.ui.screens.menu.TreatmentDetailDescScreen
 import com.codingbot.shop.ui.screens.recommend.EventListSubScreen
@@ -53,7 +59,12 @@ class MainActivity : ComponentActivity() {
                             SplashScreen(navController = navController)
                         }
                         composable(
-                            route = Screen.MenuScreen.route)
+                            route = Screen.MenuScreen.route,
+                            enterTransition = { slideInHorizontally(animationSpec = tween(500)) },
+                            exitTransition = { slideOutHorizontally(animationSpec = tween(500)) },
+                            popEnterTransition =  { slideInHorizontally(animationSpec = tween(500)) },
+                            popExitTransition = { slideOutHorizontally(animationSpec = tween(500)) }
+                        )
                         {
                             MenuScreen(navController = navController)
                         }
@@ -125,6 +136,16 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        composable(
+                            route = Screen.HospitalListByRegionScreen.routeWithArgs,
+                            arguments = Screen.HospitalListByRegionScreen.arguments
+                        ) { entry ->
+                            val region = entry.arguments?.getString(Screen.HospitalListByRegionScreen.region) ?: ""
+                            HospitalListByRegionScreen(
+                                navController = navController,
+                                region = region
+                            )
+                        }
 
                         composable(
                             route = Screen.FavoriteScreen.route)

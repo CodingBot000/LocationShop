@@ -27,6 +27,7 @@ import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.domain.model.ProductData
+import com.codingbot.shop.ui.component.HospitalInfoCell
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.HospitalListSubViewModel
@@ -55,7 +56,9 @@ fun HospitalListSubScreen(
         items(uiState.value.list?.size ?: 0) { index ->
             val data = uiState.value.list!![index]
             HospitalInfoCell(
-                data = data,
+                id = data.id,
+                descString = data.productName,
+                resImgId = imageLocalMapperTmpHospital(data.images[0]),
                 onClick = { hospitalId ->
                     navController.navigate(
                         Screen.DetailScreen.route(hospitalId))
@@ -63,39 +66,4 @@ fun HospitalListSubScreen(
             )
         }
     } // End of Lazy
-}
-
-@Composable
-private fun HospitalInfoCell(
-    data: ProductData,
-    onClick: (Int) -> Unit
-) {
-    Column(modifier =
-        Modifier.fillMaxWidth()
-            .clickableSingle {
-                onClick(data.id)
-            }
-    )
-    {
-        Image(
-            painter = painterResource(id = imageLocalMapperTmpHospital(data.images[0])),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .padding(bottom = 10.dp)
-                .clip(shape = RoundedCornerShape(15.dp)),
-            contentScale = ContentScale.Crop,
-            contentDescription = null
-        )
-
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 5.dp),
-            text = data.productName,
-            color = CustomTheme.colors.black,
-            style = CustomTheme.typography.bodyRegular,
-            textAlign = TextAlign.Center
-        )
-    }
 }

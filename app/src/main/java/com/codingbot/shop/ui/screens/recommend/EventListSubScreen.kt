@@ -26,35 +26,20 @@ import com.codingbot.shop.viewmodel.EventSubViewModel
 fun EventListSubScreen(
     navController: NavController,
     id: Int,
-
-    context: Context = LocalContext.current,
     eventSubViewModel: EventSubViewModel = hiltViewModel(),
 ) {
-    val logger = remember { Logger("FavoriteScreen", true, "[Screen]") }
+    val logger = remember { Logger("EventListSubScreen", true, "[Screen]") }
 
     val uiState = eventSubViewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(key1 = Unit) {
         eventSubViewModel.getEventData(id)
     }
-//    Image(
-//        painter = painterResource(id = productImg),
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(250.dp)
-////                .aspectRatio(1f)
-////                .padding(bottom = 10.dp),
-//        ,
-//        contentScale = ContentScale.Crop,
-//        contentDescription = null
-//    )
-
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(color = CustomTheme.colors.bg),
-        //            horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
         item {
