@@ -37,6 +37,7 @@ import coil.request.ImageRequest
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
+import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.CustomTheme
@@ -83,46 +84,17 @@ fun FavoriteScreen(
             content = {
                 items(uiState.value.favoriteDatas.size) { index ->
                     val data = uiState.value.favoriteDatas[index]
-                    Column(
-                        modifier = Modifier.clickableSingle {
+                    FavoriteCell(
+                        data = data,
+                        resId = imageLocalMapperTmpHospital(data.images[0]),
+                        onClickFavoriteCell = { id ->
                             navController.navigate(
                                 Screen.DetailScreen.route(
-                                    id = data.id,
+                                    id = id,
                                 )
                             )
                         }
-                    ) {
-                        AsyncImage(
-                            model = ImageRequest
-                                .Builder(context)
-                                .data(imageLocalMapperTmpHospital(data.images[0]))
-                                .build(),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .aspectRatio(1f)
-                                .clip(shape = RoundedCornerShape(15.dp)),
-                            contentScale = ContentScale.Crop,
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(horizontal = 3.dp)
-                                .fillMaxWidth(),
-                            text = data.productName,
-                            color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.bodyRegular,
-                            textAlign = TextAlign.Center
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(horizontal = 3.dp)
-                                .fillMaxWidth(),
-                            text = "[${data.region}]",
-                            color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.bodyRegular,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                    )
                 }
             }
         )
@@ -302,5 +274,50 @@ fun FavoriteScreen(
 
 
 //        }
+    }
+}
+
+@Composable
+private fun FavoriteCell(
+    context: Context = LocalContext.current,
+    resId: Int,
+    data: ProductData,
+    onClickFavoriteCell:(Int) -> Unit
+) {
+    Column(
+        modifier = Modifier.clickableSingle {
+            onClickFavoriteCell(data.id)
+        }
+    ) {
+        AsyncImage(
+            model = ImageRequest
+                .Builder(context)
+                .data(resId)
+                .build(),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxSize()
+                .aspectRatio(1f)
+                .clip(shape = RoundedCornerShape(15.dp)),
+            contentScale = ContentScale.Crop,
+        )
+        Text(
+            modifier = Modifier
+                .padding(horizontal = 3.dp)
+                .fillMaxWidth(),
+            text = data.productName,
+            color = CustomTheme.colors.black,
+            style = CustomTheme.typography.bodyRegular,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            modifier = Modifier
+                .padding(horizontal = 3.dp)
+                .fillMaxWidth(),
+            text = "[${data.region}]",
+            color = CustomTheme.colors.black,
+            style = CustomTheme.typography.bodyRegular,
+            textAlign = TextAlign.Center
+        )
     }
 }

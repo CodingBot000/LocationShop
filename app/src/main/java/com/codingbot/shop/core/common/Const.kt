@@ -4,15 +4,8 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
 object Const {
-    var sortingSpeed = 500f
-    var sortingSpeedSliderInit = sortingSpeed / 100
     var globalMultipleInputTime = 0L
 
-    const val GRAPH_HEIGHT_FROM = 10
-    const val GRAPH_HEIGHT_TO = 150
-    const val ARRAYS_SIZE = 13
-
-    const val GRAPH_ARRAY_SIZE = 5
 }
 
 
@@ -40,38 +33,16 @@ sealed interface Screen {
         override val route: String = ScreenRoutes.DetailScreen
 
         const val id = "id"
-//        const val searchQuery = "searchQuery"
-//        const val productName = "productName"
-//        const val productImgs = "productImgs"
-//        const val productImgs2 = "productImgs2"
-//        const val productImgs3 = "productImgs3"
-//        const val productImgs4 = "productImgs4"
         val routeWithArgs = "$route/{$id}"
-//        val routeWithArgs = "$route/{$id}/{$productName}/{$productImgs}/{$searchQuery}"
-//    val routeWithArgs = "$route/{$id}/{$productName}/{$productImgs}/{$productImgs2}/{$productImgs3}/{$productImgs4}/{$searchQuery}"
+
         val arguments = listOf(
             navArgument(id) { type = NavType.IntType },
-//            navArgument(productName) { type = NavType.StringType },
-//            navArgument(productImgs) { type = NavType.StringType },
-//            navArgument(productImgs2) { type = NavType.StringType },
-//            navArgument(productImgs3) { type = NavType.StringType },
-//            navArgument(productImgs4) { type = NavType.StringType },
-//            navArgument(searchQuery) { type = NavType.StringType }
-
         )
 
-        fun route(id: Int,
-//                  productName: String,
-//                  productImgs: String,
-//                  searchQuery: String,
+        fun route(
+            id: Int,
         ): String {
-//            val productImgs = productImgsArray[0]
-//            val productImgs2 =  try { productImgsArray[1] } catch (e: Exception) { "" }
-//            val productImgs3 =  try { productImgsArray[2] } catch (e: Exception) { "" }
-//            val productImgs4 =  try { productImgsArray[3] } catch (e: Exception) { "" }
-//            return "${route}/$id/$productName/$productImgs/$searchQuery"
             return "${route}/$id"
-//            return "${route}/$id/$productName/$productImgs/$productImgs2/$productImgs3/$productImgs4/$searchQuery"
         }
     }
 

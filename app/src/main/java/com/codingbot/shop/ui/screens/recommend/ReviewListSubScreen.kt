@@ -3,15 +3,18 @@ package com.codingbot.shop.ui.screens.recommend
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -85,62 +88,66 @@ private fun ReviewInfoCell(
     reviewData: ReviewData,
     onClickGotoHospital: (Int) -> Unit
 ) {
-    Column(modifier =
-        Modifier.fillMaxWidth()
-    )
-    {
-
-        if (!reviewData.reviewImg.isNullOrEmpty()) {
-            Image(
-                painter = painterResource(id = imageLocalMapperTmpReview(reviewData.reviewImg)),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .padding(bottom = 10.dp)
-                    .clip(shape = RoundedCornerShape(15.dp)),
-                contentScale = ContentScale.Crop,
-                contentDescription = null
-            )
-        }
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 5.dp),
-            text = reviewData.reviewDesc,
-            color = CustomTheme.colors.black,
-            style = CustomTheme.typography.bodyRegular,
-
+    Card(modifier = Modifier
+        .padding(10.dp),
+        elevation = 10.dp
+    ) {
+        Column(modifier =
+            Modifier.fillMaxWidth()
+                .fillMaxHeight()
         )
-
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp))
         {
-            Text(
-                text = reviewData.userId,
-                color = CustomTheme.colors.orange60,
-                style = CustomTheme.typography.bodyRegular,
 
-            )
+            if (!reviewData.reviewImg.isNullOrEmpty()) {
+                Image(
+                    painter = painterResource(id = imageLocalMapperTmpReview(reviewData.reviewImg)),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                        .padding(bottom = 10.dp)
+                        .clip(shape = RoundedCornerShape(15.dp)),
+                    contentScale = ContentScale.Crop,
+                    contentDescription = null
+                )
+            }
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = 5.dp)
-                    .clickableSingle {
-                        onClickGotoHospital(reviewData.hospital_id)
-                    },
-                text = "Hospitals Shortcut -> ${reviewData.productData.productName}",
+                    .padding(horizontal = 5.dp),
+                text = reviewData.reviewDesc,
                 color = CustomTheme.colors.black,
-                style = CustomTheme.typography.bodyRegular,
-                textAlign = TextAlign.End
-            )
-        }
+                style = CustomTheme.typography.captionRegular,
 
-        Spacer(modifier = Modifier.padding(bottom = 5.dp))
-        Divider(modifier = Modifier
-            .fillMaxWidth()
-            .height(1.dp)
-            .background(Color.Gray_20))
-        Spacer(modifier = Modifier.padding(bottom = 5.dp))
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+                horizontalArrangement = Arrangement.SpaceBetween, // Arrange items in Row with space between
+                verticalAlignment = Alignment.CenterVertically)
+            {
+                Text(
+                    text = reviewData.userId,
+                    color = CustomTheme.colors.orange60,
+                    style = CustomTheme.typography.captionRegular,
+
+                )
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(end = 5.dp)
+                        .clickableSingle {
+                            onClickGotoHospital(reviewData.hospital_id)
+                        },
+                    text = "${reviewData.productData.productName}",
+                    color = CustomTheme.colors.black,
+                    style = CustomTheme.typography.bodyRegular,
+                    textAlign = TextAlign.End
+                )
+            }
+
+            Spacer(modifier = Modifier.padding(bottom = 5.dp))
+
+        }
     }
 }

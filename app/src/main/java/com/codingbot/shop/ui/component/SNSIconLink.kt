@@ -46,14 +46,13 @@ fun SNSIconLink(
         painter = painterResource(id = snsIconResId),
         contentDescription = null,
         modifier = Modifier
-            .size(64.dp)
-            .padding(end = 20.dp, top = 10.dp)
+            .size(48.dp)
+            .padding(end = 10.dp, top = 10.dp)
             .clip(shape = RoundedCornerShape(100.dp))
             .clickableSingle {
                 onClickIcon(snsIconType)
             },
 
-//        tint = CustomTheme.colors.white
     )
 
 }

@@ -55,6 +55,7 @@ import coil.request.ImageRequest
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
+import com.codingbot.shop.core.utils.SpeechToText
 import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.ui.component.Grid2ItemsByRowCell
@@ -77,7 +78,8 @@ fun MainScreen(
 
     val permissions = listOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+//        Manifest.permission.RECORD_AUDIO
     )
 
     var permissionsGranted by remember { mutableStateOf(false) }
@@ -105,6 +107,7 @@ fun MainScreen(
         MainHeader(
             title = "BeautyU",
             onClickMenu = {
+//                SpeechToText().start(context)
                 navController.navigate(
                     Screen.MenuScreen.route
                 )
