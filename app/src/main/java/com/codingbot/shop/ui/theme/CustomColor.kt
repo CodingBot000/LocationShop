@@ -17,6 +17,7 @@ class CustomColors(
     elementBarBackground: Color,
     elementBarResult: Color,
     orange60: Color,
+    infoBox: Color,
     white: Color,
     black: Color,
 ) {
@@ -41,7 +42,8 @@ class CustomColors(
         private set
     var orange60 by mutableStateOf(orange60)
         private set
-
+    var infoBox by mutableStateOf(infoBox)
+        private set
     var white by mutableStateOf(white)
         private set
 
@@ -61,7 +63,8 @@ fun lightColors() = with(com.codingbot.shop.ui.theme.Color) {
         buttonIcon = Black.copy(alpha = .1f),
         elementBarBackground = Blue_Gray_10,
         elementBarResult = Red_40,
-        orange60 = Orange_60 ,
+        orange60 = Orange_60,
+        infoBox = Red_5,
         white = White,
         black = Black,
     )
@@ -79,6 +82,7 @@ fun darkColors() = with(com.codingbot.shop.ui.theme.Color) {
         elementBarBackground = Blue_Gray_50,
         elementBarResult = Red_70,
         orange60 = Orange_80,
+        infoBox = Red_5,
         white = White,
         black = Black,
     )

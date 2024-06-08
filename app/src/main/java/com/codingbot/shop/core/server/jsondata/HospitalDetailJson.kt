@@ -7,7 +7,7 @@ val HospitalDetailJson =
         {
           "details": [
               {
-                  "id":1,
+                  "id":0,
                   "tel": "0507-1433-0210",
                   "kakaotalk":"",
                   "homepage": "http://www.reoneskin.com",
@@ -21,7 +21,7 @@ val HospitalDetailJson =
                   "searchQuery": "리원피부과의원"
               },
               {
-                  "id":2,
+                  "id":1,
                   "tel": "02-511-8556",
                   "kakaotalk":"",
                   "homepage": "",
@@ -35,7 +35,7 @@ val HospitalDetailJson =
                   "searchQuery": "청담에이스의원"
               },
               {
-                  "id":3,
+                  "id":2,
                   "tel": "02-533-8001",
                   "kakaotalk":"",
                   "homepage": "https://www.wannaps.co.kr",

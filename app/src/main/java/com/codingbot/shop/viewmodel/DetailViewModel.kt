@@ -53,10 +53,11 @@ class DetailViewModel @Inject constructor()
     fun setFavorite(id: Int, isFavorite: Boolean) {
         val data = DumpServer.getFavoriteStoredData(id)
 
-        data?.wish = isFavorite
+//        data?.wish = isFavorite
         data?.let {
             it.wish = isFavorite
-
+            val test  =DumpServer.getFavoriteStoredDatas()
+            val test2  =DumpServer.getFavoriteStoredData(it.id)
             if (isFavorite) {
                 if (DumpServer.getFavoriteStoredData(it.id) == null) {
                     DumpServer.addFavoriteStoredData(it)

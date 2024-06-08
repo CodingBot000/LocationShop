@@ -7,7 +7,7 @@ val ReviewDataJson =
           "reviews": [
             {
               "id":0,
-              "hospital_id": 1,
+              "hospital_id": 0,
               "surgeryId": [1,2],
               "reviewImg":"review_1.png",
               "userId": "user1",
@@ -15,7 +15,7 @@ val ReviewDataJson =
             },
             {
               "id":1,
-              "hospital_id": 1,
+              "hospital_id": 0,
               "surgeryId": [3],
               "reviewImg":"review_2.png",
               "userId": "user2",
@@ -23,7 +23,7 @@ val ReviewDataJson =
             },
             {
               "id":2,
-              "hospital_id": 2,
+              "hospital_id": 1,
               "surgeryId": [3,4],
               "reviewImg":"review_3.png",
               "userId": "user3",
@@ -31,7 +31,7 @@ val ReviewDataJson =
             },
             {
               "id":3,
-              "hospital_id": 2,
+              "hospital_id": 1,
               "surgeryId": [3,4],
               "reviewImg":"",
               "userId": "user3",
@@ -39,7 +39,7 @@ val ReviewDataJson =
             },
             {
               "id":4,
-              "hospital_id": 1,
+              "hospital_id": 0,
               "surgeryId": [1, 2, 3, 4],
               "reviewImg":"",
               "userId": "user3",
@@ -47,7 +47,7 @@ val ReviewDataJson =
             },
             {
               "id":5,
-              "hospital_id": 1,
+              "hospital_id": 0,
               "surgeryId": [1, 2, 3, 4],
               "reviewImg":"",
               "userId": "user4",
@@ -55,7 +55,7 @@ val ReviewDataJson =
             },
             {
               "id":6,
-              "hospital_id": 1,
+              "hospital_id": 0,
               "surgeryId": [1, 2, 3, 4],
               "reviewImg":"review_3.png",
               "userId": "user4",
@@ -63,7 +63,7 @@ val ReviewDataJson =
             },
             {
               "id":7,
-              "hospital_id": 2,
+              "hospital_id": 1,
               "surgeryId": [1, 2, 3, 4],
               "reviewImg":"review_3.png",
               "userId": "user5",
@@ -71,7 +71,7 @@ val ReviewDataJson =
             },
             {
               "id":8,
-              "hospital_id": 2,
+              "hospital_id": 1,
               "surgeryId": [2, 3, 6, 7],
               "reviewImg":"review_3.png",
               "userId": "user6",
@@ -79,7 +79,7 @@ val ReviewDataJson =
             },
             {
               "id":9,
-              "hospital_id": 3,
+              "hospital_id": 2,
               "surgeryId": [2, 3, 6, 7],
               "reviewImg":"review_1.png",
               "userId": "user7",
@@ -87,7 +87,7 @@ val ReviewDataJson =
             },
             {
               "id":10,
-              "hospital_id": 4,
+              "hospital_id":3,
               "surgeryId": [2, 3, 4,5,6, 7],
               "reviewImg":"review_3.png",
               "userId": "user6",
@@ -95,7 +95,7 @@ val ReviewDataJson =
             },
             {
               "id":11,
-              "hospital_id": 2,
+              "hospital_id": 1,
               "surgeryId": [2, 3, 4,5,6, 7],
               "reviewImg":"review_2.png",
               "userId": "user7",
@@ -103,7 +103,7 @@ val ReviewDataJson =
             },
             {
               "id":12,
-              "hospital_id": 5,
+              "hospital_id": 4,
               "surgeryId": [2, 4, 7],
               "reviewImg":"",
               "userId": "user8",
@@ -111,7 +111,7 @@ val ReviewDataJson =
             },
             {
               "id":13,
-              "hospital_id": 6,
+              "hospital_id": 5,
               "surgeryId": [1, 4, 4],
               "reviewImg":"",
               "userId": "user9",

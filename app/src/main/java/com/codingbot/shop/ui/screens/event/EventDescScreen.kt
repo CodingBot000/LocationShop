@@ -5,6 +5,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -25,8 +26,6 @@ import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -47,13 +46,11 @@ import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
-import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.Color
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.EventDescViewModel
-import com.codingbot.shop.viewmodel.MainViewModel
 
 
 @Composable
@@ -64,7 +61,6 @@ fun EventDescScreen(
     eventDescViewModel: EventDescViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("EventDescScreen", true, "[Screen]") }
-
     val uiState = eventDescViewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(key1 = Unit) {
@@ -90,7 +86,6 @@ fun EventDescScreen(
                 .verticalScroll(rememberScrollState()),
         )
         {
-
             uiState.value.detailData?.let {
                 Image(
                     painter = painterResource(id = imageLocalMapperTmpEvent(it.eventImg)),
@@ -118,10 +113,11 @@ fun EventDescScreen(
                     Text(
                         text = "${eventData.eventDateFrom} ~ ${eventData.eventDateTo}",
                         style = CustomTheme.typography.title3Regular,
-                        textAlign = TextAlign.End
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
-
+                Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 uiState.value.detailData?.let { eventData ->
                     SurgeryList(
                         surgeryNamelist = eventDescViewModel.getSurgeryNames(eventData.surgeryIds)
@@ -142,7 +138,7 @@ fun EventDescScreen(
                 uiState.value.productData?.let { info->
                     Row(modifier = Modifier
                         .fillMaxWidth()
-                        .height(150.dp)
+                        .height(200.dp)
                         .clickableSingle {
                             navController.navigate(Screen.DetailScreen.route(info.id))
                         })
@@ -155,7 +151,7 @@ fun EventDescScreen(
                                     .build(),
                                 contentDescription = "hospitalImg",
                                 modifier = Modifier
-                                    .width(150.dp)
+                                    .width(180.dp)
                                     .aspectRatio(1f)
                                     .clip(shape = RoundedCornerShape(10.dp))
                                     .padding(horizontal = 10.dp),
@@ -189,12 +185,16 @@ private fun SurgeryList(
     surgeryNamelist: List<String>,
 )
 {
-    Column {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .background(CustomTheme.colors.infoBox)
+        .padding(5.dp)
+        .clip(shape = RoundedCornerShape(15.dp))
+    ) {
         Text(text = "Surgeries Package",
             color = CustomTheme.colors.textColorPrimary,
-            style = CustomTheme.typography.bodyBold)
+            style = CustomTheme.typography.title3Bold)
         FlowRow(
-//            modifier = Modifier.padding(start = 10.dp, end = 10.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             surgeryNamelist.forEach { data ->

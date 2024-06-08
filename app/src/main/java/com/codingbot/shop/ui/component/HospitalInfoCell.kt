@@ -38,7 +38,6 @@ fun HospitalInfoCell(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
-
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
             contentDescription = null

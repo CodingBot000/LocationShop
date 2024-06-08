@@ -7,7 +7,7 @@ val HospitalDataJson =
         {
           "hospitals": [
             {
-              "id":1,
+              "id":0,
               "productName": "Re-One",
               "searchQuery": "리원피부과의원",                     
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
@@ -18,7 +18,7 @@ val HospitalDataJson =
               "order": 0
             },
             {
-              "id":2,
+              "id":1,
               "productName": "Chungdam Ace",
               "searchQuery": "청담에이스의원",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
@@ -29,7 +29,7 @@ val HospitalDataJson =
               "order": 0
             },
             {
-            "id":3,
+            "id":2,
               "productName": "Wanna Plastic Surgery",
               "searchQuery": "워나성형외과의원",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
