@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.codingbot.shop.R
+import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.ui.screens.detail.HospitalInfoSubScreen
 import com.codingbot.shop.ui.screens.recommend.EventListSubScreen
 import com.codingbot.shop.ui.screens.recommend.HospitalListSubScreen
@@ -25,11 +26,11 @@ import kotlinx.coroutines.launch
 
 typealias ComposableFun = @Composable () -> Unit
 
-sealed class TabItem(val id: Int, val navController: NavController, var icon: Int, var title: String, var screen: ComposableFun) {
-    class HospitalInfo(id: Int, navController: NavController) : TabItem(id, navController, R.drawable.sns_youtube, "Info", { HospitalInfoSubScreen(navController = navController, id = id) })
-    class Event(id: Int, navController: NavController) : TabItem(id, navController, R.drawable.sns_youtube, "Event", { EventListSubScreen(navController = navController, id = id) })
-    class Reviews(id: Int, navController: NavController) : TabItem(id, navController, R.drawable.sns_homepage, "Reviews", { ReviewListSubScreen(navController = navController, id = id)  })
-    class Hospitals(id: Int, navController: NavController) : TabItem(id, navController, R.drawable.sns_map, "Hospitals", { HospitalListSubScreen(navController = navController, id = id) })
+sealed class TabItem(val fromScreen: Screen, val id: Int, val navController: NavController, var icon: Int, var title: String, var screen: ComposableFun) {
+    class HospitalInfo(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_youtube, "Info", { HospitalInfoSubScreen(navController = navController, id = id) })
+    class Event(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_youtube, "Event", { EventListSubScreen(navController = navController, id = id) })
+    class Reviews(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_homepage, "Reviews", { ReviewListSubScreen(navController = navController, id = id)  })
+    class Hospitals(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_map, "Hospitals", { HospitalListSubScreen(navController = navController, id = id) })
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

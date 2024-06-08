@@ -33,7 +33,7 @@ fun EventCell(
 )  {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .height(150.dp)
+        .height(140.dp)
         .clickableSingle {
             onClickEvent(data)
         })
@@ -52,21 +52,23 @@ fun EventCell(
         )
 
         Column(modifier = Modifier.fillMaxWidth()) {
-            Row {
+//            Row {
                 Text(
                     text = data.eventName,
                     color = CustomTheme.colors.black,
                     style = CustomTheme.typography.bodyBold,
                 )
-                Spacer(modifier = Modifier.weight(1f))
+//                Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = "${data.eventDateFrom} ~ ${data.eventDateTo}",
+                    modifier = Modifier.fillMaxWidth(),
+                    text = "Event Duration: ${data.eventDateFrom} ~ ${data.eventDateTo}",
                     color = CustomTheme.colors.black,
                     style = CustomTheme.typography.caption2Regular,
+                    textAlign = TextAlign.End
                 )
-            }
+//            }
             Text(
-                text = "${data.desc}",
+                text =data.desc,
                 color = CustomTheme.colors.black,
                 maxLines = 6,
                 overflow = TextOverflow.Ellipsis,

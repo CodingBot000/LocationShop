@@ -52,6 +52,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.codingbot.shop.core.common.Logger
+import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpDoctors
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.domain.model.ProductDetailData
@@ -81,9 +82,9 @@ fun HospitalInfoSubScreen(
     val PREV_SPACE = "    "
     val uiState = hospitalInfoSubViewModel.uiState.collectAsStateWithLifecycle()
     val tabs = remember { listOf(
-        TabItem.Event(id = id, navController = navController),
-        TabItem.Reviews(id = id, navController = navController),
-        TabItem.Hospitals(id = id, navController = navController)
+        TabItem.Event(fromScreen = Screen.HospitalListSubScreen, id = id, navController = navController),
+        TabItem.Reviews(fromScreen = Screen.HospitalListSubScreen, id = id, navController = navController),
+        TabItem.Hospitals(fromScreen = Screen.HospitalListSubScreen, id = id, navController = navController)
     ) }
     val pagerState = rememberPagerState(pageCount = {
         tabs.size

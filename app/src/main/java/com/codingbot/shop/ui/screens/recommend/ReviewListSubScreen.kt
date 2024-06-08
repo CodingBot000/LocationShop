@@ -89,12 +89,12 @@ private fun ReviewInfoCell(
     onClickGotoHospital: (Int) -> Unit
 ) {
     Card(modifier = Modifier
-        .padding(10.dp),
+        .padding(5.dp),
         elevation = 10.dp
     ) {
         Column(modifier =
             Modifier.fillMaxWidth()
-                .fillMaxHeight()
+                .padding(horizontal = 5.dp)
         )
         {
 
@@ -104,7 +104,7 @@ private fun ReviewInfoCell(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(200.dp)
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = 10.dp, top = 10.dp)
                         .clip(shape = RoundedCornerShape(15.dp)),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
@@ -113,7 +113,7 @@ private fun ReviewInfoCell(
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 5.dp),
+                    .padding(top = 10.dp),
                 text = reviewData.reviewDesc,
                 color = CustomTheme.colors.black,
                 style = CustomTheme.typography.captionRegular,
@@ -127,7 +127,7 @@ private fun ReviewInfoCell(
                 verticalAlignment = Alignment.CenterVertically)
             {
                 Text(
-                    text = reviewData.userId,
+                    text = "[${reviewData.userId}]",
                     color = CustomTheme.colors.orange60,
                     style = CustomTheme.typography.captionRegular,
 
@@ -146,7 +146,7 @@ private fun ReviewInfoCell(
                 )
             }
 
-            Spacer(modifier = Modifier.padding(bottom = 5.dp))
+//            Spacer(modifier = Modifier.padding(bottom = 5.dp))
 
         }
     }

@@ -36,6 +36,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.codingbot.shop.core.common.Logger
+import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.domain.model.ProductDetailData
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.RecommendMenu
@@ -61,9 +62,9 @@ fun DetailScreen(
 
     val uiState = detailViewModel.uiState.collectAsStateWithLifecycle()
     val tabs = remember { listOf(
-        TabItem.HospitalInfo(id = id, navController = navController),
-        TabItem.Event(id = id, navController = navController),
-        TabItem.Reviews(id = id, navController = navController),
+        TabItem.HospitalInfo(fromScreen = Screen.DetailScreen, id = id, navController = navController),
+        TabItem.Event(fromScreen = Screen.DetailScreen, id = id, navController = navController),
+        TabItem.Reviews(fromScreen = Screen.DetailScreen, id = id, navController = navController),
     ) }
     val pagerState = rememberPagerState(pageCount = {
         tabs.size

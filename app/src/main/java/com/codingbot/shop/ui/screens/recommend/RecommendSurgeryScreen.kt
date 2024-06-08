@@ -26,6 +26,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.codingbot.shop.R
 import com.codingbot.shop.core.common.Logger
+import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.RecommendMenu
 import com.codingbot.shop.ui.component.TabItem
@@ -49,9 +50,9 @@ fun RecommendSurgeryScreen(
 
     val uiState = recommendSurgeryViewModel.uiState.collectAsStateWithLifecycle()
     val tabs = remember { listOf(
-        TabItem.Event(id = id, navController = navController),
-        TabItem.Reviews(id = id, navController = navController),
-        TabItem.Hospitals(id = id, navController = navController)
+        TabItem.Event(fromScreen = Screen.RecommendSurgeryScreen, id = id, navController = navController),
+        TabItem.Reviews(fromScreen = Screen.RecommendSurgeryScreen, id = id, navController = navController),
+        TabItem.Hospitals(fromScreen = Screen.RecommendSurgeryScreen, id = id, navController = navController)
     ) }
     val pagerState = rememberPagerState(pageCount = {
         tabs.size
