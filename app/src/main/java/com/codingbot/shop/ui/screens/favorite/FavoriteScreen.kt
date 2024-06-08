@@ -71,180 +71,236 @@ fun FavoriteScreen(
             }
         )
 
-        LazyColumn(
+        LazyVerticalGrid(
             modifier = Modifier
                 .fillMaxSize()
-                .background(
-                    color = CustomTheme.colors.bg
-                ),
-            horizontalAlignment = Alignment.CenterHorizontally,
-//                verticalArrangement = Arrangement.Center
-        )
-        {
-
-            item {
-                Spacer(modifier = Modifier.padding(bottom = 10.dp))
-            }
-
-
-            item {
-                if (uiState.value.favoriteDatas.isEmpty()) {
-                    Column(modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    )
-                    {
-                        Text(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
-                            text = "Go to the detailed page of your favorite hospital and tap the like icon.",
-                            color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.title1Bold,
-                            textAlign = TextAlign.Center
-                        )
-                        Icon(
-                            imageVector = Icons.Filled.Favorite,
+                .background(CustomTheme.colors.bg)
+                .padding(start = 10.dp, end = 10.dp),
+            horizontalArrangement = Arrangement.spacedBy(14.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            state = rememberLazyGridState(),
+            columns = GridCells.Fixed(2),
+            content = {
+                items(uiState.value.favoriteDatas.size) { index ->
+                    val data = uiState.value.favoriteDatas[index]
+                    Column(
+                        modifier = Modifier.clickableSingle {
+                            navController.navigate(
+                                Screen.DetailScreen.route(
+                                    id = data.id,
+                                )
+                            )
+                        }
+                    ) {
+                        AsyncImage(
+                            model = ImageRequest
+                                .Builder(context)
+                                .data(imageLocalMapperTmpHospital(data.images[0]))
+                                .build(),
                             contentDescription = null,
                             modifier = Modifier
-                                .size(80.dp)
-                                .padding(end = 10.dp),
-                            tint = CustomTheme.colors.orange60
+                                .fillMaxSize()
+                                .aspectRatio(1f)
+                                .clip(shape = RoundedCornerShape(15.dp)),
+                            contentScale = ContentScale.Crop,
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(horizontal = 3.dp)
+                                .fillMaxWidth(),
+                            text = data.productName,
+                            color = CustomTheme.colors.black,
+                            style = CustomTheme.typography.bodyRegular,
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            modifier = Modifier
+                                .padding(horizontal = 3.dp)
+                                .fillMaxWidth(),
+                            text = "[${data.region}]",
+                            color = CustomTheme.colors.black,
+                            style = CustomTheme.typography.bodyRegular,
+                            textAlign = TextAlign.Center
                         )
                     }
-
-                } else {
-                    LazyVerticalGrid(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(CustomTheme.colors.bg)
-                            .padding(start = 10.dp, end = 10.dp),
-                        horizontalArrangement = Arrangement.spacedBy(14.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp),
-                        state = rememberLazyGridState(),
-                        columns = GridCells.Fixed(2),
-                        content = {
-                            items(uiState.value.favoriteDatas.size) { index ->
-                                val data = uiState.value.favoriteDatas[index]
-                                Column(
-                                    modifier = Modifier.clickableSingle {
-                                        navController.navigate(
-                                            Screen.DetailScreen.route(
-                                                id = data.id,
-//                                                productName = data.productName,
-//                                                productImgs = data.images[0],
-//                                                searchQuery = data.searchQuery
-                                            )
-                                        )
-                                    }
-                                ) {
-                                    AsyncImage(
-                                        model = ImageRequest
-                                            .Builder(context)
-                                            .data(imageLocalMapperTmpHospital(data.images[0]))
-                                            .build(),
-                                        contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxSize()
-                                            .aspectRatio(1f)
-                                            .clip(shape = RoundedCornerShape(15.dp)),
-                                        contentScale = ContentScale.Crop,
-                                    )
-                                    Text(
-                                        modifier = Modifier
-                                            .padding(horizontal = 3.dp)
-                                            .fillMaxWidth(),
-                                        text = data.productName,
-                                        color = CustomTheme.colors.black,
-                                        style = CustomTheme.typography.bodyRegular,
-                                        textAlign = TextAlign.Center
-                                    )
-                                    Text(
-                                        modifier = Modifier
-                                            .padding(horizontal = 3.dp)
-                                            .fillMaxWidth(),
-                                        text = "[${data.region}]",
-                                        color = CustomTheme.colors.black,
-                                        style = CustomTheme.typography.bodyRegular,
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                            }
-                        }
-                    )
                 }
             }
+        )
 
-            item {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
-                    text = "Recommend",
-                    color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title1Bold,
-                    textAlign = TextAlign.Center
-                )
-            }
-
-            item {
-                LazyVerticalGrid(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(CustomTheme.colors.bg)
-                        .padding(start = 10.dp, end = 10.dp),
-                    horizontalArrangement = Arrangement.spacedBy(14.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                    state = rememberLazyGridState(),
-                    columns = GridCells.Fixed(2),
-                    content = {
-                        items(uiState.value.favoriteDatas.size) { index ->
-                            val data = uiState.value.favoriteDatas[index]
-                            Column(
-                                modifier = Modifier.clickableSingle {
-                                    navController.navigate(
-                                        Screen.DetailScreen.route(
-                                            id = data.id,
-                                        )
-                                    )
-                                }
-                            ) {
-                                AsyncImage(
-                                    model = ImageRequest
-                                        .Builder(context)
-                                        .data(imageLocalMapperTmpHospital(data.images[0]))
-                                        .build(),
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .aspectRatio(1f)
-                                        .clip(shape = RoundedCornerShape(15.dp)),
-                                    contentScale = ContentScale.Crop,
-                                )
-                                Text(
-                                    modifier = Modifier
-                                        .padding(horizontal = 3.dp)
-                                        .fillMaxWidth(),
-                                    text = data.productName,
-                                    color = CustomTheme.colors.black,
-                                    style = CustomTheme.typography.bodyRegular,
-                                    textAlign = TextAlign.Center
-                                )
-                                Text(
-                                    modifier = Modifier
-                                        .padding(horizontal = 3.dp)
-                                        .fillMaxWidth(),
-                                    text = "[${data.region}]",
-                                    color = CustomTheme.colors.black,
-                                    style = CustomTheme.typography.bodyRegular,
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                        }
-                    }
-                )
-            }
+//        LazyColumn(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .background(
+//                    color = CustomTheme.colors.bg
+//                ),
+//            horizontalAlignment = Alignment.CenterHorizontally,
+////                verticalArrangement = Arrangement.Center
+//        )
+//        {
+//
+//            item {
+//                Spacer(modifier = Modifier.padding(bottom = 10.dp))
+//            }
 
 
-        }
+//            item {
+//                if (uiState.value.favoriteDatas.isEmpty()) {
+//                    Column(modifier = Modifier.fillMaxWidth(),
+//                        horizontalAlignment = Alignment.CenterHorizontally
+//                    )
+//                    {
+//                        Text(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
+//                            text = "Go to the detailed page of your favorite hospital and tap the like icon.",
+//                            color = CustomTheme.colors.black,
+//                            style = CustomTheme.typography.title1Bold,
+//                            textAlign = TextAlign.Center
+//                        )
+//                        Icon(
+//                            imageVector = Icons.Filled.Favorite,
+//                            contentDescription = null,
+//                            modifier = Modifier
+//                                .size(80.dp)
+//                                .padding(end = 10.dp),
+//                            tint = CustomTheme.colors.orange60
+//                        )
+//                    }
+//
+//                } else {
+//                    LazyVerticalGrid(
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                            .background(CustomTheme.colors.bg)
+//                            .padding(start = 10.dp, end = 10.dp),
+//                        horizontalArrangement = Arrangement.spacedBy(14.dp),
+//                        verticalArrangement = Arrangement.spacedBy(10.dp),
+//                        state = rememberLazyGridState(),
+//                        columns = GridCells.Fixed(2),
+//                        content = {
+//                            items(uiState.value.favoriteDatas.size) { index ->
+//                                val data = uiState.value.favoriteDatas[index]
+//                                Column(
+//                                    modifier = Modifier.clickableSingle {
+//                                        navController.navigate(
+//                                            Screen.DetailScreen.route(
+//                                                id = data.id,
+////                                                productName = data.productName,
+////                                                productImgs = data.images[0],
+////                                                searchQuery = data.searchQuery
+//                                            )
+//                                        )
+//                                    }
+//                                ) {
+//                                    AsyncImage(
+//                                        model = ImageRequest
+//                                            .Builder(context)
+//                                            .data(imageLocalMapperTmpHospital(data.images[0]))
+//                                            .build(),
+//                                        contentDescription = null,
+//                                        modifier = Modifier
+//                                            .fillMaxSize()
+//                                            .aspectRatio(1f)
+//                                            .clip(shape = RoundedCornerShape(15.dp)),
+//                                        contentScale = ContentScale.Crop,
+//                                    )
+//                                    Text(
+//                                        modifier = Modifier
+//                                            .padding(horizontal = 3.dp)
+//                                            .fillMaxWidth(),
+//                                        text = data.productName,
+//                                        color = CustomTheme.colors.black,
+//                                        style = CustomTheme.typography.bodyRegular,
+//                                        textAlign = TextAlign.Center
+//                                    )
+//                                    Text(
+//                                        modifier = Modifier
+//                                            .padding(horizontal = 3.dp)
+//                                            .fillMaxWidth(),
+//                                        text = "[${data.region}]",
+//                                        color = CustomTheme.colors.black,
+//                                        style = CustomTheme.typography.bodyRegular,
+//                                        textAlign = TextAlign.Center
+//                                    )
+//                                }
+//                            }
+//                        }
+//                    )
+//                }
+//            }
+
+//            item {
+//                Text(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
+//                    text = "Recommend",
+//                    color = CustomTheme.colors.black,
+//                    style = CustomTheme.typography.title1Bold,
+//                    textAlign = TextAlign.Center
+//                )
+//            }
+
+//            item {
+//                LazyVerticalGrid(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .background(CustomTheme.colors.bg)
+//                        .padding(start = 10.dp, end = 10.dp),
+//                    horizontalArrangement = Arrangement.spacedBy(14.dp),
+//                    verticalArrangement = Arrangement.spacedBy(10.dp),
+//                    state = rememberLazyGridState(),
+//                    columns = GridCells.Fixed(2),
+//                    content = {
+//                        items(uiState.value.favoriteDatas.size) { index ->
+//                            val data = uiState.value.favoriteDatas[index]
+//                            Column(
+//                                modifier = Modifier.clickableSingle {
+//                                    navController.navigate(
+//                                        Screen.DetailScreen.route(
+//                                            id = data.id,
+//                                        )
+//                                    )
+//                                }
+//                            ) {
+//                                AsyncImage(
+//                                    model = ImageRequest
+//                                        .Builder(context)
+//                                        .data(imageLocalMapperTmpHospital(data.images[0]))
+//                                        .build(),
+//                                    contentDescription = null,
+//                                    modifier = Modifier
+//                                        .fillMaxSize()
+//                                        .aspectRatio(1f)
+//                                        .clip(shape = RoundedCornerShape(15.dp)),
+//                                    contentScale = ContentScale.Crop,
+//                                )
+//                                Text(
+//                                    modifier = Modifier
+//                                        .padding(horizontal = 3.dp)
+//                                        .fillMaxWidth(),
+//                                    text = data.productName,
+//                                    color = CustomTheme.colors.black,
+//                                    style = CustomTheme.typography.bodyRegular,
+//                                    textAlign = TextAlign.Center
+//                                )
+//                                Text(
+//                                    modifier = Modifier
+//                                        .padding(horizontal = 3.dp)
+//                                        .fillMaxWidth(),
+//                                    text = "[${data.region}]",
+//                                    color = CustomTheme.colors.black,
+//                                    style = CustomTheme.typography.bodyRegular,
+//                                    textAlign = TextAlign.Center
+//                                )
+//                            }
+//                        }
+//                    }
+//                )
+//            }
+
+
+//        }
     }
 }
