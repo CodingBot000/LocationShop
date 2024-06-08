@@ -204,9 +204,6 @@ fun FavoriteScreen(
                                     navController.navigate(
                                         Screen.DetailScreen.route(
                                             id = data.id,
-//                                            productName = data.productName,
-//                                            productImgs = data.images[0],
-//                                            searchQuery = data.searchQuery
                                         )
                                     )
                                 }

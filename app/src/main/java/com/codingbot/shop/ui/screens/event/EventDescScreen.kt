@@ -20,6 +20,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Chip
+import androidx.compose.material.ChipDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
@@ -214,6 +215,9 @@ private fun NameFilterChipContent(
 ) {
     Chip(
         shape = RoundedCornerShape(50.dp),
+        colors = ChipDefaults.chipColors(
+            backgroundColor = CustomTheme.colors.white,
+            contentColor = androidx.compose.ui.graphics.Color.Black),
         border = BorderStroke(1.dp, CustomTheme.colors.black),
         onClick = { /*TODO*/ },
         content = {

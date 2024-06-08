@@ -23,6 +23,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Chip
+import androidx.compose.material.ChipDefaults
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -34,6 +35,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -70,7 +72,7 @@ fun MenuScreen(
             modifier = Modifier
 //                .alpha(alpha = 0.1f)
                 .fillMaxSize()
-                .background(color = CustomTheme.colors.black)
+//                .background(color = CustomTheme.colors.black)
         )
 
         Icon(
@@ -83,7 +85,7 @@ fun MenuScreen(
                 .clickableSingle {
                     navController.popBackStack()
                 },
-            tint = CustomTheme.colors.white
+            tint = CustomTheme.colors.black
         )
 
 
@@ -93,16 +95,9 @@ fun MenuScreen(
         )
         {
 
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(10.dp)
-            )
-            {
 
-                itemsIndexed(uiState.value.menuList,
-                    key = { index, item -> "$index _$item" })
-                { index, item ->
-                    println("qq qq qq LazyColumn index:$index item:${item.headerText}")
+                uiState.value.menuList.forEachIndexed { index, item ->
+                    println("q qq LazyColumn index:$index item:${item}")
                     MenuCell(
                         item = item,
                         onClick = { id ->
@@ -126,7 +121,41 @@ fun MenuScreen(
                 }
 
 
-            }
+//            LazyColumn(
+//                modifier = Modifier.fillMaxWidth(),
+//                contentPadding = PaddingValues(10.dp)
+//            )
+//            {
+//
+//                itemsIndexed(uiState.value.menuList,
+//                    key = { index, item -> "$index _$item" })
+//                { index, item ->
+//                    val menuList = uiState.value.menuList
+//                    println("q qq LazyColumn index:$index item:${item.headerText}")
+//                    MenuCell(
+//                        item = item,
+//                        onClick = { id ->
+//                            logger { "MenuCell id:$id"}
+//                            navController.navigate(
+//                                when (id) {
+//                                    MenuCategoriesName.FAVORITE.value -> Screen.FavoriteScreen.route
+//                                    MenuCategoriesName.EVENT.value -> Screen.EventMenuScreen.route
+//                                    MenuCategoriesName.ABOUT_US.value -> Screen.AboutUsScreen.route
+//                                    else -> Screen.TreatmentDetailDescScreen.route(id)
+//                                }
+//                            )
+//                        },
+//                        onClickLocation = { locationNames ->
+//                            navController.navigate(Screen.LocationScreen.route(locationNames.name))
+//                        },
+//                        onClickFolding = { headerText, isOpened ->
+//                            mainViewModel.setMenuFolding(headerText, isOpened)
+//                        }
+//                    )
+//                }
+//
+//
+//            }
         }
     }
 }
@@ -140,82 +169,55 @@ private fun MenuCell(
     onClickFolding: (String, Boolean) -> Unit
 ) {
 
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+
+    ) {
+        Text(
             modifier = Modifier
-                .fillMaxWidth()
+                .padding(5.dp)
+                .clickableSingle {
+                    when (item.headerText) {
+                        MenuTitle.FAVORITE.value -> {
+                            onClick(MenuCategoriesName.FAVORITE.value)
+                        }
 
-        ) {
-            Row(modifier = Modifier
-                .fillMaxWidth())
-            {
-                Text(
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .clickableSingle {
-                            when (item.headerText) {
-                                MenuTitle.FAVORITE.value -> {
-                                    onClick(MenuCategoriesName.FAVORITE.value)
-                                }
+                        MenuTitle.ABOUT_US.value -> {
+                            onClick(MenuCategoriesName.ABOUT_US.value)
+                        }
 
-                                MenuTitle.ABOUT_US.value -> {
-                                    onClick(MenuCategoriesName.ABOUT_US.value)
-                                }
+                        MenuTitle.EVENT.value -> {
+                            onClick(MenuCategoriesName.EVENT.value)
+                        }
 
-                                MenuTitle.EVENT.value -> {
-                                    onClick(MenuCategoriesName.EVENT.value)
-                                }
-
-                                else -> {
-                                    onClickFolding(item.headerText, !item.isOpened)
-                                }
-                            }
-                        },
-                    text = item.headerText,
-                    color = CustomTheme.colors.white,
-                    style = CustomTheme.typography.title2Bold
-                )
-
-//                if (item.items.isNotEmpty()) {
-//                    Image(
-//                        painter = if (item.isOpened) {
-//                            painterResource(id = R.drawable.arrow_drop_up_40dp)
-//                        } else {
-//                            painterResource(id = R.drawable.arrow_drop_down_40dp)
-//                        },
-//                        contentDescription = null
-//                    )
-//                }
+                        else -> {
+                            onClickFolding(item.headerText, !item.isOpened)
+                        }
+                    }
+                },
+            text = item.headerText,
+            color = CustomTheme.colors.black,
+            style = CustomTheme.typography.title2Bold
+        )
+    SubMenuList(item.items,
+        onClickSubItem = { sectionSubData ->
+            if (item.headerText == "Location") {
+                InitValue.LocationNames
+                    .values()
+                    .find { it ->
+                        println("qq it.name:${it.name}  sectionSubData.subText:${sectionSubData.subText}")
+                        it.name.lowercase() == sectionSubData.subText.lowercase()
+                    }
+                    ?.let {
+                        onClickLocation(it)
+                    }
+            } else {
+                onClick(sectionSubData.id)
             }
-            if (item.isOpened) {
-                repeat(item.items.size) { index ->
-                    println("qq qq qq repeat(item.items.size):${item.items.size} index:$index")
-//                    SubMenuList(item.items)
-                    Text(
-                        modifier = Modifier
-                            .padding(start = 20.dp, top = 5.dp)
-                            .clickableSingle {
-                                if (item.headerText == "Location") {
-                                    InitValue.LocationNames
-                                        .values()
-                                        .find { it ->
-                                            println("qq it.name:${it.name}  item.items[index].subText:${item.items[index].subText}")
-                                            it.name.lowercase() == item.items[index].subText.lowercase()
-                                        }
-                                        ?.let {
-                                            onClickLocation(it)
-                                        }
-                                } else {
-                                    onClick(item.items[index].id)
-                                }
-                            },
-                        text = item.items[index].subText.toString(),
-                        color = CustomTheme.colors.white,
-                        style = CustomTheme.typography.bodyRegular
-                    )
-                }
-            }
-        }
-//    }
+
+        })
+    }
     Spacer(modifier = Modifier.width(10.dp))
 }
 
@@ -225,24 +227,22 @@ private fun MenuCell(
 @Composable
 private fun SubMenuList(
     subMenuList: List<SectionSubData>,
+    onClickSubItem: (SectionSubData) -> Unit
 )
 {
-    Column {
-//        Text(text = "Surgeries Package",
-//            color = CustomTheme.colors.textColorPrimary,
-//            style = CustomTheme.typography.bodyBold)
-        FlowRow(
-//            modifier = Modifier.padding(start = 10.dp, end = 10.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            subMenuList.forEach { data ->
-                NameFilterChipContent(
-                    sectionSubData = data,
-                )
-            }
+    FlowRow(
+        modifier = Modifier.padding(start = 20.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        subMenuList.forEach { data ->
+            NameFilterChipContent(
+                sectionSubData = data,
+                onClickSubItem = { sectionSubData ->
+                    onClickSubItem(sectionSubData)
+                }
+            )
         }
     }
-
 }
 
 
@@ -250,11 +250,17 @@ private fun SubMenuList(
 @Composable
 private fun NameFilterChipContent(
     sectionSubData: SectionSubData,
+    onClickSubItem: (SectionSubData) -> Unit
 ) {
     Chip(
         shape = RoundedCornerShape(50.dp),
+        colors = ChipDefaults.chipColors(
+            backgroundColor = CustomTheme.colors.white,
+            contentColor = Color.Black),
         border = BorderStroke(1.dp, CustomTheme.colors.black),
-        onClick = { /*TODO*/ },
+        onClick = {
+            onClickSubItem(sectionSubData)
+                  },
         content = {
             Text(text = sectionSubData.subText,
                 color = CustomTheme.colors.textColorPrimary,
