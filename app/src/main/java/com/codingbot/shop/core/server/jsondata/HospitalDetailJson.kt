@@ -114,7 +114,7 @@ val HospitalDetailJson =
                 "blog": "",
                 "youtube":"",
                 "tiktok":"https://www.tiktok.com/@vslineclinicglobal/video/7255963489192168711?is_from_webapp=1&sender_device=pc&web_id=7373256937738012176",
-                  "snapchat":"",
+                "snapchat":"",
                 "map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.348038374547!2d127.02511807637043!3d37.52329227204984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca39ea4618cdb%3A0xd0ad0677746be4c7!2z7Jyg7KeE7Iqk7J2Y7JuQ!5e0!3m2!1sko!2skr!4v1716566609639!5m2!1sko!2skr",
                 "searchQuery": "톡스앤필의원 홍대신촌점"
              }              

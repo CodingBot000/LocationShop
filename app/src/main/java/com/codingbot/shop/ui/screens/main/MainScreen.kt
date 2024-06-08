@@ -92,12 +92,7 @@ fun MainScreen(
     LaunchedEffect(key1 = Unit) {
         permissionLauncher.launch(permissions.toTypedArray())
     }
-    LaunchedEffect(key1 = Unit) {
-//        openMenu.value = true
-//        navController.navigate(
-//            Screen.MenuScreen.route
-//        )
-    }
+
     Column(
         modifier = Modifier
             .background(color = CustomTheme.colors.bg)
@@ -146,7 +141,7 @@ fun MainScreen(
                         .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
                     text = "New Beauty",
                     color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title1BoldNonePadding,
+                    style = CustomTheme.typography.title1Bold,
                     textAlign = TextAlign.Center
                 )
             }
@@ -158,7 +153,7 @@ fun MainScreen(
                         .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
                     text = "Today Hospital",
                     color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title2RegularNonePadding,
+                    style = CustomTheme.typography.title2Regular,
                     textAlign = TextAlign.Center
                 )
             }
@@ -185,7 +180,7 @@ fun MainScreen(
                         .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
                     text = "Hospitals",
                     color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title1BoldNonePadding,
+                    style = CustomTheme.typography.title1Bold,
                     textAlign = TextAlign.Center
                 )
             }
@@ -197,7 +192,7 @@ fun MainScreen(
                         .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
                     text = "Choose the region you want",
                     color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title2RegularNonePadding,
+                    style = CustomTheme.typography.title2Regular,
                     textAlign = TextAlign.Center
                 )
             }
@@ -209,34 +204,32 @@ fun MainScreen(
             item {
                 RegionChipSelectionSection(
                     locationChipDataList = uiState.value.locationChipDataList,
-                    mainViewModel = mainViewModel
+                    onChipClick = { region ->
+                        mainViewModel.setRegion(region)
+                    }
                 )
             }
 
             item {
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
             }
-//
-//            item {
-//                ChooseRegion(
-//                    searchingList = uiState.value.searchingList,
-//                    onClick = { id ->
-//                        navController.navigate(
-//                            Screen.DetailScreen.route(
-//                                id = id,
-//                            )
-//                        )
-//                    })
-//
-//            }
+
             item {
-                Text(text = "See All >",
+                Text(
+                    text = "See All >",
                     modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 10.dp, end = 10.dp)
                         .clickableSingle {
                             navController.navigate(
                                 Screen.HospitalListByRegionScreen.route(uiState.value.region)
                             )
-                        })
+                        },
+                    color = CustomTheme.colors.black,
+                    style = CustomTheme.typography.title3Bold,
+                    textAlign = TextAlign.End
+                )
+
             }
             item {
                 LazyVerticalGrid(
@@ -276,55 +269,6 @@ fun MainScreen(
     }
 }
 
-//@Composable
-//private fun ChooseRegion(
-//    searchingList: List<ProductData>,
-//    onClick: (Int) -> Unit
-//) {
-//    var index = remember { 0 }
-//    val maxIdx = searchingList.size
-//    if (searchingList.isEmpty()) {
-//        return
-//    }
-//    Column(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .background(colors.bg)
-//            .padding(start = 10.dp, end = 10.dp),
-//    ) {
-//
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .background(colors.bg)
-//                .padding(start = 10.dp, end = 10.dp),
-//            horizontalArrangement = Arrangement.spacedBy(14.dp),
-//
-//            ) {
-//                val data = searchingList[index]
-//                Grid2ItemsByRowCell(
-//                    id = data.id,
-//                    resImgId = imageLocalMapperTmpHospital(data.images[0]),
-//                    descString = data.productName,
-//                    onClick = { id ->
-//                        onClick(id)
-//                    }
-//                )
-//                index++
-//                Grid2ItemsByRowCell(
-//                    id = data.id,
-//                    resImgId = imageLocalMapperTmpHospital(data.images[0]),
-//                    descString = data.productName,
-//                    onClick = { id ->
-//                        onClick(id)
-//                    }
-//                )
-//                index++
-//            }
-//        }
-//    }
-//    Spacer(modifier = Modifier.padding(bottom = 10.dp))
-//}
 @Composable
 private fun NewBeautyHorizontalList(
     list: MutableList<ProductData>,
@@ -357,7 +301,7 @@ private fun NewBeautyHorizontalList(
 @Composable
 private fun RegionChipSelectionSection(
     locationChipDataList: MutableList<LocationChipData>,
-    mainViewModel: MainViewModel
+    onChipClick: (String) -> Unit
 )
 {
     FlowRow(
@@ -369,7 +313,7 @@ private fun RegionChipSelectionSection(
                 locationChipData = data,
                 onChipClick = {
                     if (!data.isSelected) {
-                        mainViewModel.setRegion(data.region)
+                        onChipClick(data.region)
                     }
                 })
         }
@@ -390,7 +334,7 @@ private fun RegionFilterChipContent(
             Text(
                 text = locationChipData.region,
                 color = CustomTheme.colors.textColorPrimary,
-                style = CustomTheme.typography.bodyRegularNonePadding,
+                style = CustomTheme.typography.bodyRegular,
             ) },
         shape = RoundedCornerShape(50),
         colors = FilterChipDefaults.filterChipColors(
@@ -413,38 +357,5 @@ private fun RegionFilterChipContent(
 //            }
         }
     )
-}
-
-@Composable
-private fun SelectionCell(
-    itemName: String,
-    onClick: (String) -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .background(color = CustomTheme.colors.bg)
-            .fillMaxWidth()
-            .padding(vertical = 3.dp)
-            .clickable {
-                onClick(itemName)
-            },
-        shape = RoundedCornerShape(16.dp),
-        elevation = 5.dp,
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                modifier = Modifier
-                    .padding(5.dp),
-                text = itemName.replace("_", " "),
-                color = CustomTheme.colors.black,
-                style = CustomTheme.typography.title3Regular
-            )
-        }
-    }
-    Spacer(modifier = Modifier.width(10.dp))
 }
 

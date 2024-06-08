@@ -59,3 +59,15 @@ fun imageLocalMapperTmpDoctors(imageName: String): Int {
         else -> R.drawable.ic_launcher_background
     }
 }
+
+fun imageLocalMapperTmpSurgery(imageName: String): Int {
+
+    return when (imageName) {
+        "surgery_device_lifting.png" -> R.drawable.surgery_device_lifting
+        "surgery_device_shrink.png" -> R.drawable.surgery_device_shrink
+        "surgery_device_skinbooster.png" -> R.drawable.surgery_device_skinbooster
+        "surgery_device_tuneface.png" -> R.drawable.surgery_device_tuneface
+        "surgery_device_ulthera.png" -> R.drawable.surgery_device_ulthera
+        else -> R.drawable.ic_launcher_background
+    }
+}

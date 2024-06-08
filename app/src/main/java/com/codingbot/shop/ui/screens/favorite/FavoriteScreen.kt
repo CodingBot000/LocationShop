@@ -99,7 +99,7 @@ fun FavoriteScreen(
                                 .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
                             text = "Go to the detailed page of your favorite hospital and tap the like icon.",
                             color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.title1BoldNonePadding,
+                            style = CustomTheme.typography.title1Bold,
                             textAlign = TextAlign.Center
                         )
                         Icon(
@@ -155,7 +155,7 @@ fun FavoriteScreen(
                                             .fillMaxWidth(),
                                         text = data.productName,
                                         color = CustomTheme.colors.black,
-                                        style = CustomTheme.typography.bodyRegularNonePadding,
+                                        style = CustomTheme.typography.bodyRegular,
                                         textAlign = TextAlign.Center
                                     )
                                     Text(
@@ -164,7 +164,7 @@ fun FavoriteScreen(
                                             .fillMaxWidth(),
                                         text = "[${data.region}]",
                                         color = CustomTheme.colors.black,
-                                        style = CustomTheme.typography.bodyRegularNonePadding,
+                                        style = CustomTheme.typography.bodyRegular,
                                         textAlign = TextAlign.Center
                                     )
                                 }
@@ -181,7 +181,7 @@ fun FavoriteScreen(
                         .padding(top = 25.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
                     text = "Recommend",
                     color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title1BoldNonePadding,
+                    style = CustomTheme.typography.title1Bold,
                     textAlign = TextAlign.Center
                 )
             }
@@ -229,7 +229,7 @@ fun FavoriteScreen(
                                         .fillMaxWidth(),
                                     text = data.productName,
                                     color = CustomTheme.colors.black,
-                                    style = CustomTheme.typography.bodyRegularNonePadding,
+                                    style = CustomTheme.typography.bodyRegular,
                                     textAlign = TextAlign.Center
                                 )
                                 Text(
@@ -238,7 +238,7 @@ fun FavoriteScreen(
                                         .fillMaxWidth(),
                                     text = "[${data.region}]",
                                     color = CustomTheme.colors.black,
-                                    style = CustomTheme.typography.bodyRegularNonePadding,
+                                    style = CustomTheme.typography.bodyRegular,
                                     textAlign = TextAlign.Center
                                 )
                             }

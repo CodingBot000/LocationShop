@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 class CustomColors(
     textColorPrimary: Color,
     bg: Color,
+    hospitalInfoBackground: Color,
     bgOpposite: Color,
     buttonBackground: Color,
     buttonBackgroundDisabled: Color,
@@ -22,6 +23,9 @@ class CustomColors(
     var textColorPrimary by mutableStateOf(textColorPrimary)
         private set
     var bg by mutableStateOf(bg)
+        private set
+
+    var hospitalInfoBackground by mutableStateOf(hospitalInfoBackground)
         private set
     var bgOpposite by mutableStateOf(bgOpposite)
         private set
@@ -51,6 +55,7 @@ fun lightColors() = with(com.codingbot.shop.ui.theme.Color) {
         textColorPrimary = Black,
         bg = White,
         bgOpposite = Black,
+        hospitalInfoBackground = Red_10,
         buttonBackground = Blue_30,
         buttonBackgroundDisabled = Gray_40,
         buttonIcon = Black.copy(alpha = .1f),
@@ -67,6 +72,7 @@ fun darkColors() = with(com.codingbot.shop.ui.theme.Color) {
         textColorPrimary = White,
         bg = Gray_95,
         bgOpposite = White,
+        hospitalInfoBackground = Red_10,
         buttonBackground = Blue_70,
         buttonBackgroundDisabled = Gray_70,
         buttonIcon = White.copy(alpha = .1f),

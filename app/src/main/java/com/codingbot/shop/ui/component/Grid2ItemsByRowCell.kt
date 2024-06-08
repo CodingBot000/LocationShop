@@ -53,7 +53,7 @@ fun Grid2ItemsByRowCell(
                 .fillMaxWidth(),
             text = descString,
             color = CustomTheme.colors.black,
-            style = CustomTheme.typography.bodyRegular,
+            style = CustomTheme.typography.title3Bold,
             textAlign = TextAlign.Center
         )
     }

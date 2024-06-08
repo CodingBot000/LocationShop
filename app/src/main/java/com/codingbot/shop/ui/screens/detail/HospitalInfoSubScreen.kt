@@ -138,7 +138,7 @@ fun HospitalInfoSubScreen(
                                 .padding(start = 10.dp, end = 10.dp),
                             text = PREV_SPACE + uiState.value.detailData?.detailDesc?.descAddress ?: "",
                             color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.caption2RegularNonPadding,
+                            style = CustomTheme.typography.caption2Regular,
 
                             )
                     }
@@ -164,7 +164,7 @@ fun HospitalInfoSubScreen(
                                 .padding(start = 10.dp, end = 10.dp),
                             text = PREV_SPACE + uiState.value.detailData?.detailDesc?.openingHour?.trim() ?: "",
                             color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.caption2RegularNonPadding,
+                            style = CustomTheme.typography.caption2Regular,
 
                             )
                     }
@@ -189,7 +189,7 @@ fun HospitalInfoSubScreen(
                                 .padding(start = 10.dp, end = 10.dp),
                             text = PREV_SPACE + uiState.value.detailData?.detailDesc?.facilities ?: "",
                             color = CustomTheme.colors.black,
-                            style = CustomTheme.typography.caption2RegularNonPadding,
+                            style = CustomTheme.typography.caption2Regular,
 
                             )
                     }

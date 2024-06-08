@@ -28,6 +28,7 @@ import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.ui.component.HospitalInfoCell
+import com.codingbot.shop.ui.component.HospitalInfoList
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.HospitalListSubViewModel
@@ -47,23 +48,12 @@ fun HospitalListSubScreen(
     LaunchedEffect(key1 = Unit) {
         hospitalSubViewModel.getHospitalListData(id)
     }
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 10.dp)
 
-    ) {
-        items(uiState.value.list?.size ?: 0) { index ->
-            val data = uiState.value.list!![index]
-            HospitalInfoCell(
-                id = data.id,
-                descString = data.productName,
-                resImgId = imageLocalMapperTmpHospital(data.images[0]),
-                onClick = { hospitalId ->
-                    navController.navigate(
-                        Screen.DetailScreen.route(hospitalId))
-                }
-            )
+    uiState.value.list?.let { list ->
+        HospitalInfoList(list = list)
+        { hospitalId ->
+            navController.navigate(
+                Screen.DetailScreen.route(hospitalId))
         }
-    } // End of Lazy
+    }
 }

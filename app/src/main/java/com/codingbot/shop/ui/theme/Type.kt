@@ -30,27 +30,21 @@ class CustomTypography {
             fontSize = 10.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Normal,
-            lineHeight = 14.px
-        )
-
-    val caption2RegularNonPadding: TextStyle
-        @Composable get() = TextStyle(
-            fontSize = 10.px,
-            fontFamily = NotoSansKr,
-            fontWeight = FontWeight.Normal,
             lineHeight = 14.px,
             platformStyle = PlatformTextStyle(
                 includeFontPadding = false,
             ),
         )
 
-
     val captionRegular: TextStyle
         @Composable get() = TextStyle(
             fontSize = 12.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Normal,
-            lineHeight = 16.px
+            lineHeight = 16.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val footnoteRegular: TextStyle
@@ -58,18 +52,13 @@ class CustomTypography {
             fontSize = 14.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Normal,
-            lineHeight = 19.px
+            lineHeight = 19.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val bodyRegular: TextStyle
-        @Composable get() = TextStyle(
-            fontSize = 16.px,
-            fontFamily = NotoSansKr,
-            fontWeight = FontWeight.Normal,
-            lineHeight = 21.px
-        )
-
-    val bodyRegularNonePadding: TextStyle
         @Composable get() = TextStyle(
             fontSize = 16.px,
             fontFamily = NotoSansKr,
@@ -85,7 +74,10 @@ class CustomTypography {
             fontSize = 18.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Normal,
-            lineHeight = 23.px
+            lineHeight = 23.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val title3Regular: TextStyle
@@ -93,17 +85,13 @@ class CustomTypography {
             fontSize = 20.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Normal,
-            lineHeight = 25.px
+            lineHeight = 25.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val title2Regular: TextStyle
-        @Composable get() = TextStyle(
-            fontSize = 22.px,
-            fontFamily = NotoSansKr,
-            fontWeight = FontWeight.Normal,
-            lineHeight = 28.px
-        )
-    val title2RegularNonePadding: TextStyle
         @Composable get() = TextStyle(
             fontSize = 22.px,
             fontFamily = NotoSansKr,
@@ -113,14 +101,8 @@ class CustomTypography {
                 includeFontPadding = false,
             ),
         )
+
     val title1Regular: TextStyle
-        @Composable get() = TextStyle(
-            fontSize = 28.px,
-            fontFamily = NotoSansKr,
-            fontWeight = FontWeight.Normal,
-            lineHeight = 34.px
-        )
-    val title1RegularNonePadding: TextStyle
         @Composable get() = TextStyle(
             fontSize = 28.px,
             fontFamily = NotoSansKr,
@@ -135,7 +117,10 @@ class CustomTypography {
             fontSize = 34.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Normal,
-            lineHeight = 41.px
+            lineHeight = 41.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val caption2Bold: TextStyle
@@ -143,14 +128,20 @@ class CustomTypography {
             fontSize = 10.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 14.px
+            lineHeight = 14.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
     val caption2ExtraBold: TextStyle
         @Composable get() = TextStyle(
             fontSize = 10.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.ExtraBold,
-            lineHeight = 14.px
+            lineHeight = 14.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val captionBold: TextStyle
@@ -158,7 +149,10 @@ class CustomTypography {
             fontSize = 12.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 16.px
+            lineHeight = 16.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val footnoteBold: TextStyle
@@ -166,10 +160,13 @@ class CustomTypography {
             fontSize = 14.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 19.px
+            lineHeight = 19.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
-    val bodyBoldNonePadding: TextStyle
+    val bodyBold: TextStyle
         @Composable get() = TextStyle(
             fontSize = 16.px,
             fontFamily = NotoSansKr,
@@ -179,20 +176,16 @@ class CustomTypography {
                 includeFontPadding = false,
             ),
         )
-    val bodyBold: TextStyle
-        @Composable get() = TextStyle(
-            fontSize = 16.px,
-            fontFamily = NotoSansKr,
-            fontWeight = FontWeight.Bold,
-            lineHeight = 21.px
-        )
 
     val headlineBold: TextStyle
         @Composable get() = TextStyle(
             fontSize = 18.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 23.px
+            lineHeight = 23.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val title3Bold: TextStyle
@@ -200,7 +193,10 @@ class CustomTypography {
             fontSize = 20.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 25.px
+            lineHeight = 25.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val title2Bold: TextStyle
@@ -208,7 +204,10 @@ class CustomTypography {
             fontSize = 22.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 28.px
+            lineHeight = 28.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 
     val title1Bold: TextStyle
@@ -216,23 +215,21 @@ class CustomTypography {
             fontSize = 28.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 34.px
-        )
-    val title1BoldNonePadding: TextStyle
-        @Composable get() = TextStyle(
-            fontSize = 28.px,
-            fontFamily = NotoSansKr,
-            fontWeight = FontWeight.Bold,
+            lineHeight = 34.px,
             platformStyle = PlatformTextStyle(
                 includeFontPadding = false,
             ),
         )
+
     val largeTitleBold: TextStyle
         @Composable get() = TextStyle(
             fontSize = 34.px,
             fontFamily = NotoSansKr,
             fontWeight = FontWeight.Bold,
-            lineHeight = 41.px
+            lineHeight = 41.px,
+            platformStyle = PlatformTextStyle(
+                includeFontPadding = false,
+            ),
         )
 }
 

@@ -18,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.codingbot.shop.core.common.Screen
+import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.ui.screens.main.MainScreen
 import com.codingbot.shop.ui.screens.SplashScreen
 import com.codingbot.shop.ui.screens.aboutus.AboutUsScreen
@@ -44,6 +45,9 @@ val LocalRootNavHost =
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        DumpServer.init()
+
         setContent {
             LocationShopTheme {
                 val navController = rememberNavController()

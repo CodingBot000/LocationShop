@@ -21,7 +21,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.codingbot.shop.core.common.Logger
+import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.ui.component.DetailHeader
+import com.codingbot.shop.ui.component.HospitalInfoList
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.LocationViewModel
 import kotlinx.coroutines.delay
@@ -40,13 +42,13 @@ fun LocationScreen(
     LaunchedEffect(key1 = Unit) {
         delay(500)
         locationViewModel.getLocationProductList(locationNameString)
+        locationViewModel.getHospitalListDataByRegion(locationNameString)
     }
     Column(
         modifier = Modifier
             .background(color = CustomTheme.colors.bg)
             .fillMaxSize(),
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.Center
+
     )
     {
         DetailHeader(
@@ -57,29 +59,26 @@ fun LocationScreen(
         )
 
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = CustomTheme.colors.bg),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-        )
-        {
+        Spacer(modifier = Modifier.padding(bottom = 10.dp))
 
 
-            item {
-                Spacer(modifier = Modifier.padding(bottom = 10.dp))
+        uiState.value.mapMarkingData?.let {
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .clip(shape = RoundedCornerShape(15.dp))
+                .padding(horizontal = 10.dp)) {
+                MapView(it)
+
             }
-            item {
-                uiState.value.detailData?.let {
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .clip(shape = RoundedCornerShape(15.dp))
-                        .padding(horizontal = 10.dp)) {
-                        MapView(it)
+        }
+        Spacer(modifier = Modifier.padding(bottom = 10.dp))
 
-                    }
-                }
+        uiState.value.hospitalList?.let { list ->
+            HospitalInfoList(list = list)
+            { hospitalId ->
+                navController.navigate(
+                    Screen.DetailScreen.route(hospitalId))
             }
         }
     }

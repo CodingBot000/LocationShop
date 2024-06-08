@@ -40,7 +40,6 @@ class MainViewModel @Inject constructor()
 
 
     init {
-        DumpServer.init()
         initBannerSlider()
 //        initHospitalDatas()
         initBannerSliderOld()

@@ -3,6 +3,7 @@ package com.codingbot.shop.ui.component
 import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,11 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
 import com.codingbot.shop.domain.model.EventData
+import com.codingbot.shop.ui.theme.CustomTheme
 
 
 @Composable
@@ -47,11 +51,27 @@ fun EventCell(
             contentScale = ContentScale.Crop,
         )
 
-        Column {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Row {
+                Text(
+                    text = data.eventName,
+                    color = CustomTheme.colors.black,
+                    style = CustomTheme.typography.bodyBold,
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "${data.eventDateFrom} ~ ${data.eventDateTo}",
+                    color = CustomTheme.colors.black,
+                    style = CustomTheme.typography.caption2Regular,
+                )
+            }
             Text(
-                text = data.eventName
+                text = "${data.desc}",
+                color = CustomTheme.colors.black,
+                maxLines = 6,
+                overflow = TextOverflow.Ellipsis,
+                style = CustomTheme.typography.caption2Regular,
             )
-
         }
     }
 }

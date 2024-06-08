@@ -10,7 +10,6 @@ data class ProductData(
     val images: List<String>,
     val surgeries: List<Int>,
     var wish: Boolean = false,
-    var cart: Boolean = false,
     val order: Int,
 
     ) {

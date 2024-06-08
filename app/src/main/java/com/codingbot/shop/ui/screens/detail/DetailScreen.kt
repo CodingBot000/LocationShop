@@ -73,7 +73,6 @@ fun DetailScreen(
         detailViewModel.getDetailData(id)
     }
 
-
     Box(
         modifier = Modifier
             .background(color = CustomTheme.colors.bg)
@@ -225,7 +224,7 @@ fun DetailScreen(
 //                                .padding(top = 15.dp, start = 10.dp, end = 10.dp),
 //                            text = uiState.value.detailData?.desc ?: "",
 //                            color = CustomTheme.colors.black,
-//                            style = CustomTheme.typography.caption2RegularNonPadding,
+//                            style = CustomTheme.typography.caption2Regular,
 //
 //                            )
 ////                    }
@@ -237,7 +236,7 @@ fun DetailScreen(
 ////                                .padding(top = 10.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
 ////                            text = uiState.value.detailData?.desc2 ?: "",
 ////                            color = CustomTheme.colors.black,
-////                            style = CustomTheme.typography.caption2RegularNonPadding,
+////                            style = CustomTheme.typography.caption2Regular,
 ////                        )
 ////                    }
 ////
@@ -297,9 +296,9 @@ fun ColumnScope.FloatingSNSIcons(
                         hyperlink = hyperText,
                         snsIconType = linkType,
                         onClickIcon = {snsIconType ->
-                            if (snsIconType == SNSIconType.MAP) {
-                                uriHandler.openUri(hyperText)  // 일단외부로 내보내기
-                            }
+//                            if (snsIconType == SNSIconType.MAP) {
+//                                uriHandler.openUri(hyperText)  // 일단외부로 내보내기
+//                            }
                             if (snsIconType == SNSIconType.TEL) {
                                 context.startActivity(
                                     Intent(
@@ -350,6 +349,9 @@ private fun getSNSInfo(
     } else if (snsType == SNSIconType.TIKTOK && data.tiktok.isNotEmpty()) {
         hyperText = data.tiktok
         linkType = SNSIconType.TIKTOK
+    } else if (snsType == SNSIconType.YOUTUBE && data.youtube.isNotEmpty()) {
+        hyperText = data.youtube
+        linkType = SNSIconType.YOUTUBE
 //                } else if (snsType == SNSIconType.MAP && data.map.isNotEmpty()) {
 //                    hyperText = data.map
 //                    linkType = SNSIconType.MAP

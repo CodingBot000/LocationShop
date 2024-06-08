@@ -14,7 +14,7 @@ val HospitalDataJson =
               "images": ["hospital_reone.png", "hospital_reone2.png", "hospital_reone3.png", "hospital_reone4.png"],
               "surgeries": [1, 2, 3, 4, 5, 7, 8],
               "wish": false,
-              "cart": false,
+ 
               "order": 0
             },
             {
@@ -25,7 +25,7 @@ val HospitalDataJson =
               "images": ["hospital_chungdamace.png"],
               "surgeries": [1, 2, 5, 6, 8],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -36,7 +36,7 @@ val HospitalDataJson =
               "images": ["hospital_wanna_plastic_surgery.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+ 
               "order": 0
             },
             {
@@ -47,7 +47,7 @@ val HospitalDataJson =
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -58,7 +58,7 @@ val HospitalDataJson =
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -69,7 +69,7 @@ val HospitalDataJson =
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+  
               "order": 0
             },
             {
@@ -80,7 +80,7 @@ val HospitalDataJson =
               "images": ["hospital4_boss.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -91,7 +91,7 @@ val HospitalDataJson =
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+  
               "order": 0
             },
             {
@@ -102,7 +102,7 @@ val HospitalDataJson =
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -113,7 +113,7 @@ val HospitalDataJson =
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -124,7 +124,7 @@ val HospitalDataJson =
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+  
               "order": 0
             },
             {
@@ -135,7 +135,7 @@ val HospitalDataJson =
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -146,7 +146,7 @@ val HospitalDataJson =
               "images": ["hospital4_boss.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+ 
               "order": 0
             },
             {
@@ -157,7 +157,7 @@ val HospitalDataJson =
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+  
               "order": 0
             },
             {
@@ -168,7 +168,7 @@ val HospitalDataJson =
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -179,7 +179,7 @@ val HospitalDataJson =
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -190,7 +190,7 @@ val HospitalDataJson =
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -201,7 +201,7 @@ val HospitalDataJson =
               "images": ["hospital4_boss.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -212,7 +212,7 @@ val HospitalDataJson =
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -223,7 +223,7 @@ val HospitalDataJson =
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+
               "order": 0
             },
             {
@@ -234,7 +234,7 @@ val HospitalDataJson =
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
+ 
               "order": 0
             },
             {
@@ -245,7 +245,6 @@ val HospitalDataJson =
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7],
               "wish": false,
-              "cart": false,
               "order": 0
             }
           ]

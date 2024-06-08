@@ -71,6 +71,7 @@ object DumpServer {
     }
 
     private fun initRegionDatas() {
+        locationChipDataList.clear()
         InitValue.MENU_SUB_LOCATIONS.forEach {
             locationChipDataList.add(LocationChipData(region = it))
         }

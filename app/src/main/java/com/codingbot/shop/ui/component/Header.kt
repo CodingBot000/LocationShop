@@ -49,7 +49,7 @@ fun MainHeader(
         Text(
             text = title,
             color = CustomTheme.colors.textColorPrimary,
-            style = CustomTheme.typography.title1BoldNonePadding,
+            style = CustomTheme.typography.title1Bold,
             modifier = Modifier.align(Alignment.Center)
         )
 
@@ -92,7 +92,7 @@ fun DetailHeader(
         Text(
             text = title,
             color = CustomTheme.colors.textColorPrimary,
-            style = CustomTheme.typography.title1BoldNonePadding,
+            style = CustomTheme.typography.title1Bold,
             modifier = Modifier.align(Alignment.Center)
         )
         Box(modifier = Modifier

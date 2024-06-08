@@ -1,6 +1,7 @@
 package com.codingbot.shop.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,10 +26,11 @@ fun HospitalInfoCell(
     onClick: (Int) -> Unit
 ) {
     Column(modifier =
-    Modifier.fillMaxWidth()
-        .clickableSingle {
-            onClick(id)
-        }
+        Modifier.fillMaxWidth()
+            .padding(bottom = 15.dp)
+            .clickableSingle {
+                onClick(id)
+            }
     )
     {
         Image(
@@ -36,7 +38,7 @@ fun HospitalInfoCell(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
-                .padding(bottom = 10.dp)
+
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
             contentDescription = null
@@ -44,11 +46,10 @@ fun HospitalInfoCell(
 
         Text(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 5.dp),
+                .fillMaxWidth(),
             text = descString,
             color = CustomTheme.colors.black,
-            style = CustomTheme.typography.bodyRegular,
+            style = CustomTheme.typography.title3Bold,
             textAlign = TextAlign.Center
         )
     }

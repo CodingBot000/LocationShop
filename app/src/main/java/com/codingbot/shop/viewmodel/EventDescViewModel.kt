@@ -1,6 +1,7 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
+import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.core.server.DumpServer.eventDataList
 import com.codingbot.shop.core.server.DumpServer.productDatasOrigin
 import com.codingbot.shop.domain.model.EventData
@@ -29,16 +30,28 @@ class EventDescViewModel @Inject constructor()
         eventDataList?.let { eventList ->
             eventList.find { eventData -> eventData.id == id }?.let { eventData ->
                 execute(EventIntent.DetailData(eventData))
+
+                productDatasOrigin?.let { productList ->
+                    productList.find { productData -> productData.id == eventData.hospital_id }
+                        ?.let { productData ->
+                          execute(EventIntent.HospitalInfo(productData))
+                        }
+                 }
             }
-            productDatasOrigin?.let { productList ->
-                productList.find { productData -> productData.id == id }
-                    ?.let { productData ->
-                      execute(EventIntent.HospitalInfo(productData))
-                    }
-             }
         }
+    }
 
-
+    fun getSurgeryNames(surgeryIds: List<Int>): List<String> {
+//        val sb = StringBuilder()
+        val surgeryNames = mutableListOf<String>()
+        surgeryIds.forEach { surgeryId ->
+            DumpServer.surgeryDataList?.let {list ->
+//                sb.append("${list[surgeryId].surgeryName} ")
+                surgeryNames.add(list[surgeryId].surgeryName)
+            }
+        }
+        return surgeryNames
+//        return sb.toString()
     }
 
     override suspend fun EventUiState.reduce(intent: EventIntent): EventUiState =

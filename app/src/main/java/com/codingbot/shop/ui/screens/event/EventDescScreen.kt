@@ -1,9 +1,13 @@
 package com.codingbot.shop.ui.screens.event
 
 import android.content.Context
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -15,8 +19,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Chip
 import androidx.compose.material.Divider
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -37,11 +46,13 @@ import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
 import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
+import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.Color
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.EventDescViewModel
+import com.codingbot.shop.viewmodel.MainViewModel
 
 
 @Composable
@@ -98,7 +109,7 @@ fun EventDescScreen(
                 uiState.value.detailData?.let { eventData ->
                     Text(
                         text = eventData.eventName,
-                        style = CustomTheme.typography.title1BoldNonePadding,
+                        style = CustomTheme.typography.title1Bold,
                         textAlign = TextAlign.Center)
                 }
 
@@ -110,12 +121,19 @@ fun EventDescScreen(
                     )
                 }
 
+                uiState.value.detailData?.let { eventData ->
+                    SurgeryList(
+                        surgeryNamelist = eventDescViewModel.getSurgeryNames(eventData.surgeryIds)
+                        )
+                }
+                Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 uiState.value.detailData?.let { eventData->
                     Text(text = eventData.desc)
                 }
 
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
-                Divider(modifier = Modifier.fillMaxWidth()
+                Divider(modifier = Modifier
+                    .fillMaxWidth()
                     .height(1.dp)
                     .background(Color.Gray_20))
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
@@ -123,7 +141,7 @@ fun EventDescScreen(
                 uiState.value.productData?.let { info->
                     Row(modifier = Modifier
                         .fillMaxWidth()
-                        .height(80.dp)
+                        .height(150.dp)
                         .clickableSingle {
                             navController.navigate(Screen.DetailScreen.route(info.id))
                         })
@@ -144,13 +162,64 @@ fun EventDescScreen(
                             )
                         }
                         Spacer(modifier = Modifier.weight(1f))
-                        Text(
-                            text = info.productName,
-                            style = CustomTheme.typography.title3Bold,
-                        )
+                        Column {
+                            Text(
+                                text = "Hospital",
+                                style = CustomTheme.typography.bodyRegular,
+                            )
+                            Text(
+                                text = "      ${info.productName}",
+                                style = CustomTheme.typography.title3Bold,
+                            )
+                        }
+
                     }
                 }
             }
         }
     }
+}
+
+
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SurgeryList(
+    surgeryNamelist: List<String>,
+)
+{
+    Column {
+        Text(text = "Surgeries Package",
+            color = CustomTheme.colors.textColorPrimary,
+            style = CustomTheme.typography.bodyBold)
+        FlowRow(
+//            modifier = Modifier.padding(start = 10.dp, end = 10.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            surgeryNamelist.forEach { data ->
+                NameFilterChipContent(
+                    surgeryNamelist = data,
+                )
+            }
+        }
+    }
+
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+@Composable
+private fun NameFilterChipContent(
+    surgeryNamelist: String,
+) {
+    Chip(
+        shape = RoundedCornerShape(50.dp),
+        border = BorderStroke(1.dp, CustomTheme.colors.black),
+        onClick = { /*TODO*/ },
+        content = {
+            Text(text = surgeryNamelist,
+                color = CustomTheme.colors.textColorPrimary,
+                style = CustomTheme.typography.bodyRegular,)
+        })
+
 }
