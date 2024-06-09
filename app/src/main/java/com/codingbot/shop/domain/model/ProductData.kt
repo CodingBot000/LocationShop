@@ -10,12 +10,7 @@ data class ProductData(
     val images: List<String>,
     val surgeries: List<Int>,
     var wish: Boolean = false,
-    val order: Int,
-
-    ) {
-//    val images: List<String>
-//        get() = image.split(",").map { it.trim() }.filter { it.isNotEmpty() }
-}
+)
 
 data class ProductDatas(
     @SerializedName("hospitals") val datas: List<ProductData>

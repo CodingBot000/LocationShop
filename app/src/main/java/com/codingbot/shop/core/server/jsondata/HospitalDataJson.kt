@@ -13,9 +13,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital_reone.png", "hospital_reone2.png", "hospital_reone3.png", "hospital_reone4.png"],
               "surgeries": [1, 2, 3, 4, 5, 7, 8, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
- 
-              "order": 0
+              "wish": false
             },
             {
               "id":1,
@@ -24,9 +22,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital_chungdamace.png"],
               "surgeries": [1, 2, 5, 6, 8, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
             "id":2,
@@ -35,9 +31,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital_wanna_plastic_surgery.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
- 
-              "order": 0
+              "wish": false
             },
             {
               "id":1001,
@@ -46,9 +40,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.CHUNGDAM}",
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1002,
@@ -57,9 +49,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1003,
@@ -68,9 +58,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-  
-              "order": 0
+              "wish": false
             },
             {
               "id":1004,
@@ -79,9 +67,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital4_boss.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1005,
@@ -90,9 +76,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.SONGDO}",
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-  
-              "order": 0
+              "wish": false
             },
             {
               "id":1006,
@@ -101,9 +85,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1007,
@@ -112,9 +94,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1008,
@@ -123,9 +103,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-  
-              "order": 0
+              "wish": false
             },
             {
               "id":1009,
@@ -134,9 +112,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1010,
@@ -145,9 +121,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.CHUNGDAM}",
               "images": ["hospital4_boss.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
- 
-              "order": 0
+              "wish": false
             },
             {
               "id":1011,
@@ -156,9 +130,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.CHUNGDAM}",
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-  
-              "order": 0
+              "wish": false
             },
             {
               "id":1012,
@@ -167,9 +139,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1013,
@@ -178,9 +148,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1014,
@@ -189,9 +157,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1015,
@@ -200,9 +166,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital4_boss.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1016,
@@ -211,9 +175,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital5_vline.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1017,
@@ -222,9 +184,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital1.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-
-              "order": 0
+              "wish": false
             },
             {
               "id":1018,
@@ -233,9 +193,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital2_youjins.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
- 
-              "order": 0
+              "wish": false
             },
             {
               "id":1019,
@@ -244,8 +202,7 @@ val HospitalDataJson =
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital3_brillyn.png"],
               "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
-              "wish": false,
-              "order": 0
+              "wish": false
             }
           ]
         }
