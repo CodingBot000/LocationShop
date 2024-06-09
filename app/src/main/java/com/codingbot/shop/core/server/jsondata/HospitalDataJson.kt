@@ -12,7 +12,7 @@ val HospitalDataJson =
               "searchQuery": "리원피부과의원",                     
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital_reone.png", "hospital_reone2.png", "hospital_reone3.png", "hospital_reone4.png"],
-              "surgeries": [1, 2, 3, 4, 5, 7, 8],
+              "surgeries": [1, 2, 3, 4, 5, 7, 8, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
  
               "order": 0
@@ -23,7 +23,7 @@ val HospitalDataJson =
               "searchQuery": "청담에이스의원",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital_chungdamace.png"],
-              "surgeries": [1, 2, 5, 6, 8],
+              "surgeries": [1, 2, 5, 6, 8, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -34,7 +34,7 @@ val HospitalDataJson =
               "searchQuery": "워나성형외과의원",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital_wanna_plastic_surgery.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
  
               "order": 0
@@ -45,7 +45,7 @@ val HospitalDataJson =
               "searchQuery": "청담오라클피부과의원",
               "region": "${InitValue.LocationsData.LocationNameConst.CHUNGDAM}",
               "images": ["hospital1.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -56,7 +56,7 @@ val HospitalDataJson =
                 "searchQuery": "브이라인성형외과",
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital2_youjins.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -67,7 +67,7 @@ val HospitalDataJson =
             "searchQuery": "브릴린의원",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital3_brillyn.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
   
               "order": 0
@@ -78,7 +78,7 @@ val HospitalDataJson =
             "searchQuery": "보스의원",
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital4_boss.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -89,7 +89,7 @@ val HospitalDataJson =
             "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.SONGDO}",
               "images": ["hospital5_vline.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
   
               "order": 0
@@ -100,7 +100,7 @@ val HospitalDataJson =
           "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital5_vline.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -111,7 +111,7 @@ val HospitalDataJson =
              "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital1.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -122,7 +122,7 @@ val HospitalDataJson =
            "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital2_youjins.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
   
               "order": 0
@@ -133,7 +133,7 @@ val HospitalDataJson =
           "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.APGUJEONG}",
               "images": ["hospital3_brillyn.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -144,7 +144,7 @@ val HospitalDataJson =
               "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.CHUNGDAM}",
               "images": ["hospital4_boss.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
  
               "order": 0
@@ -155,7 +155,7 @@ val HospitalDataJson =
               "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.CHUNGDAM}",
               "images": ["hospital5_vline.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
   
               "order": 0
@@ -166,7 +166,7 @@ val HospitalDataJson =
             "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital1.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -177,7 +177,7 @@ val HospitalDataJson =
           "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital2_youjins.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -188,7 +188,7 @@ val HospitalDataJson =
             "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital3_brillyn.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -199,7 +199,7 @@ val HospitalDataJson =
             "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.GANGNAM}",
               "images": ["hospital4_boss.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -210,7 +210,7 @@ val HospitalDataJson =
             "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital5_vline.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -221,7 +221,7 @@ val HospitalDataJson =
            "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.HONGDAE}",
               "images": ["hospital1.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
 
               "order": 0
@@ -232,7 +232,7 @@ val HospitalDataJson =
            "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital2_youjins.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
  
               "order": 0
@@ -243,7 +243,7 @@ val HospitalDataJson =
             "searchQuery": "청담포레브",
               "region": "${InitValue.LocationsData.LocationNameConst.MYUNGDONG}",
               "images": ["hospital3_brillyn.png"],
-              "surgeries": [2, 3, 5, 6, 7],
+              "surgeries": [2, 3, 5, 6, 7, 1000, 1001, 1002, 1003, 1004],
               "wish": false,
               "order": 0
             }

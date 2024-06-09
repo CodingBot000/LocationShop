@@ -80,9 +80,10 @@ class MainViewModel @Inject constructor()
                             SectionData(
                                 id = index,
                                 headerText = sectionData,
-                                items = InitValue.MENU_SUB_SURGERY.mapIndexed { innerIndex, data
-                                    -> SectionSubData(id = innerIndex, subText = data)
-                                }
+                                items = InitValue.MENU_SUB_SURGERY
+//                                items = InitValue.MENU_SUB_SURGERY.mapIndexed { innerIndex, data
+//                                    -> SectionSubData(id = innerIndex, subText = data)
+//                                }
                             )
                         )
                 }
@@ -100,9 +101,10 @@ class MainViewModel @Inject constructor()
                         SectionData(
                             id = index,
                             headerText = sectionData,
-                            items = InitValue.MENU_SUB_COSMETICS.mapIndexed { innerIndex, data ->
-                                SectionSubData(id = innerIndex, subText = data)
-                            }
+                            items = InitValue.MENU_SUB_COSMETICS
+//                            items = InitValue.MENU_SUB_COSMETICS.mapIndexed { innerIndex, data ->
+//                                SectionSubData(id = innerIndex, subText = data)
+//                            }
                         )
                     )
                 }

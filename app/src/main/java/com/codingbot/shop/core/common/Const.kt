@@ -50,22 +50,16 @@ sealed interface Screen {
         override val route: String = ScreenRoutes.RecommendSurgeryScreen
 
         const val id = "id"
-        const val productName = "productName"
-        const val productImg = "productImg"
 
-        val routeWithArgs = "$route/{$id}/{$productName}/{$productImg}"
+        val routeWithArgs = "$route/{$id}"
         val arguments = listOf(
             navArgument(id) { type = NavType.IntType },
-            navArgument(productName) { type = NavType.StringType },
-            navArgument(productImg) { type = NavType.IntType },
-
         )
 
-        fun route(id: Int,
-                  productName: String,
-                  productImg: Int,
+        fun route(
+            id: Int,
         ): String {
-            return "${route}/$id/$productName/$productImg"
+            return "${route}/$id"
         }
     }
 

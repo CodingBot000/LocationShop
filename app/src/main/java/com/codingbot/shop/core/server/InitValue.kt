@@ -2,6 +2,7 @@ package com.codingbot.shop.core.server
 
 import com.codingbot.shop.R
 import com.codingbot.shop.domain.model.HomeBannerData
+import com.codingbot.shop.ui.screens.menu.SectionSubData
 
 object InitValue {
     fun getSurgeryList(): MutableList<HomeBannerData> {
@@ -48,34 +49,34 @@ object InitValue {
 
     val MENU_MAIN_CATEGORIES =
         arrayListOf(
-            "Surgical procedure",
-            "Cosmetic procedure",
-            "Location",
-            "Favorite",
-            "Event",
-            "About Us"
+            MAIN_MENU_NAME.SURGICAL_PROCEDURE,
+            MAIN_MENU_NAME.COSMETIC_PROCEDURE,
+            MAIN_MENU_NAME.LOCATION,
+            MAIN_MENU_NAME.FAVORITE,
+            MAIN_MENU_NAME.EVENT,
+            MAIN_MENU_NAME.ABOUT_US
         )
 
     val MENU_SUB_SURGERY =
         arrayListOf(
-            "Eyes",
-            "Nose",
-            "bimaxillary operation",
-            "liposuction",
-            "Hair transplantation",
+            SectionSubData(id = 1000, subText = "Eyes"),
+            SectionSubData(id = 1001, subText = "Nose"),
+            SectionSubData(id = 1002, subText = "bimaxillary operation"),
+            SectionSubData(id = 1003, subText = "liposuction"),
+            SectionSubData(id = 1004, subText = "Hair transplantation")
         )
 
     val MENU_SUB_COSMETICS =
         arrayListOf(
-            "Ulthera",
-            "Thermage",
-            "InMode",
-            "Shrink",
-            "Botox",
-            "Filler",
-            "Skinbooster",
-            "tune face",
-            "Thermage",
+            SectionSubData(id = 0, subText = "Ulthera"),
+            SectionSubData(id = 1, subText = "Thermage"),
+            SectionSubData(id = 2, subText = "InMode"),
+            SectionSubData(id = 3, subText = "Shrink"),
+            SectionSubData(id = 4, subText = "Botox"),
+            SectionSubData(id = 5, subText = "Filler"),
+            SectionSubData(id = 6, subText = "Skinbooster"),
+            SectionSubData(id = 7, subText = "tune face"),
+            SectionSubData(id = 8, subText = "Thermage"),
 
         )
 
@@ -179,4 +180,13 @@ object InitValue {
         }
     }
 
+}
+
+object MAIN_MENU_NAME {
+    const val SURGICAL_PROCEDURE = "Surgical procedure"
+    const val COSMETIC_PROCEDURE = "Cosmetic procedure"
+    const val LOCATION = "Location"
+    const val FAVORITE = "Favorite"
+    const val EVENT = "Event"
+    const val ABOUT_US = "About Us"
 }

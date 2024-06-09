@@ -93,13 +93,10 @@ class MainActivity : ComponentActivity() {
                             arguments = Screen.RecommendSurgeryScreen.arguments
                         ) { entry ->
                             val id = entry.arguments?.getInt(Screen.RecommendSurgeryScreen.id) ?: 1
-                            val productName = entry.arguments?.getString(Screen.RecommendSurgeryScreen.productName) ?: ""
-                            val productImg = entry.arguments?.getInt(Screen.RecommendSurgeryScreen.productImg) ?: R.drawable.surgery_acne
+
                             RecommendSurgeryScreen(
                                 navController = navController,
-                                id = id,
-                                productName = productName,
-                                productImg = productImg
+                                id = id
                             )
                         }
 
@@ -125,20 +122,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(
-                            route = Screen.RecommendSurgeryScreen.routeWithArgs,
-                            arguments = Screen.RecommendSurgeryScreen.arguments
-                        ) { entry ->
-                            val id = entry.arguments?.getInt(Screen.RecommendSurgeryScreen.id) ?: 1
-                            val productName = entry.arguments?.getString(Screen.RecommendSurgeryScreen.productName) ?: ""
-                            val productImg = entry.arguments?.getInt(Screen.RecommendSurgeryScreen.productImg) ?: R.drawable.surgery_acne
-                            RecommendSurgeryScreen(
-                                navController = navController,
-                                id = id,
-                                productName = productName,
-                                productImg = productImg
-                            )
-                        }
+
 
                         composable(
                             route = Screen.HospitalListByRegionScreen.routeWithArgs,

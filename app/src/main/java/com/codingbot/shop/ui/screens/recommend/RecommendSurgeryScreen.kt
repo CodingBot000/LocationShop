@@ -41,9 +41,6 @@ import kotlinx.coroutines.launch
 fun RecommendSurgeryScreen(
     navController: NavController,
     id: Int,
-    productName: String,
-    productImg: Int,
-    context: Context = LocalContext.current,
     recommendSurgeryViewModel: RecommendSurgeryViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("RecommendSurgeryViewModel", true, "[Screen]") }

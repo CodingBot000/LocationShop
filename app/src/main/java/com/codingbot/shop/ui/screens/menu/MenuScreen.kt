@@ -64,17 +64,7 @@ fun MenuScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-//            .background(color = CustomTheme.colors.black)
-//            .alpha(alpha = 0.3f)
     ) {
-
-        Box(
-            modifier = Modifier
-//                .alpha(alpha = 0.1f)
-                .fillMaxSize()
-//                .background(color = CustomTheme.colors.black)
-        )
-
         Icon(
             painter = painterResource(id = R.drawable.icon_close),
             contentDescription = null,
@@ -88,74 +78,41 @@ fun MenuScreen(
             tint = CustomTheme.colors.black
         )
 
-
         Column(modifier = Modifier
             .padding(top = 40.dp, start = 20.dp)
             .fillMaxSize()
         )
         {
+            uiState.value.menuList.forEachIndexed { index, item ->
+                println("q qq LazyColumn index:$index item:${item}")
+                MenuCell(
+                    item = item,
+                    onClick = { id ->
+                        logger { "MenuCell id:$id"}
+                        navController.navigate(
 
-
-                uiState.value.menuList.forEachIndexed { index, item ->
-                    println("q qq LazyColumn index:$index item:${item}")
-                    MenuCell(
-                        item = item,
-                        onClick = { id ->
-                            logger { "MenuCell id:$id"}
-                            navController.navigate(
-                                when (id) {
-                                    MenuCategoriesName.FAVORITE.value -> Screen.FavoriteScreen.route
-                                    MenuCategoriesName.EVENT.value -> Screen.EventMenuScreen.route
-                                    MenuCategoriesName.ABOUT_US.value -> Screen.AboutUsScreen.route
-                                    else -> Screen.TreatmentDetailDescScreen.route(id)
-                                }
-                            )
-                        },
-                        onClickLocation = { locationNames ->
-                            navController.navigate(Screen.LocationScreen.route(locationNames.name))
-                        },
-                        onClickFolding = { headerText, isOpened ->
-                            mainViewModel.setMenuFolding(headerText, isOpened)
-                        }
-                    )
-                }
-
-
-//            LazyColumn(
-//                modifier = Modifier.fillMaxWidth(),
-//                contentPadding = PaddingValues(10.dp)
-//            )
-//            {
-//
-//                itemsIndexed(uiState.value.menuList,
-//                    key = { index, item -> "$index _$item" })
-//                { index, item ->
-//                    val menuList = uiState.value.menuList
-//                    println("q qq LazyColumn index:$index item:${item.headerText}")
-//                    MenuCell(
-//                        item = item,
-//                        onClick = { id ->
-//                            logger { "MenuCell id:$id"}
-//                            navController.navigate(
-//                                when (id) {
-//                                    MenuCategoriesName.FAVORITE.value -> Screen.FavoriteScreen.route
-//                                    MenuCategoriesName.EVENT.value -> Screen.EventMenuScreen.route
-//                                    MenuCategoriesName.ABOUT_US.value -> Screen.AboutUsScreen.route
-//                                    else -> Screen.TreatmentDetailDescScreen.route(id)
-//                                }
-//                            )
-//                        },
-//                        onClickLocation = { locationNames ->
-//                            navController.navigate(Screen.LocationScreen.route(locationNames.name))
-//                        },
-//                        onClickFolding = { headerText, isOpened ->
-//                            mainViewModel.setMenuFolding(headerText, isOpened)
-//                        }
-//                    )
-//                }
-//
-//
-//            }
+                            when (id) {
+                                MenuCategoriesName.FAVORITE.value -> Screen.FavoriteScreen.route
+                                MenuCategoriesName.EVENT.value -> Screen.EventMenuScreen.route
+                                MenuCategoriesName.ABOUT_US.value -> Screen.AboutUsScreen.route
+                                else -> if (1000 <= id) {
+                                      // Surgical procedure
+                                        Screen.RecommendSurgeryScreen.route(id)
+                                    } else {
+                                        // Cosmetic procedure
+                                        Screen.TreatmentDetailDescScreen.route(id)
+                                    }
+                            }
+                        )
+                    },
+                    onClickLocation = { locationNames ->
+                        navController.navigate(Screen.LocationScreen.route(locationNames.name))
+                    },
+//                    onClickFolding = { headerText, isOpened ->
+//                        mainViewModel.setMenuFolding(headerText, isOpened)
+//                    }
+                )
+            }
         }
     }
 }
@@ -166,7 +123,7 @@ private fun MenuCell(
     item: SectionData,
     onClick: (Int) -> Unit,
     onClickLocation: (InitValue.LocationNames) -> Unit,
-    onClickFolding: (String, Boolean) -> Unit
+//    onClickFolding: (String, Boolean) -> Unit
 ) {
 
     Column(
@@ -192,7 +149,7 @@ private fun MenuCell(
                         }
 
                         else -> {
-                            onClickFolding(item.headerText, !item.isOpened)
+//                            onClickFolding(item.headerText, !item.isOpened)
                         }
                     }
                 },

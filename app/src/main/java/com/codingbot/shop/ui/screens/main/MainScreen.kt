@@ -130,9 +130,7 @@ fun MainScreen(
                     onClick = { data ->
                         navController.navigate(
                             Screen.RecommendSurgeryScreen.route(
-                                id = data.id,
-                                productName = data.name,
-                                productImg = data.resId)
+                                id = data.id)
                         )
                     })
             }

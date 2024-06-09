@@ -45,9 +45,12 @@ class EventDescViewModel @Inject constructor()
 //        val sb = StringBuilder()
         val surgeryNames = mutableListOf<String>()
         surgeryIds.forEach { surgeryId ->
-            DumpServer.surgeryDataList?.let {list ->
+            DumpServer.surgeryDataList?.let { surgeryDataList ->
 //                sb.append("${list[surgeryId].surgeryName} ")
-                surgeryNames.add(list[surgeryId].surgeryName)
+                surgeryDataList.find { data -> data.id == surgeryId }?.let {
+                    surgeryNames.add(it.surgeryName)
+                }
+//                surgeryNames.add(list[surgeryId].surgeryName)
             }
         }
         return surgeryNames

@@ -49,5 +49,11 @@ object GsonAdapter {
         return gson.fromJson(jsonString, SurgeryDatas::class.java).datas
     }
 
+
+//    private fun makeEventData() {
+//        val eventDataList = mutableListOf<EventData>()
+//
+//
+//    }
 }
 

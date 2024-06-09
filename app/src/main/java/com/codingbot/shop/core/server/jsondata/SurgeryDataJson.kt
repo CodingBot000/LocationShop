@@ -52,6 +52,37 @@ val SurgeryDataJson =
               "surgeryImgs": ["surgery_device_tuneface.png"],
               "surgeryDesc": "It seems like you\"re referring to \"tune face,\" which might be related to facial tuning or facial adjustments in photography or digital imaging software. Facial tuning generally involves making subtle adjustments to facial features, skin tone, and overall appearance to enhance or improve the subject\"s look in photographs.\n\nMany photo editing applications and software, such as Adobe Photoshop, Adobe Lightroom, and various smartphone apps, offer tools and filters for facial tuning. These tools typically allow users to make adjustments such as:\n1. Skin smoothing: Softening skin texture and reducing the appearance of blemishes, wrinkles, and imperfections.\n2. Skin tone correction: Adjusting the color and tone of the skin to"                 
              },
+               {
+              "id":1000,
+              "surgeryName": "Eye",
+              "surgeryImgs": [""],
+              "surgeryDesc": ""                 
+             },
+            {
+              "id":1001,
+              "surgeryName": "Nose",
+              "surgeryImgs": [""],
+              "surgeryDesc": ""                 
+             },
+             {
+              "id":1002,
+              "surgeryName": "Bimaxillary operation",
+              "surgeryImgs": [""],
+              "surgeryDesc": ""                 
+             },
+             {
+              "id":1003,
+              "surgeryName": "Liposuction",
+              "surgeryImgs": [""],
+              "surgeryDesc": ""                 
+             },
+             {
+              "id":1004,
+              "surgeryName": "Hair transplantation",
+              "surgeryImgs": [""],
+              "surgeryDesc": ""                 
+             },
+           
             {
               "id":999,
               "surgeryName": "developing",
