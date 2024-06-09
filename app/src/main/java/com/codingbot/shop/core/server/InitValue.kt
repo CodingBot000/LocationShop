@@ -76,7 +76,6 @@ object InitValue {
             SectionSubData(id = 5, subText = "Filler"),
             SectionSubData(id = 6, subText = "Skinbooster"),
             SectionSubData(id = 7, subText = "tune face"),
-            SectionSubData(id = 8, subText = "Thermage"),
 
         )
 

@@ -68,6 +68,10 @@ fun imageLocalMapperTmpSurgery(imageName: String): Int {
         "surgery_device_skinbooster.png" -> R.drawable.surgery_device_skinbooster
         "surgery_device_tuneface.png" -> R.drawable.surgery_device_tuneface
         "surgery_device_ulthera.png" -> R.drawable.surgery_device_ulthera
+        "surgery_device_inmode.png" -> R.drawable.surgery_device_inmode
+        "surgery_device_filler.png" -> R.drawable.surgery_device_filler
+        "surgery_device_thermage.png" -> R.drawable.surgery_device_thermage
+        "surgery_device_botox.png" -> R.drawable.surgery_device_botox
         else -> R.drawable.ic_launcher_background
     }
 }
