@@ -24,3 +24,5 @@ The application does not have a server, and the JSON data is hardcoded locally. 
 - Jetpack
 - MVI Architecture
 
+## Project Structure
+![Alt text](https://github.com/CodingBot000/LocationShop/blob/main/db_design_drawio.png)
