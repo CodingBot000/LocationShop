@@ -13,7 +13,6 @@ data class LocationUiState(
 )
 
 sealed interface LocationIntent {
-
     data class MapMarkingData(val list: List<String>): LocationIntent
     data class HospitalInfoList(val list: List<ProductData>): LocationIntent
 }

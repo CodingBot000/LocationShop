@@ -35,31 +35,20 @@ class MainViewModel @Inject constructor()
 {
     val logger = Logger("SortingViewModel")
     var menuInitDataList: MutableList<SectionData> = mutableListOf()
-//    var locationChipDataList: MutableList<LocationChipData> = mutableListOf<LocationChipData>()
-//    lateinit var productDatasOrigin: ProductDatas
-
 
     init {
         initBannerSlider()
-//        initHospitalDatas()
         initBannerSliderOld()
         initRegionDatas()
         initMenuData()
     }
 
     private fun initRegionDatas() {
-//        InitValue.MENU_SUB_LOCATIONS.forEach {
-//            locationChipDataList.add(LocationChipData(region = it))
-//        }
-
         DumpServer.locationChipDataList[0].isSelected = true
         setRegion(DumpServer.locationChipDataList[0].region)
     }
-//    private fun initHospitalDatas() {
-//        productDatasOrigin = parseProductData(DataJson)
-//    }
-    private fun initMenuData(headerText: String = "", isOpened: Boolean = false) {
 
+    private fun initMenuData(headerText: String = "", isOpened: Boolean = false) {
         menuInitDataList.clear()
         for ((index, sectionData) in InitValue.MENU_MAIN_CATEGORIES.withIndex())
         {
@@ -75,17 +64,13 @@ class MainViewModel @Inject constructor()
                         continue
                     }
 
-
-                        menuInitDataList.add(
-                            SectionData(
-                                id = index,
-                                headerText = sectionData,
-                                items = InitValue.MENU_SUB_SURGERY
-//                                items = InitValue.MENU_SUB_SURGERY.mapIndexed { innerIndex, data
-//                                    -> SectionSubData(id = innerIndex, subText = data)
-//                                }
-                            )
+                    menuInitDataList.add(
+                        SectionData(
+                            id = index,
+                            headerText = sectionData,
+                            items = InitValue.MENU_SUB_SURGERY
                         )
+                    )
                 }
                 MenuTitle.COSMETIC_PROCEDURE.value -> {
                     if (headerText == sectionData && !isOpened) {
@@ -102,9 +87,6 @@ class MainViewModel @Inject constructor()
                             id = index,
                             headerText = sectionData,
                             items = InitValue.MENU_SUB_COSMETICS
-//                            items = InitValue.MENU_SUB_COSMETICS.mapIndexed { innerIndex, data ->
-//                                SectionSubData(id = innerIndex, subText = data)
-//                            }
                         )
                     )
                 }

@@ -2,10 +2,6 @@ package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.server.DumpServer
-import com.codingbot.shop.core.server.DumpServer.eventDataList
-import com.codingbot.shop.core.server.DumpServer.productDatasOrigin
-import com.codingbot.shop.core.server.DumpServer.reviewDataList
-import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ReviewData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,34 +24,9 @@ class ReviewListSubViewModel @Inject constructor()
     val logger = Logger("EventDescViewModel")
 
     fun getReviewListSubListData(id: Int) {
-//        val list = mutableListOf<ProductData>()
-//        reviewDataList?.let {reviewList ->
-//
-//        }
-        val list = reviewDataList
-
-
-//                productData.surgeries
-//                    .any { surgeryId -> surgeryId == id }
-//            }?.toMutableList() ?: mutableListOf()
-//
-//            productDatasOrigin?.let { productList ->
-//                productList.map { productData ->
-//                    if (productData.id == id) {
-//                        list.add(productData)
-//                    }
-//                }
-//             }
         DumpServer.getReviewDataListBySurgery(id)?.let { reviewList ->
             execute(ReviewListSubIntent.ReviewListSubInfoList(reviewList))
         }
-//        reviewDataList?.let { list ->
-//            execute(ReviewListSubIntent.ReviewListSubInfoList(list))
-//        }
-    }
-
-    fun getProductData(id: Int) {
-
     }
 
     override suspend fun ReviewListSubSubUiState.reduce(intent: ReviewListSubIntent): ReviewListSubSubUiState =

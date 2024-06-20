@@ -14,14 +14,10 @@ data class HospitalInfoSubUiState(
     val productData: ProductData? = null,
     val detailData: ProductDetailData? = null,
     val detailDescData: ProductDetailDescData? = null,
-
-//    val isFavorite: Boolean = false
 )
 
 sealed interface HospitalInfoSubIntent {
-
     data class DetailData(val productData: ProductData?, val detailData: ProductDetailData?): HospitalInfoSubIntent
-//    data class FavoriteState(val isFavorite: Boolean): HospitalInfoSubIntent
 }
 
 @HiltViewModel
@@ -39,63 +35,12 @@ class HospitalInfoSubViewModel @Inject constructor()
             return
 
         execute(HospitalInfoSubIntent.DetailData(productData, detailData))
-//        getFavoriteState(id)
-
-
     }
-
-//    fun getFavoriteState(id: Int) {
-//        val data = DumpServer.getFavoriteStoredData(id)
-//        val isWish = data?.wish ?: false
-//        execute(HospitalInfoSubIntent.FavoriteState(isWish))
-//    }
-
-//    fun setFavorite(id: Int, isFavorite: Boolean) {
-//        val data = DumpServer.getFavoriteStoredData(id)
-//
-//        data?.wish = isFavorite
-//        data?.let {
-//            it.wish = isFavorite
-//
-//            if (isFavorite) {
-//                if (DumpServer.getFavoriteStoredData(it.id) == null) {
-//                    DumpServer.addFavoriteStoredData(it)
-//                } else {
-//
-//                }
-//            } else {
-//                if (!isFavorite) {
-//                    DumpServer.removeFavoriteStoredData(it.id)
-//                }
-//            }
-//        } ?: run {
-//            if (isFavorite) {
-//                DumpServer.getProductOriginData(id)?.let {
-//                    DumpServer.addFavoriteStoredData(it)
-//                }
-//            }
-//        }
-//        execute(HospitalInfoSubIntent.FavoriteState(isFavorite))
-//    }
 
     override suspend fun HospitalInfoSubUiState.reduce(intent: HospitalInfoSubIntent): HospitalInfoSubUiState =
         when (intent) {
             is HospitalInfoSubIntent.DetailData -> {
-
-                intent.detailData?.let {it ->
-                 it.apply {
-
-
-//                    println("qq qq DetailViewModel reduce tel ${tel}")
-//                    println("qq qq DetailViewModel reduce tel  blog ${blog}")
-//                    println("qq qq DetailViewModel reduce tel  instagram ${instagram}")
-//                    println("qq qq DetailViewModel reduce tel  homepage ${homepage}")
-//                    println("qq qq DetailViewModel reduce tel  youtube ${youtube}")
-//                    println("qq qq DetailViewModel reduce tel  facebook ${facebook}")
-                }
-                }
                 copy(productData = intent.productData,  detailData = intent.detailData)
             }
-//            is HospitalInfoSubIntent.FavoriteState -> copy(isFavorite = intent.isFavorite)
         }
 }

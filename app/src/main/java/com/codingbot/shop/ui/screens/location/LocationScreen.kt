@@ -57,10 +57,7 @@ fun LocationScreen(
                 navController.popBackStack()
             }
         )
-
-
         Spacer(modifier = Modifier.padding(bottom = 10.dp))
-
 
         uiState.value.mapMarkingData?.let {
             Box(modifier = Modifier

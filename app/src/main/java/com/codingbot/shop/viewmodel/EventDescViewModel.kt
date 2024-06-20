@@ -15,7 +15,6 @@ data class EventUiState(
 )
 
 sealed interface EventIntent {
-
     data class DetailData(val detailData: EventData): EventIntent
     data class HospitalInfo(val productData: ProductData): EventIntent
 }
@@ -42,19 +41,15 @@ class EventDescViewModel @Inject constructor()
     }
 
     fun getSurgeryNames(surgeryIds: List<Int>): List<String> {
-//        val sb = StringBuilder()
         val surgeryNames = mutableListOf<String>()
         surgeryIds.forEach { surgeryId ->
             DumpServer.surgeryDataList?.let { surgeryDataList ->
-//                sb.append("${list[surgeryId].surgeryName} ")
                 surgeryDataList.find { data -> data.id == surgeryId }?.let {
                     surgeryNames.add(it.surgeryName)
                 }
-//                surgeryNames.add(list[surgeryId].surgeryName)
             }
         }
         return surgeryNames
-//        return sb.toString()
     }
 
     override suspend fun EventUiState.reduce(intent: EventIntent): EventUiState =
@@ -63,5 +58,3 @@ class EventDescViewModel @Inject constructor()
             is EventIntent.HospitalInfo -> copy(productData = intent.productData)
         }
 }
-
-// 잠깐 주소만 처리하는

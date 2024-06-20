@@ -108,9 +108,6 @@ fun MenuScreen(
                     onClickLocation = { locationNames ->
                         navController.navigate(Screen.LocationScreen.route(locationNames.name))
                     },
-//                    onClickFolding = { headerText, isOpened ->
-//                        mainViewModel.setMenuFolding(headerText, isOpened)
-//                    }
                 )
             }
         }
@@ -123,7 +120,6 @@ private fun MenuCell(
     item: SectionData,
     onClick: (Int) -> Unit,
     onClickLocation: (InitValue.LocationNames) -> Unit,
-//    onClickFolding: (String, Boolean) -> Unit
 ) {
 
     Column(
@@ -147,10 +143,7 @@ private fun MenuCell(
                         MenuTitle.EVENT.value -> {
                             onClick(MenuCategoriesName.EVENT.value)
                         }
-
-                        else -> {
-//                            onClickFolding(item.headerText, !item.isOpened)
-                        }
+                        else -> {}
                     }
                 },
             text = item.headerText,
@@ -223,5 +216,4 @@ private fun NameFilterChipContent(
                 color = CustomTheme.colors.textColorPrimary,
                 style = CustomTheme.typography.bodyRegular,)
         })
-
 }

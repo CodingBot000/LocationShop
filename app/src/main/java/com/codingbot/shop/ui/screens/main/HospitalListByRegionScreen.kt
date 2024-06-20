@@ -30,7 +30,6 @@ import com.codingbot.shop.viewmodel.HospitalListSubViewModel
 fun HospitalListByRegionScreen(
     navController: NavController,
     region: String,
-    context: Context = LocalContext.current,
     hospitalListByRegionViewModel: HospitalListByRegionViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("HospitalListByRegionScreen", true, "[Screen]") }

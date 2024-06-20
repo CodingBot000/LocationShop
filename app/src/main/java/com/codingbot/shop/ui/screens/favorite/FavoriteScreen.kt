@@ -47,8 +47,6 @@ import com.codingbot.shop.viewmodel.FavoriteViewModel
 @Composable
 fun FavoriteScreen(
     navController: NavController,
-
-    context: Context = LocalContext.current,
     favoriteViewModel: FavoriteViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("FavoriteScreen", true, "[Screen]") }

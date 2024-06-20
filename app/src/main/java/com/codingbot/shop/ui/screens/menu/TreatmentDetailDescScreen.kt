@@ -41,7 +41,6 @@ import com.codingbot.shop.viewmodel.TreatmentDetailDescViewModel
 fun TreatmentDetailDescScreen(
     navController: NavController,
     id: Int,
-    context: Context = LocalContext.current,
     treatmentDetailDescViewModel: TreatmentDetailDescViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("DetailScreen", true, "[Screen]") }
@@ -72,7 +71,6 @@ fun TreatmentDetailDescScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = CustomTheme.colors.bg),
-//            horizontalAlignment = Alignment.CenterHorizontally,
         )
         {
             item {
@@ -105,10 +103,8 @@ fun TreatmentDetailDescScreen(
                     text = uiState.value.detailData?.surgeryDesc ?: "",
                     color = CustomTheme.colors.black,
                     style = CustomTheme.typography.bodyRegular,
-
-                    )
+                )
             }
-
         }
     }
 }

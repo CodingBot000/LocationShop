@@ -54,8 +54,6 @@ import com.codingbot.shop.viewmodel.DetailViewModel
 fun DetailScreen(
     navController: NavController,
     id: Int,
-
-    context: Context = LocalContext.current,
     detailViewModel: DetailViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("DetailScreen", true, "[Screen]") }
@@ -82,8 +80,7 @@ fun DetailScreen(
     {
         Column(
             modifier = Modifier
-    //            .background(color = CustomTheme.colors.bg)
-                .fillMaxSize(),
+                    .fillMaxSize(),
         )
         {
             DetailHeader(
@@ -165,102 +162,6 @@ fun DetailScreen(
                     }
                 }
 
-//                LazyColumn(
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .background(color = CustomTheme.colors.bg),
-//                    //            horizontalAlignment = Alignment.CenterHorizontally,
-//                )
-//                {
-//                    item {
-//                        Spacer(modifier = Modifier.padding(top = 20.dp))
-//                    }
-//
-//                    item {
-//                        uiState.value.productData?.let { productData ->
-//                            if (productData.images.isNotEmpty()) {
-//                                SliderHospitalInfo(productData.images)
-//
-////                                AsyncImage(
-////                                    model = ImageRequest
-////                                        .Builder(context)
-////                                        .data(imageLocalMapperTmpHospital(productData.images[0]))
-////                                        .build(),
-////                                    contentDescription = null,
-////                                    modifier = Modifier
-////                                        .fillMaxWidth()
-////                                        .height(300.dp)
-////                                        .clip(shape = RoundedCornerShape(15.dp))
-////                                        .padding(horizontal = 10.dp),
-////                                    contentScale = ContentScale.Crop,
-////                                )
-//                            }
-//                        }
-//                    }
-//                    item {
-//                        Spacer(modifier = Modifier.padding(top = 10.dp))
-//                    }
-//
-//                    stickyHeader {
-//                        RecommendMenu(
-//                            tabs = tabs,
-//                            pagerState = pagerState,
-//                            onClickItem = {selectedItem ->
-//
-//                            }
-//                        )
-//
-//                    }
-//                    item {
-//                        Box(modifier = Modifier
-//                            .height(1700.dp)
-//                        ) {
-//                            TabsContent(tabs = tabs, pagerState = pagerState)
-//                        }
-//                    }
-////                    item {
-//                        Text(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(top = 15.dp, start = 10.dp, end = 10.dp),
-//                            text = uiState.value.detailData?.desc ?: "",
-//                            color = CustomTheme.colors.black,
-//                            style = CustomTheme.typography.caption2Regular,
-//
-//                            )
-////                    }
-////
-////                    item {
-////                        Text(
-////                            modifier = Modifier
-////                                .fillMaxWidth()
-////                                .padding(top = 10.dp, bottom = 5.dp, start = 10.dp, end = 10.dp),
-////                            text = uiState.value.detailData?.desc2 ?: "",
-////                            color = CustomTheme.colors.black,
-////                            style = CustomTheme.typography.caption2Regular,
-////                        )
-////                    }
-////
-////                    item {
-////                        Spacer(modifier = Modifier.padding(bottom = 10.dp))
-////                    }
-////                    item {
-////                        uiState.value.detailData?.let {
-////                            Box(
-////                                modifier = Modifier
-////                                    .fillMaxWidth()
-////                                    .height(300.dp)
-////                                    .clip(shape = RoundedCornerShape(15.dp))
-////                                    .padding(horizontal = 10.dp)
-////                            ) {
-////                                uiState.value.productData?.let { productData ->
-////                                    MapView(arrayListOf(productData.searchQuery))
-////                                }
-////
-////                            }
-////                        }
-////                    }
-//                } // End of Lazy
                 Column(
                     modifier = Modifier
                         .align(alignment = Alignment.CenterEnd)

@@ -11,7 +11,6 @@ data class RecommendUiState(
 )
 
 sealed interface RecommendIntent {
-
     data class EventDataList(val list: List<EventData>?): RecommendIntent
 
 }
@@ -26,10 +25,10 @@ class RecommendSurgeryViewModel @Inject constructor()
 
     }
     fun getEventData(id: Int) {
-        println("qq eventData getDetailData: $id")
+        println("eventData getDetailData: $id")
         val eventList = mutableListOf<EventData>()
         DumpServer.eventDataList?.forEach { eventData ->
-            println("qq eventData:${eventData.id} eventData.surgeryIds:${eventData.surgeryIds.joinToString()}")
+            println("eventData:${eventData.id} eventData.surgeryIds:${eventData.surgeryIds.joinToString()}")
             eventData.surgeryIds.find {
                     surgeryId -> surgeryId == id
             }?.let {

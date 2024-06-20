@@ -14,7 +14,6 @@ data class DetailUiState(
     val productData: ProductData? = null,
     val detailData: ProductDetailData? = null,
     val detailDescData: ProductDetailDescData? = null,
-
     val isFavorite: Boolean = false
 )
 

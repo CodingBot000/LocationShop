@@ -11,7 +11,6 @@ data class TreatmentDetailUiState(
 )
 
 sealed interface TreatmentDetailIntent {
-
     data class DetailData(val detailData: SurgeryData): TreatmentDetailIntent
 }
 
@@ -22,18 +21,13 @@ class TreatmentDetailDescViewModel @Inject constructor()
     val logger = Logger("TreatmentDetailDescViewModel")
 
     fun getDetailData(id: Int) {
-//        productDetailDatasOrigin?.let {
-//            execute(TreatmentDetailIntent.DetailData(it[id]))
-//        }
-
-            DumpServer.surgeryDataList?.let {
-                try {
-                    execute(TreatmentDetailIntent.DetailData(it[id]))
-                } catch (e: IndexOutOfBoundsException) {
-                    execute(TreatmentDetailIntent.DetailData(it[it.size -1]))
-                }
+        DumpServer.surgeryDataList?.let {
+            try {
+                execute(TreatmentDetailIntent.DetailData(it[id]))
+            } catch (e: IndexOutOfBoundsException) {
+                execute(TreatmentDetailIntent.DetailData(it[it.size -1]))
             }
-
+        }
     }
 
     override suspend fun TreatmentDetailUiState.reduce(intent: TreatmentDetailIntent): TreatmentDetailUiState =

@@ -73,8 +73,6 @@ import com.codingbot.shop.viewmodel.HospitalInfoSubViewModel
 fun HospitalInfoSubScreen(
     navController: NavController,
     id: Int,
-
-    context: Context = LocalContext.current,
     hospitalInfoSubViewModel: HospitalInfoSubViewModel = hiltViewModel(),
 ) {
     val logger = remember { Logger("HospitalInfoSubScreen", true, "[Screen]") }

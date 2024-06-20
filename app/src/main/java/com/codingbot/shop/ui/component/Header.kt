@@ -17,8 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.codingbot.shop.R
 import com.codingbot.shop.ui.theme.CustomTheme
 
-//AIzaSyA96mT69pMZQY8Kj8eHoW1ZBQ_RF3XlbLY
-
 @Composable
 fun MainHeader(
     title: String,
@@ -53,7 +51,6 @@ fun MainHeader(
             modifier = Modifier.align(Alignment.Center)
         )
 
-//        Spacer(modifier = Modifier.weight(1f))
         trailingIcon()
     }
 }

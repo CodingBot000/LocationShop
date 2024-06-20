@@ -39,10 +39,8 @@ fun LocationShopTheme(
         }
     }
 
-    val colors = if (darkTheme) darkColors() else lightColors()
     val rootNavController = rememberNavController()
     CompositionLocalProvider(
-//        LocalColors provides colors,
         LocalRootNavHost provides rootNavController,
         LocalTypography provides typography,
     ) {

@@ -4,13 +4,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 object Dimens {
-    object Sorting {
-        val SortingGraphHeight = Height.H170
-        val SortingGraphWidth = Height.H10
-        val SortingTextMarkingHeight = Height.H15
-        val SortingTextOverayMarkRoundedCorner = Size.S8
-        val SortingScreenHorizontalPadding = Height.H10
-    }
+
     object Height {
         val H170: Dp = 170.dp
         val H150: Dp = 150.dp

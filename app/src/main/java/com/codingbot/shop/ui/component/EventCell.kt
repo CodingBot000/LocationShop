@@ -53,21 +53,18 @@ fun EventCell(
         )
 
         Column(modifier = Modifier.fillMaxWidth()) {
-//            Row {
-                Text(
-                    text = data.eventName,
-                    color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.bodyBold,
-                )
-//                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp),
-                    text = "Duration: ${data.eventDateFrom} ~ ${data.eventDateTo}",
-                    color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.captionRegular,
-                    textAlign = TextAlign.End
-                )
-//            }
+            Text(
+                text = data.eventName,
+                color = CustomTheme.colors.black,
+                style = CustomTheme.typography.bodyBold,
+            )
+            Text(
+                modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp),
+                text = "Duration: ${data.eventDateFrom} ~ ${data.eventDateTo}",
+                color = CustomTheme.colors.black,
+                style = CustomTheme.typography.captionRegular,
+                textAlign = TextAlign.End
+            )
             Text(
                 text =data.desc,
                 color = CustomTheme.colors.black,

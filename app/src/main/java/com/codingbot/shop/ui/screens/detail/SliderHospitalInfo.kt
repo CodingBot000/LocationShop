@@ -37,7 +37,6 @@ import kotlinx.coroutines.delay
 @Composable
 fun SliderHospitalInfo(
     banners: List<String>,
-    context: Context = LocalContext.current
 ) {
 
     val pagerState = rememberPagerState()
@@ -80,8 +79,6 @@ fun SliderHospitalInfo(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-//                    .align(Alignment.BottomCenter)
-//                    .padding(bottom = 20.dp)
                     .padding(top =230.dp)
             ) {
                 HorizontalTabs(
@@ -112,7 +109,7 @@ private fun HorizontalTabs(
             modifier = Modifier.align(Alignment.Center),
             horizontalArrangement = Arrangement.spacedBy(dotSpacing),
         ) {
-            items?.forEachIndexed { index, _ ->
+            items.forEachIndexed { index, _ ->
                 Box(
                     modifier = Modifier
                         .size(dotRadius * 2)

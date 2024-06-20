@@ -11,9 +11,7 @@ data class EventMenuUiState(
 )
 
 sealed interface EventMenuIntent {
-
     data class EventDataList(val list: List<EventData>?): EventMenuIntent
-
 }
 
 @HiltViewModel
@@ -26,9 +24,7 @@ class EventMenuViewModel @Inject constructor()
         DumpServer.eventDataList?.let {
             execute(EventMenuIntent.EventDataList(it.toList()))
         }
-
     }
-
 
     override suspend fun EventMenuUiState.reduce(intent: EventMenuIntent): EventMenuUiState =
         when (intent) {

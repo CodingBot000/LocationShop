@@ -22,15 +22,6 @@ class HospitalListByRegionViewModel @Inject constructor()
 {
     val logger = Logger("HospitalListSubViewModel")
 
-//    fun getHospitalListData(region: String) {
-//        val list = productDatasOrigin
-//            ?.filter { productData ->
-//                productData.surgeries
-//                    .any { surgeryId -> surgeryId == id }
-//            }?.toMutableList() ?: mutableListOf()
-//        execute(HospitalListByRegionIntent.HospitalInfoList(list))
-//    }
-
     fun getHospitalListData(currentRegion: String) {
         val datas = DumpServer.productDatasOrigin!!.filter {
                 data -> data.region.equals(currentRegion, true)

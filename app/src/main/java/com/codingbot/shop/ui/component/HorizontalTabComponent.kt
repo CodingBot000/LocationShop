@@ -46,7 +46,6 @@ fun TabsContent(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RecommendMenu(
-//    selectedItem: InitValue.RECOMMEND_MENU,
     tabs: List<TabItem>,
     pagerState: PagerState,
     onClickItem: (TabItem) -> Unit
@@ -59,13 +58,11 @@ fun RecommendMenu(
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
-//            .horizontalScroll(scrollableState)
             .height(32.dp),
         contentColor = CustomTheme.colors.black
     ) {
         tabs.forEachIndexed { index, tab ->
             Tab(
-//                icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = "") },
                 text = { Text(tab.title) },
                 selected = pagerState.currentPage == index,
                 onClick = {

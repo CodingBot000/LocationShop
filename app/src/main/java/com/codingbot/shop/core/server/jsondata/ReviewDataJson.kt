@@ -1,6 +1,5 @@
 package com.codingbot.shop.core.server.jsondata
 
-import com.codingbot.shop.core.server.InitValue
 val ReviewDataJson =
     """
         {

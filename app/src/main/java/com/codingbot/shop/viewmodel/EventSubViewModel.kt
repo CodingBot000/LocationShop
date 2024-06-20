@@ -11,9 +11,7 @@ data class EventSubUiState(
 )
 
 sealed interface EventSubIntent {
-
     data class EventDataList(val list: List<EventData>?): EventSubIntent
-
 }
 
 @HiltViewModel
@@ -21,10 +19,6 @@ class EventSubViewModel @Inject constructor()
     : BaseViewModel<EventSubUiState, EventSubIntent>(EventSubUiState())
 {
     val logger = Logger("DetailViewModel")
-
-    init {
-
-    }
     fun getEventData(id: Int) {
         println("getDetailData: $id")
         val eventList = mutableListOf<EventData>()
@@ -36,9 +30,7 @@ class EventSubViewModel @Inject constructor()
             }
         }
         execute(EventSubIntent.EventDataList(eventList.toList()))
-
     }
-
 
     override suspend fun EventSubUiState.reduce(intent: EventSubIntent): EventSubUiState =
         when (intent) {

@@ -69,8 +69,7 @@ import com.codingbot.shop.viewmodel.MainViewModel
 @Composable
 fun MainScreen(
     navController: NavController,
-    mainViewModel: MainViewModel  = hiltViewModel(),
-    context: Context = LocalContext.current
+    mainViewModel: MainViewModel  = hiltViewModel()
 ) {
     val logger = remember { Logger("MainScreen", true, "[Screen]") }
 
@@ -121,7 +120,6 @@ fun MainScreen(
                     color = CustomTheme.colors.bg
                 ),
             horizontalAlignment = Alignment.CenterHorizontally,
-//                verticalArrangement = Arrangement.Center
         )
         {
             item {
@@ -298,6 +296,7 @@ private fun NewBeautyHorizontalList(
         }
     }
 }
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun RegionChipSelectionSection(

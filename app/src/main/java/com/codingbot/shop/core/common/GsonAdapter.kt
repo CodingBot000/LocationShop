@@ -17,10 +17,6 @@ import com.google.gson.Gson
 object GsonAdapter {
     private val gson = Gson()
 
-//    fun parseProductData(jsonString: String): ProductDatas {
-//        return gson.fromJson(jsonString, ProductDatas::class.java)
-//    }
-
     fun parseProductData(jsonString: String): List<ProductData> {
         return gson.fromJson(jsonString, ProductDatas::class.java).datas
     }
@@ -32,10 +28,6 @@ object GsonAdapter {
     fun parseDetailDescData(jsonString: String): List<ProductDetailDescData> {
         return gson.fromJson(jsonString, ProductDetailDescDatas::class.java).datas
     }
-
-//    fun parseMenuDetailData(jsonString: String): List<MenuDetailData> {
-//        return gson.fromJson(jsonString, MenuDetailDatas::class.java).datas
-//    }
 
     fun parseEventData(jsonString: String): List<EventData> {
         return gson.fromJson(jsonString, EventDatas::class.java).datas
@@ -49,11 +41,5 @@ object GsonAdapter {
         return gson.fromJson(jsonString, SurgeryDatas::class.java).datas
     }
 
-
-//    private fun makeEventData() {
-//        val eventDataList = mutableListOf<EventData>()
-//
-//
-//    }
 }
 

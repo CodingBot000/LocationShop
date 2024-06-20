@@ -27,11 +27,6 @@ object DumpServer {
     var locationChipDataList: MutableList<LocationChipData> = mutableListOf<LocationChipData>()
 
     /**
-     * 제품 디테일데이터 원본
-     */
-//    var productDetailDatasOrigin: List<MenuDetailData>? = null
-
-    /**
      * 병원 디테일데이터 기본정보 - 전화, SNS등
      */
     var detailDatasOrigin: List<ProductDetailData>? = null
@@ -59,10 +54,8 @@ object DumpServer {
     fun init() {
         productDatasOrigin = GsonAdapter.parseProductData(HospitalDataJson)
         initRegionDatas()
-
         initDetailDatas()
 
-//        productDetailDatasOrigin = GsonAdapter.parseMenuDetailData(MenuDetailData)
         eventDataList = GsonAdapter.parseEventData(EventDataJson)
         reviewDataList = GsonAdapter.parseReviewData(ReviewDataJson)
         surgeryDataList = GsonAdapter.parseSurgeryData(SurgeryDataJson)
