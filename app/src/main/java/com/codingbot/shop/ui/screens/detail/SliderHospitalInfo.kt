@@ -1,19 +1,16 @@
 package com.codingbot.shop.ui.screens.detail
 
 import android.content.Context
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -25,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
+import com.codingbot.shop.R
 import com.codingbot.shop.ui.theme.Color
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -36,6 +33,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun SliderHospitalInfo(
+    context: Context = LocalContext.current,
     banners: List<String>,
 ) {
 
@@ -66,12 +64,16 @@ fun SliderHospitalInfo(
 
             )
             {
-                Image(
+                AsyncImage(
+                    model = ImageRequest
+                        .Builder(context)
+                        .data(data)
+                        .build(),
                     modifier = Modifier.fillMaxWidth()
                         .height(250.dp),
-                    painter = painterResource(id = imageLocalMapperTmpHospital(data)),
                     contentScale = ContentScale.Crop,
-                    contentDescription = null
+                    contentDescription = null,
+                    error = painterResource(R.drawable.hospital_default)
                 )
             }
         }

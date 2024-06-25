@@ -13,19 +13,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.codingbot.shop.core.common.Screen
-import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
+import com.codingbot.shop.R
 import com.codingbot.shop.ui.theme.CustomTheme
 
 @Composable
 fun Grid2ItemsByRowCell(
     id: Int,
-    resImgId: Int,
+    imgUrl: String,
     descString: String,
     onClick: (Int) -> Unit,
     context: Context = LocalContext.current
@@ -38,7 +37,7 @@ fun Grid2ItemsByRowCell(
         AsyncImage(
             model = ImageRequest
                 .Builder(context)
-                .data(resImgId)
+                .data(imgUrl)
                 .build(),
             contentDescription = null,
             modifier = Modifier
@@ -46,6 +45,7 @@ fun Grid2ItemsByRowCell(
                 .aspectRatio(1f)
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
+            error = painterResource(R.drawable.hospital_default)
         )
         Text(
             modifier = Modifier

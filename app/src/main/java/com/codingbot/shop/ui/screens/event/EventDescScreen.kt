@@ -5,7 +5,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -42,10 +41,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.codingbot.shop.R
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
 import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
-import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.Color
@@ -147,7 +146,7 @@ fun EventDescScreen(
                             AsyncImage(
                                 model = ImageRequest
                                     .Builder(context)
-                                    .data(imageLocalMapperTmpHospital(info.images[0]))
+                                    .data(info.images[0])
                                     .build(),
                                 contentDescription = "hospitalImg",
                                 modifier = Modifier
@@ -156,6 +155,7 @@ fun EventDescScreen(
                                     .clip(shape = RoundedCornerShape(10.dp))
                                     .padding(horizontal = 10.dp),
                                 contentScale = ContentScale.Crop,
+                                error = painterResource(R.drawable.hospital_default)
                             )
                         }
                         Spacer(modifier = Modifier.weight(1f))

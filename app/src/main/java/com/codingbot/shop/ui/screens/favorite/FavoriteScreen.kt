@@ -4,21 +4,15 @@ import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -27,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -34,9 +29,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.codingbot.shop.R
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
-import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.clickableSingle
@@ -46,6 +41,7 @@ import com.codingbot.shop.viewmodel.FavoriteViewModel
 
 @Composable
 fun FavoriteScreen(
+    context: Context = LocalContext.current,
     navController: NavController,
     favoriteViewModel: FavoriteViewModel = hiltViewModel(),
 ) {
@@ -84,7 +80,7 @@ fun FavoriteScreen(
                     val data = uiState.value.favoriteDatas[index]
                     FavoriteCell(
                         data = data,
-                        resId = imageLocalMapperTmpHospital(data.images[0]),
+                        imgUrl = data.images[0],
                         onClickFavoriteCell = { id ->
                             navController.navigate(
                                 Screen.DetailScreen.route(
@@ -278,7 +274,7 @@ fun FavoriteScreen(
 @Composable
 private fun FavoriteCell(
     context: Context = LocalContext.current,
-    resId: Int,
+    imgUrl: String,
     data: ProductData,
     onClickFavoriteCell:(Int) -> Unit
 ) {
@@ -290,7 +286,7 @@ private fun FavoriteCell(
         AsyncImage(
             model = ImageRequest
                 .Builder(context)
-                .data(resId)
+                .data(imgUrl)
                 .build(),
             contentDescription = null,
             modifier = Modifier
@@ -298,6 +294,7 @@ private fun FavoriteCell(
                 .aspectRatio(1f)
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
+            error = painterResource(R.drawable.hospital_default)
         )
         Text(
             modifier = Modifier

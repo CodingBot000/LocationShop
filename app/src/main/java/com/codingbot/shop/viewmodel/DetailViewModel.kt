@@ -81,19 +81,6 @@ class DetailViewModel @Inject constructor()
     override suspend fun DetailUiState.reduce(intent: DetailIntent): DetailUiState =
         when (intent) {
             is DetailIntent.DetailData -> {
-
-                intent.detailData?.let {it ->
-                 it.apply {
-
-
-//                    println("qq qq DetailViewModel reduce tel ${tel}")
-//                    println("qq qq DetailViewModel reduce tel  blog ${blog}")
-//                    println("qq qq DetailViewModel reduce tel  instagram ${instagram}")
-//                    println("qq qq DetailViewModel reduce tel  homepage ${homepage}")
-//                    println("qq qq DetailViewModel reduce tel  youtube ${youtube}")
-//                    println("qq qq DetailViewModel reduce tel  facebook ${facebook}")
-                }
-                }
                 copy(productData = intent.productData,  detailData = intent.detailData)
             }
             is DetailIntent.FavoriteState -> copy(isFavorite = intent.isFavorite)

@@ -5,6 +5,7 @@ import com.codingbot.shop.domain.model.HomeBannerData
 import com.codingbot.shop.ui.screens.menu.SectionSubData
 
 object InitValue {
+
     fun getSurgeryList(): MutableList<HomeBannerData> {
         val homeBannerData = mutableListOf<HomeBannerData>()
         SURGER_RES_LIST.entries.forEachIndexed { index, surgeryRes ->

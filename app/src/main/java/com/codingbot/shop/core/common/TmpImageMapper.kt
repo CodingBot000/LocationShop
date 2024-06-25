@@ -4,23 +4,23 @@ import com.codingbot.shop.R
 
 
 
-fun imageLocalMapperTmpHospital(imageName: String): Int {
-
-    return when (imageName) {
-        "hospital_wanna_plastic_surgery.png" -> R.drawable.hospital_wanna_plastic_surgery
-        "hospital_chungdamace.png" -> R.drawable.hospital_chungdam_ace
-        "hospital_reone.png" -> R.drawable.hospital_reone
-        "hospital_reone2.png" -> R.drawable.hospital_reone2
-        "hospital_reone3.png" -> R.drawable.hospital_reone3
-        "hospital_reone4.png" -> R.drawable.hospital_reone4
-        "hospital1.png" -> R.drawable.hospital1
-        "hospital2_youjins.png" -> R.drawable.hospital2_youjins
-        "hospital3_brillyn.png" -> R.drawable.hospital3_brillyn
-        "hospital4_boss.png" -> R.drawable.hospital4_boss
-        "hospital5_vline.png" -> R.drawable.hospital5_vline
-        else -> R.drawable.ic_launcher_background
-    }
-}
+//fun imageLocalMapperTmpHospital(imageName: String): Int {
+//
+//    return when (imageName) {
+//        "hospital_wanna_plastic_surgery.png" -> R.drawable.hospital_wanna_plastic_surgery
+//        "hospital_chungdamace.png" -> R.drawable.hospital_chungdam_ace
+//        "hospital_reone.png" -> R.drawable.hospital_reone
+//        "hospital_reone2.png" -> R.drawable.hospital_reone2
+//        "hospital_reone3.png" -> R.drawable.hospital_reone3
+//        "hospital_reone4.png" -> R.drawable.hospital_reone4
+//        "hospital1.png" -> R.drawable.hospital1
+//        "hospital2_youjins.png" -> R.drawable.hospital2_youjins
+//        "hospital3_brillyn.png" -> R.drawable.hospital3_brillyn
+//        "hospital4_boss.png" -> R.drawable.hospital4_boss
+//        "hospital5_vline.png" -> R.drawable.hospital5_vline
+//        else -> R.drawable.ic_launcher_background
+//    }
+//}
 
 fun imageLocalMapperTmpEvent(imageName: String): Int {
 

@@ -4,30 +4,23 @@ import android.Manifest
 import android.content.Context
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -41,7 +34,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.nestedscroll.nestedScrollModifierNode
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -52,10 +44,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.codingbot.shop.R
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
-import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
-import com.codingbot.shop.core.utils.SpeechToText
 import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.ui.component.Grid2ItemsByRowCell
@@ -63,7 +54,6 @@ import com.codingbot.shop.ui.component.MainHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.ui.theme.CustomTheme.colors
-import com.codingbot.shop.viewmodel.MainIntent
 import com.codingbot.shop.viewmodel.MainViewModel
 
 @Composable
@@ -249,7 +239,7 @@ fun MainScreen(
                             val data = uiState.value.searchingList[index]
                             Grid2ItemsByRowCell(
                                 id = data.id,
-                                resImgId = imageLocalMapperTmpHospital(data.images[0]),
+                                imgUrl = data.images[0],
                                 descString = data.productName,
                                 onClick = { id ->
                                     navController.navigate(
@@ -270,6 +260,7 @@ fun MainScreen(
 
 @Composable
 private fun NewBeautyHorizontalList(
+    context: Context = LocalContext.current,
     list: MutableList<ProductData>,
     onClick: (ProductData) -> Unit
 ) {
@@ -281,7 +272,12 @@ private fun NewBeautyHorizontalList(
         items(list.size)
         { index ->
             val data = list[index]
-            Image(
+            AsyncImage(
+                model = ImageRequest
+                    .Builder(context)
+                    .data(data.images[0])
+                    .build(),
+
                 modifier = Modifier
                     .padding(end = 10.dp)
                     .size(150.dp)
@@ -289,9 +285,9 @@ private fun NewBeautyHorizontalList(
                     .clickableSingle {
                         onClick(data)
                     },
-                painter = painterResource(id = imageLocalMapperTmpHospital(data.images[0])),
                 contentScale = ContentScale.Crop,
-                contentDescription = null
+                contentDescription = null,
+                error = painterResource(R.drawable.hospital_default)
             )
         }
     }

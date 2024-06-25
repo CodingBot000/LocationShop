@@ -6,8 +6,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.codingbot.shop.core.common.Screen
-import com.codingbot.shop.core.common.imageLocalMapperTmpHospital
 import com.codingbot.shop.domain.model.ProductData
 
 @Composable
@@ -25,7 +23,7 @@ fun HospitalInfoList(
             HospitalInfoCell(
                 id = data.id,
                 descString = data.productName,
-                resImgId = imageLocalMapperTmpHospital(data.images[0]),
+                imgUrl = data.images[0],
                 onClick = { hospitalId ->
                     onClick(hospitalId)
                 }

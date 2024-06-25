@@ -15,11 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.codingbot.shop.R
 import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.ui.theme.CustomTheme
@@ -50,6 +52,7 @@ fun EventCell(
                 .clip(shape = RoundedCornerShape(10.dp))
                 .padding(end = 10.dp),
             contentScale = ContentScale.Crop,
+            error = painterResource(R.drawable.hospital_default)
         )
 
         Column(modifier = Modifier.fillMaxWidth()) {
