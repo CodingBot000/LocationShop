@@ -3,7 +3,6 @@ package com.codingbot.shop.ui.component
 import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.codingbot.shop.R
-import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.ui.theme.CustomTheme
 
@@ -44,7 +42,7 @@ fun EventCell(
         AsyncImage(
             model = ImageRequest
                 .Builder(context)
-                .data(imageLocalMapperTmpEvent(data.eventImg))
+                .data(data.eventImg)
                 .build(),
             contentDescription = null,
             modifier = Modifier

@@ -1,8 +1,8 @@
 package com.codingbot.shop.ui.screens.detail
 
 import MapView
+import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -22,26 +22,33 @@ import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
-import com.codingbot.shop.core.common.imageLocalMapperTmpDoctors
 import com.codingbot.shop.ui.component.TabItem
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.HospitalInfoSubViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HospitalInfoSubScreen(
+    context: Context = LocalContext.current,
     navController: NavController,
     id: Int,
     hospitalInfoSubViewModel: HospitalInfoSubViewModel = hiltViewModel(),
@@ -58,7 +65,12 @@ fun HospitalInfoSubScreen(
     val pagerState = rememberPagerState(pageCount = {
         tabs.size
     })
+    var showMaps = remember { mutableStateOf(false) }
 
+    LaunchedEffect(Unit) {
+        delay(200L)
+        showMaps.value = true
+    }
     LaunchedEffect(key1 = Unit) {
         hospitalInfoSubViewModel.getDetailData(id)
     }
@@ -183,8 +195,11 @@ fun HospitalInfoSubScreen(
                         {
                             uiState.value.detailData?.detailDesc?.doctors?.let { doctors ->
                                 doctors.forEach { dotcorFileName ->
-                                    Image(
-                                        painter = painterResource(imageLocalMapperTmpDoctors(dotcorFileName)),
+                                    AsyncImage(
+                                        model = ImageRequest
+                                            .Builder(context)
+                                            .data(dotcorFileName)
+                                            .build(),
                                         contentDescription = "doctor",
                                         contentScale = ContentScale.Crop,            // crop the image if it's not a square
                                         modifier = Modifier
@@ -207,18 +222,20 @@ fun HospitalInfoSubScreen(
                         Spacer(modifier = Modifier.padding(bottom = 10.dp))
                     }
                     item {
-                        uiState.value.detailData?.let {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(300.dp)
-                                    .clip(shape = RoundedCornerShape(15.dp))
-                                    .padding(horizontal = 10.dp)
-                            ) {
-                                uiState.value.productData?.let { productData ->
-                                    MapView(arrayListOf(productData.searchQuery))
-                                }
+                        if (showMaps.value) {
+                            uiState.value.detailData?.let {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(300.dp)
+                                        .clip(shape = RoundedCornerShape(15.dp))
+                                        .padding(horizontal = 10.dp)
+                                ) {
+                                    uiState.value.productData?.let { productData ->
+                                        MapView(arrayListOf(productData.searchQuery))
+                                    }
 
+                                }
                             }
                         }
                     }

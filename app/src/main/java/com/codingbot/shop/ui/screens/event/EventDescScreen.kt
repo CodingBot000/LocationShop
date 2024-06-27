@@ -2,7 +2,6 @@ package com.codingbot.shop.ui.screens.event
 
 import android.content.Context
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -44,7 +43,6 @@ import coil.request.ImageRequest
 import com.codingbot.shop.R
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.common.Screen
-import com.codingbot.shop.core.common.imageLocalMapperTmpEvent
 import com.codingbot.shop.ui.component.DetailHeader
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.Color
@@ -86,8 +84,11 @@ fun EventDescScreen(
         )
         {
             uiState.value.detailData?.let {
-                Image(
-                    painter = painterResource(id = imageLocalMapperTmpEvent(it.eventImg)),
+                AsyncImage(
+                    model = ImageRequest
+                        .Builder(context)
+                        .data(it.eventImg)
+                        .build(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(350.dp)

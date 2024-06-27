@@ -1,5 +1,6 @@
 package com.codingbot.shop.core.server.jsondata
 
+import com.codingbot.shop.core.server.StaticServerUrlPath
 
 
 val HospitalDetailJson =
@@ -122,7 +123,6 @@ val HospitalDetailJson =
     }
     """.trimIndent()
 
-
 val DetailHospitalInfoDescJson =
     """
     {
@@ -130,7 +130,7 @@ val DetailHospitalInfoDescJson =
       [
             {
                 "id":1,
-                "doctors":["doctor_reone1.png","doctor_reone2.png","doctor_reone3.png"],
+                "doctors":["${StaticServerUrlPath.doctorsImgUrlMaps["doctor_reone1"]}","${StaticServerUrlPath.doctorsImgUrlMaps["doctor_reone2"]}","${StaticServerUrlPath.doctorsImgUrlMaps["doctor_reone3"]}"],
                 "descAddress":"
                 327, Dosan-daero, Gangnam-gu, Seoul, Republic of Korea
                 ",
@@ -171,7 +171,7 @@ val DetailHospitalInfoDescJson =
             },
             {
                  "id":3,
-                 "doctors":["doctor_wanna1.png"],
+                 "doctors":["${StaticServerUrlPath.doctorsImgUrlMaps["doctor_wanna1"]}"],
                  "descAddress":"
                  407, Gangnam-daero, Seocho-gu, Seoul, Republic of Korea
                  ",
