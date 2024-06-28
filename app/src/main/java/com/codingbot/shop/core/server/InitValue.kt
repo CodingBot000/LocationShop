@@ -12,7 +12,7 @@ object InitValue {
             homeBannerData.add(
                 HomeBannerData(
                     id = index,
-                    resId = surgeryRes.value,
+                    urlImg = surgeryRes.value,
                     name = surgeryRes.name,
                     desc = ""
                 )
@@ -21,14 +21,21 @@ object InitValue {
         return homeBannerData
     }
 
-    enum class SURGER_RES_LIST(val value: Int) {
-        ACNE(R.drawable.surgery_acne),
-        BODY(R.drawable.surgery_body),
-        BOTOX(R.drawable.surgery_botox),
-        LIFTING(R.drawable.surgery_lifting),
-        PIGMENTATION(R.drawable.surgery_pigmentation),
-        PORE(R.drawable.surgery_pore),
-        SKINBOOSTER(R.drawable.surgery_skinbooster),
+    enum class SURGER_RES_LIST(val value: String) {
+        ACNE(StaticServerUrlPath.surgeryImgMaps["surgery_acne"]!!),
+        BODY(StaticServerUrlPath.surgeryImgMaps["surgery_body"]!!),
+        BOTOX(StaticServerUrlPath.surgeryImgMaps["surgery_botox"]!!),
+        LIFTING(StaticServerUrlPath.surgeryImgMaps["surgery_lifting"]!!),
+        PIGMENTATION(StaticServerUrlPath.surgeryImgMaps["surgery_pigmentation"]!!),
+        PORE(StaticServerUrlPath.surgeryImgMaps["surgery_pore"]!!),
+        SKINBOOSTER(StaticServerUrlPath.surgeryImgMaps["surgery_skinbooster"]!!),
+//        ACNE(R.drawable.surgery_acne),
+//        BODY(R.drawable.surgery_body),
+//        BOTOX(R.drawable.surgery_botox),
+//        LIFTING(R.drawable.surgery_lifting),
+//        PIGMENTATION(R.drawable.surgery_pigmentation),
+//        PORE(R.drawable.surgery_pore),
+//        SKINBOOSTER(R.drawable.surgery_skinbooster),
     }
 
     enum class RECOMMEND_MENU(val value: String) {

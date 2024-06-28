@@ -156,7 +156,7 @@ fun EventDescScreen(
                                     .clip(shape = RoundedCornerShape(10.dp))
                                     .padding(horizontal = 10.dp),
                                 contentScale = ContentScale.Crop,
-                                error = painterResource(R.drawable.hospital_default)
+                                error = painterResource(R.drawable.load_waiting)
                             )
                         }
                         Spacer(modifier = Modifier.weight(1f))

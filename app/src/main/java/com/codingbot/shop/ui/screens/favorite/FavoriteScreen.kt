@@ -294,7 +294,7 @@ private fun FavoriteCell(
                 .aspectRatio(1f)
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
-            error = painterResource(R.drawable.hospital_default)
+            error = painterResource(R.drawable.load_waiting)
         )
         Text(
             modifier = Modifier

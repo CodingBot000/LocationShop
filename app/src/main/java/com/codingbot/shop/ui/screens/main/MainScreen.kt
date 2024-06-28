@@ -287,7 +287,7 @@ private fun NewBeautyHorizontalList(
                     },
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
-                error = painterResource(R.drawable.hospital_default)
+                error = painterResource(R.drawable.load_waiting)
             )
         }
     }

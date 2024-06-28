@@ -73,7 +73,7 @@ fun SliderHospitalInfo(
                         .height(250.dp),
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
-                    error = painterResource(R.drawable.hospital_default)
+                    error = painterResource(R.drawable.load_waiting)
                 )
             }
         }

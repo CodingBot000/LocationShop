@@ -1,5 +1,6 @@
 package com.codingbot.shop.ui.screens.main
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,9 +20,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.codingbot.shop.domain.model.HomeBannerData
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.Color
@@ -35,6 +39,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun SliderBanner(
+    context: Context = LocalContext.current,
     banners: List<HomeBannerData>,
     onClick: (HomeBannerData) -> Unit)
 {
@@ -56,7 +61,7 @@ fun SliderBanner(
     {
 
         HorizontalPager(
-            count = banners?.size ?: 0,
+            count = banners.size,
             state = pagerState
         ) { page ->
             val data = banners[page]
@@ -68,10 +73,13 @@ fun SliderBanner(
                     }
             )
             {
-                Image(
+                AsyncImage(
+                    model = ImageRequest
+                        .Builder(context)
+                        .data(data.urlImg)
+                        .build(),
                     modifier = Modifier.fillMaxWidth()
                         .height(300.dp),
-                    painter = painterResource(id = data.resId),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )

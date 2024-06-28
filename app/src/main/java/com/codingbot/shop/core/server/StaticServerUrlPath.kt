@@ -3,9 +3,46 @@ package com.codingbot.shop.core.server
 object StaticServerUrlPath {
     val imgOnlinePath_Prefix = "https://afsfroagcvtulsttshvc.supabase.co/storage/v1/object/public/hospitalstatic"
     val subpath_images_path = "/staticdata/images/"
+    val surgeryImgPath = imgOnlinePath_Prefix + subpath_images_path + "surgery"
     val hospitalImgPath = imgOnlinePath_Prefix + subpath_images_path + "hospitalimg"
     val eventsImgPath = imgOnlinePath_Prefix + subpath_images_path + "events"
     val doctorsImgPath = imgOnlinePath_Prefix + subpath_images_path + "doctors"
+
+    fun getPrintResUrlsForDebug() {
+        val filteringDebugText = "getPrintResUrlsForDebug-"
+        println("$filteringDebugText[surgeryImgMaps]")
+        surgeryImgMaps.entries.forEach {
+            println("${it.value}")
+        }
+
+        println("$filteringDebugText[hospitalImgUrlMaps]")
+        hospitalImgUrlMaps.entries.forEach {
+            println("${it.value}")
+        }
+
+        println("$filteringDebugText[eventsImgUrlMaps]")
+        eventsImgUrlMaps.entries.forEach {
+            println("${it.value}")
+        }
+
+        println("$filteringDebugText[doctorsImgUrlMaps]")
+        doctorsImgUrlMaps.entries.forEach {
+            println("${it.value}")
+        }
+
+    }
+    val surgeryImgMaps = with(surgeryImgPath) {
+        mapOf(
+            "surgery_acne" to "${this}/surgery_acne.png",
+            "surgery_body" to "${this}/surgery_body.png",
+            "surgery_botox" to "${this}/surgery_botox.png",
+            "surgery_lifting" to "${this}/surgery_lifting.png",
+            "surgery_pigmentation" to "${this}/surgery_pigmentation.png",
+            "surgery_pore" to "${this}/surgery_pore.png",
+            "surgery_skinbooster" to "${this}/surgery_skinbooster.png",
+        )
+    }
+
 
     val hospitalImgUrlMaps = with(hospitalImgPath) {
         mapOf(
