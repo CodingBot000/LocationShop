@@ -50,16 +50,17 @@ import com.codingbot.shop.core.server.InitValue
 import com.codingbot.shop.ui.component.clickableSingle
 import com.codingbot.shop.ui.theme.CustomTheme
 import com.codingbot.shop.viewmodel.MainViewModel
+import com.codingbot.shop.viewmodel.MenuViewModel
 
 @Composable
 fun MenuScreen(
     navController: NavController,
-    mainViewModel: MainViewModel  = hiltViewModel(),
+    menuViewModel: MenuViewModel  = hiltViewModel(),
 
 ) {
     val logger = remember { Logger("MenuScreen", true, "[Screen]") }
 
-    val uiState = mainViewModel.uiState.collectAsStateWithLifecycle()
+    val uiState = menuViewModel.uiState.collectAsStateWithLifecycle()
 
     Box(
         modifier = Modifier
@@ -84,7 +85,6 @@ fun MenuScreen(
         )
         {
             uiState.value.menuList.forEachIndexed { index, item ->
-                println("q qq LazyColumn index:$index item:${item}")
                 MenuCell(
                     item = item,
                     onClick = { id ->

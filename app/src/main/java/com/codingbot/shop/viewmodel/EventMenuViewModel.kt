@@ -1,10 +1,13 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.data.repository.RepositoryEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class EventMenuUiState(
@@ -24,9 +27,11 @@ class EventMenuViewModel @Inject constructor(
     val logger = Logger("EventMenuViewModel")
 
     fun getAllEventData() {
-        execute(EventMenuIntent.EventDataList(
-            repositoryEvent.getEventDataAllList().toMutableList()
-        ))
+        viewModelScope.launch {
+            execute(EventMenuIntent.EventDataList(
+                repositoryEvent.getEventDataAllList().toMutableList()
+            ))
+        }
     }
 
     override suspend fun EventMenuUiState.reduce(intent: EventMenuIntent): EventMenuUiState =

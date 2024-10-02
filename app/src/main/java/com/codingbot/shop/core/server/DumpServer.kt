@@ -63,7 +63,7 @@ object DumpServer {
 
     }
 
-    fun getBannerSlideData(): List<HomeBannerData> {
+    suspend fun getBannerSlideData(): List<HomeBannerData> {
 
         val bannerSliderList = mutableListOf<HomeBannerData>()
         for (i in 0..8) {
@@ -80,7 +80,7 @@ object DumpServer {
         return bannerSliderList
     }
 
-    fun getNewBeautyDatas() : List<ProductData> {
+    suspend fun getNewBeautyDatas() : List<ProductData> {
         val list = mutableListOf<ProductData>()
         productDatasOrigin?.let { productDataList ->
             for (i in 0..8) {
@@ -90,7 +90,7 @@ object DumpServer {
         return list
     }
 
-    fun getSurgeryList() =
+    suspend fun getSurgeryList() =
         surgeryDataList
 
     private fun initRegionDatas() {
@@ -116,7 +116,7 @@ object DumpServer {
         }
     }
 
-    fun getProductOriginData(id: Int) =
+    suspend fun getProductOriginData(id: Int) =
         productDatasOrigin?.let {
             it.find { data -> data.id == id}
         }
@@ -124,24 +124,31 @@ object DumpServer {
     fun getDetailDatasOrigin(id: Int) =
         detailDatasOrigin?.find { it.id == id }
 
-    fun getFavoriteStoredDatas() = favoriteStoredDatas
-    fun getFavoriteStoredData(id: Int) = favoriteStoredDatas.find { it -> it.id == id}
-    fun addFavoriteStoredData(id: Int) {
+    suspend fun getFavoriteStoredDatas() = favoriteStoredDatas
+    suspend fun getFavoriteStoredData(id: Int) = favoriteStoredDatas.find { it -> it.id == id}
+    suspend fun addFavoriteStoredData(id: Int) {
         getFavoriteStoredData(id)?.let { data ->
             favoriteStoredDatas.add(data)
         }
     }
 
-    fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
+    suspend fun addFavoriteStoredData(productData: ProductData) {
+        favoriteStoredDatas.add(productData)
+    }
+    suspend fun removeFavoriteStoredData(id: Int): Boolean {
+        return favoriteStoredDatas.removeIf { it.id == id }
+    }
+
+    suspend fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
         setLocationPosition(currentRegion)
         return productDatasOrigin.filter { data ->
             data.region.equals(currentRegion, true)
         }.toList()
     }
 
-    fun getEventDataAllList() = eventDataList ?: emptyList()
+    suspend fun getEventDataAllList() = eventDataList ?: emptyList()
 
-    fun getEventDataListById(id: Int): List<EventData> {
+    suspend fun getEventDataListById(id: Int): List<EventData> {
         val eventList = mutableListOf<EventData>()
         eventDataList?.forEach { eventData ->
             eventData.surgeryIds.find {
@@ -153,20 +160,13 @@ object DumpServer {
         return eventList
     }
 
-    fun getEventDataById(id: Int) =
+    suspend fun getEventDataById(id: Int) =
         eventDataList?.find { it.id == id }
 
-    fun addFavoriteStoredData(productData: ProductData) {
-        favoriteStoredDatas.add(productData)
-    }
-    fun removeFavoriteStoredData(id: Int): Boolean {
-        return favoriteStoredDatas.removeIf { it.id == id }
-    }
-
-    fun getProductData(id: Int) =
+    suspend fun getProductData(id: Int) =
         productDatasOrigin?.find { data -> data.id == id}
 
-    fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData> {
+    suspend fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData> {
         val newReviewDatas = mutableListOf<ReviewData>()
         reviewDataList?.forEach { reviewData ->
             reviewData.surgeryId.find { id -> id == surgeryId }
@@ -180,22 +180,22 @@ object DumpServer {
         return newReviewDatas.toList()
     }
 
-    fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> =
+    suspend fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> =
         productDatasOrigin
             ?.filter { productData ->
                 productData.surgeries
                     .any { surgery_Id -> surgery_Id == surgeryId }
             }?.toMutableList() ?: mutableListOf()
 
-    fun getLocationChipDataList() = locationChipDataList
+    suspend fun getLocationChipDataList() = locationChipDataList
 
-    fun initLocationChipDataList(): String {
+    suspend fun initLocationChipDataList(): String {
         val initLocationName = InitValue.LocationNames.APGUJEONG.value
         setLocationPosition(initLocationName)
         return initLocationName
     }
 
-    fun setLocationPosition(currentRegion: String): List<LocationChipData>{
+    suspend fun setLocationPosition(currentRegion: String): List<LocationChipData>{
         locationChipDataList.forEachIndexed { index, locationChipData ->
             locationChipData.isSelected = (locationChipData.region ==  currentRegion)
             locationChipDataList[index] = locationChipData

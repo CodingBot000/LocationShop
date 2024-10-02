@@ -6,23 +6,23 @@ import javax.inject.Inject
 
 class DataSourceFavoriteImpl @Inject constructor(): DataSourceFavorite {
 
-    override fun removeFavoriteStoredData(id: Int): Boolean {
+    override suspend fun removeFavoriteStoredData(id: Int): Boolean {
         return DumpServer.removeFavoriteStoredData(id)
     }
 
-    override fun getFavoriteStoredDatas(): List<ProductData> {
+    override suspend fun getFavoriteStoredDatas(): List<ProductData> {
         return DumpServer.getFavoriteStoredDatas()
     }
 
-    override fun getFavoriteStoredData(id: Int): ProductData? {
+    override suspend fun getFavoriteStoredData(id: Int): ProductData? {
         return DumpServer.getFavoriteStoredData(id)
     }
 
-    override fun addFavoriteStoredData(id: Int) {
+    override suspend fun addFavoriteStoredData(id: Int) {
         return DumpServer.addFavoriteStoredData(id)
     }
 
-    override fun addFavoriteStoredData(productData: ProductData) {
+    override suspend fun addFavoriteStoredData(productData: ProductData) {
         return DumpServer.addFavoriteStoredData(productData)
     }
 }

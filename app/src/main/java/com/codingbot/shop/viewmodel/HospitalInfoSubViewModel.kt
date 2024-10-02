@@ -1,5 +1,6 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
@@ -7,6 +8,7 @@ import com.codingbot.shop.domain.model.ProductDetailDescData
 import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.data.repository.RepositoryProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class HospitalInfoSubUiState(
@@ -29,13 +31,16 @@ class HospitalInfoSubViewModel @Inject constructor(
 
     fun getDetailData(id: Int) {
         println("getDetailData: $id")
-        val productData = repositoryProductData.getProductOriginData(id)
-        val detailData = repositoryProductData.getDetailDatasOrigin(id)
+        viewModelScope.launch {
+            val productData = repositoryProductData.getProductOriginData(id)
+            val detailData = repositoryProductData.getDetailDatasOrigin(id)
 
-        if (productData == null || detailData == null)
-            return
+            if (productData == null || detailData == null)
+                return@launch
 
-        execute(HospitalInfoSubIntent.DetailData(productData, detailData))
+            execute(HospitalInfoSubIntent.DetailData(productData, detailData))
+        }
+
     }
 
     override suspend fun HospitalInfoSubUiState.reduce(intent: HospitalInfoSubIntent): HospitalInfoSubUiState =

@@ -11,25 +11,25 @@ import com.codingbot.shop.domain.model.SurgeryData
 import javax.inject.Inject
 
 class DataSourceCommonImpl @Inject constructor(): DataSourceCommon {
-    override fun getSurgeryList(): List<SurgeryData> {
+    override suspend fun getSurgeryList(): List<SurgeryData> {
         return DumpServer.getSurgeryList() ?: emptyList()
     }
 
 
-    override fun getLocationChipDataList(): List<LocationChipData> {
+    override suspend fun getLocationChipDataList(): List<LocationChipData> {
         return DumpServer.getLocationChipDataList()
     }
 
 
-    override fun setLocationPosition(currentRegion: String): List<LocationChipData> {
+    override suspend fun setLocationPosition(currentRegion: String): List<LocationChipData> {
         return DumpServer.setLocationPosition(currentRegion)
     }
 
-    override fun initLocationChipDataList(): String {
+    override suspend fun initLocationChipDataList(): String {
         return DumpServer.initLocationChipDataList()
     }
 
-    override fun getBannerSlideData(): List<HomeBannerData> {
+    override suspend fun getBannerSlideData(): List<HomeBannerData> {
         return DumpServer.getBannerSlideData()
     }
 

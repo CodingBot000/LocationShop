@@ -8,27 +8,27 @@ import javax.inject.Inject
 class DataSourceProductDataImpl @Inject constructor()
     : DataSourceProductData
 {
-    override fun getNewBeautyDatas(): List<ProductData> {
+    override suspend fun getNewBeautyDatas(): List<ProductData> {
         return DumpServer.getNewBeautyDatas()
     }
 
-    override fun getProductOriginData(id: Int): ProductData? {
+    override suspend fun getProductOriginData(id: Int): ProductData? {
         return DumpServer.getProductOriginData(id)
     }
 
-    override fun getDetailDatasOrigin(id: Int): ProductDetailData? {
+    override suspend fun getDetailDatasOrigin(id: Int): ProductDetailData? {
         return DumpServer.getDetailDatasOrigin(id)
     }
 
-    override fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
+    override suspend fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
         return DumpServer.getHospitalListByLocation(currentRegion)
     }
 
-    override fun getProductData(id: Int): ProductData? {
+    override suspend fun getProductData(id: Int): ProductData? {
         return DumpServer.getProductData(id)
     }
 
-    override fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> {
+    override suspend fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> {
         return DumpServer.getHospitalDataListBySurgery(surgeryId)
     }
 

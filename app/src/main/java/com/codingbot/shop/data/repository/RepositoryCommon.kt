@@ -5,12 +5,12 @@ import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.SurgeryData
 
 interface RepositoryCommon {
-    fun getSurgeryList(): List<SurgeryData>
-    fun initLocationChipDataList(): String
-    fun getBannerSlideData(): List<HomeBannerData>
+    suspend fun getSurgeryList(): List<SurgeryData>
+    suspend fun initLocationChipDataList(): String
+    suspend fun getBannerSlideData(): List<HomeBannerData>
 
-    fun getLocationChipDataList(): List<LocationChipData>
+    suspend fun getLocationChipDataList(): List<LocationChipData>
 
-    fun setLocationPosition(currentRegion: String): List<LocationChipData>
+    suspend fun setLocationPosition(currentRegion: String): List<LocationChipData>
 
 }

@@ -14,7 +14,7 @@ import javax.inject.Inject
 class RepositoryReviewImpl @Inject constructor(
     private val dataSource: DataSourceReview
 ): RepositoryReview {
-    override fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData> {
+    override suspend fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData> {
         return dataSource.getReviewDataListBySurgery(surgeryId)
     }
 }

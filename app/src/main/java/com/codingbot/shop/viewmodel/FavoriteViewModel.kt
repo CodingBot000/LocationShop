@@ -1,10 +1,12 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.data.repository.RepositoryFavorite
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class FavoriteUiState(
@@ -30,8 +32,10 @@ class FavoriteViewModel @Inject constructor(
     }
 
     private fun initFavorite() {
-        val favoriteDatas = repositoryFavorite.getFavoriteStoredDatas()
-        execute(FavoriteIntent.FavoriteDatas(favoriteDatas.toMutableList()))
+        viewModelScope.launch {
+            val favoriteDatas = repositoryFavorite.getFavoriteStoredDatas()
+            execute(FavoriteIntent.FavoriteDatas(favoriteDatas.toMutableList()))
+        }
     }
 
     override suspend fun FavoriteUiState.reduce(intent: FavoriteIntent): FavoriteUiState =

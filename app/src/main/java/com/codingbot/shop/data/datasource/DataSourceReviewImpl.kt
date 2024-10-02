@@ -11,7 +11,7 @@ import com.codingbot.shop.domain.model.SurgeryData
 import javax.inject.Inject
 
 class DataSourceReviewImpl @Inject constructor(): DataSourceReview {
-    override fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData> {
+    override suspend fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData> {
         return DumpServer.getReviewDataListBySurgery(surgeryId)
     }
 }

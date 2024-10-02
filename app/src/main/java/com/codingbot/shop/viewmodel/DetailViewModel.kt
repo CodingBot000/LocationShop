@@ -1,5 +1,6 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
@@ -8,6 +9,7 @@ import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.data.repository.RepositoryFavorite
 import com.codingbot.shop.data.repository.RepositoryProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class DetailUiState(
@@ -34,48 +36,53 @@ class DetailViewModel @Inject constructor(
 
     fun getDetailData(id: Int) {
         println("getDetailData: $id")
-        val productData = repositoryProductData.getProductData(id)
-        val detailData = repositoryProductData.getDetailDatasOrigin(id)
+        viewModelScope.launch {
+            val productData = repositoryProductData.getProductData(id)
+            val detailData = repositoryProductData.getDetailDatasOrigin(id)
 
-        if (productData == null || detailData == null)
-            return
+            if (productData == null || detailData == null)
+                return@launch
 
-        execute(DetailIntent.DetailData(productData, detailData))
-        getFavoriteState(id)
-
-
+            execute(DetailIntent.DetailData(productData, detailData))
+            getFavoriteState(id)
+        }
     }
 
     fun getFavoriteState(id: Int) {
-        val data = repositoryFavorite.getFavoriteStoredData(id)
-        val isWish = data?.wish ?: false
-        execute(DetailIntent.FavoriteState(isWish))
+        viewModelScope.launch {
+            val data = repositoryFavorite.getFavoriteStoredData(id)
+            val isWish = data?.wish ?: false
+            execute(DetailIntent.FavoriteState(isWish))
+        }
     }
 
     fun setFavorite(id: Int, isFavorite: Boolean) {
-        val data = repositoryFavorite.getFavoriteStoredData(id)
+        viewModelScope.launch {
+            val data = repositoryFavorite.getFavoriteStoredData(id)
 
-        data?.let {
-            it.wish = isFavorite
-            if (isFavorite) {
-                if (repositoryFavorite.getFavoriteStoredData(it.id) == null) {
-                    repositoryFavorite.addFavoriteStoredData(it)
+            data?.let {
+                it.wish = isFavorite
+                if (isFavorite) {
+                    if (repositoryFavorite.getFavoriteStoredData(it.id) == null) {
+                        repositoryFavorite.addFavoriteStoredData(it)
+                    } else {
+
+                    }
                 } else {
+                    if (!isFavorite) {
+                        repositoryFavorite.removeFavoriteStoredData(it.id)
+                    }
+                }
+            } ?: run {
+                if (isFavorite) {
 
-                }
-            } else {
-                if (!isFavorite) {
-                    repositoryFavorite.removeFavoriteStoredData(it.id)
-                }
-            }
-        } ?: run {
-            if (isFavorite) {
-                repositoryProductData.getProductOriginData(id)?.let {
-                    repositoryFavorite.addFavoriteStoredData(it)
+                    repositoryProductData.getProductOriginData(id)?.let {
+                        repositoryFavorite.addFavoriteStoredData(it)
+                    }
                 }
             }
+            execute(DetailIntent.FavoriteState(isFavorite))
         }
-        execute(DetailIntent.FavoriteState(isFavorite))
     }
 
     override suspend fun DetailUiState.reduce(intent: DetailIntent): DetailUiState =

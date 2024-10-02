@@ -9,7 +9,7 @@ import com.codingbot.shop.domain.model.ReviewData
 import com.codingbot.shop.domain.model.SurgeryData
 
 interface RepositoryEvent {
-    fun getEventDataAllList(): List<EventData>
-    fun getEventDataListById(id: Int): List<EventData>
-    fun getEventDataById(id: Int): EventData?
+    suspend fun getEventDataAllList(): List<EventData>
+    suspend fun getEventDataListById(id: Int): List<EventData>
+    suspend fun getEventDataById(id: Int): EventData?
 }

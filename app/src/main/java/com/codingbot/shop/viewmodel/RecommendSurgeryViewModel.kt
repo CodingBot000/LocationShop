@@ -1,10 +1,12 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.data.repository.RepositoryEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class RecommendUiState(
@@ -24,14 +26,12 @@ class RecommendSurgeryViewModel @Inject constructor(
 {
     val logger = Logger("DetailViewModel")
 
-    init {
-
-    }
     fun getEventData(id: Int) {
         println("eventData getDetailData: $id")
-        val eventList = repositoryEvent.getEventDataListById(id)
-        execute(RecommendIntent.EventDataList(eventList.toList()))
-
+        viewModelScope.launch {
+            val eventList = repositoryEvent.getEventDataListById(id)
+            execute(RecommendIntent.EventDataList(eventList.toList()))
+        }
     }
 
 

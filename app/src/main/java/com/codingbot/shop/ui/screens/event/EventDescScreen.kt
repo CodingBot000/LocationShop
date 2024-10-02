@@ -121,7 +121,8 @@ fun EventDescScreen(
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))
                 uiState.value.detailData?.let { eventData ->
                     SurgeryList(
-                        surgeryNamelist = eventDescViewModel.getSurgeryNames(eventData.surgeryIds)
+//                        surgeryNamelist = eventDescViewModel.getSurgeryNames(eventData.surgeryIds)
+                        surgeryNamelist = uiState.value.surgeryNames
                         )
                 }
                 Spacer(modifier = Modifier.padding(bottom = 10.dp))

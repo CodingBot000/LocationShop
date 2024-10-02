@@ -9,9 +9,9 @@ import com.codingbot.shop.domain.model.ReviewData
 import com.codingbot.shop.domain.model.SurgeryData
 
 interface DataSourceFavorite {
-    fun getFavoriteStoredDatas(): List<ProductData>
-    fun getFavoriteStoredData(id: Int): ProductData?
-    fun addFavoriteStoredData(id: Int)
-    fun addFavoriteStoredData(productData: ProductData)
-    fun removeFavoriteStoredData(id: Int): Boolean
+    suspend fun getFavoriteStoredDatas(): List<ProductData>
+    suspend fun getFavoriteStoredData(id: Int): ProductData?
+    suspend fun addFavoriteStoredData(id: Int)
+    suspend fun addFavoriteStoredData(productData: ProductData)
+    suspend fun removeFavoriteStoredData(id: Int): Boolean
 }

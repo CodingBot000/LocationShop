@@ -1,10 +1,12 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ReviewData
 import com.codingbot.shop.data.repository.RepositoryReview
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class ReviewListSubSubUiState(
@@ -26,8 +28,10 @@ class ReviewListSubViewModel @Inject constructor(
     val logger = Logger("EventDescViewModel")
 
     fun getReviewListSubListData(id: Int) {
-        repositoryReview.getReviewDataListBySurgery(id)?.let { reviewList ->
-            execute(ReviewListSubIntent.ReviewListSubInfoList(reviewList))
+        viewModelScope.launch {
+            repositoryReview.getReviewDataListBySurgery(id)?.let { reviewList ->
+                execute(ReviewListSubIntent.ReviewListSubInfoList(reviewList))
+            }
         }
     }
 

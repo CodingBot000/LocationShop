@@ -12,15 +12,15 @@ import javax.inject.Inject
 
 class DataSourceEventImpl @Inject constructor(): DataSourceEvent {
 
-    override fun getEventDataAllList(): List<EventData> {
+    override suspend fun getEventDataAllList(): List<EventData> {
         return DumpServer.getEventDataAllList()
     }
 
-    override fun getEventDataListById(id: Int): List<EventData> {
+    override suspend fun getEventDataListById(id: Int): List<EventData> {
         return DumpServer.getEventDataListById(id)
     }
 
-    override fun getEventDataById(id: Int): EventData? {
+    override suspend fun getEventDataById(id: Int): EventData? {
         return DumpServer.getEventDataById(id)
     }
 }

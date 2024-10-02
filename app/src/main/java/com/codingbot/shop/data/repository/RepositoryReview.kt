@@ -9,5 +9,5 @@ import com.codingbot.shop.domain.model.ReviewData
 import com.codingbot.shop.domain.model.SurgeryData
 
 interface RepositoryReview {
-    fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData>
+    suspend fun getReviewDataListBySurgery(surgeryId: Int): List<ReviewData>
 }

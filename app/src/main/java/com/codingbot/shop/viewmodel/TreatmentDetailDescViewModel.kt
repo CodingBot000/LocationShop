@@ -1,9 +1,11 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.domain.model.SurgeryData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class TreatmentDetailUiState(
@@ -23,11 +25,13 @@ class TreatmentDetailDescViewModel @Inject constructor(
     val logger = Logger("TreatmentDetailDescViewModel")
 
     fun getDetailData(id: Int) {
-        repositoryCommon.getSurgeryList()?.let {
-            try {
-                execute(TreatmentDetailIntent.DetailData(it[id]))
-            } catch (e: IndexOutOfBoundsException) {
-                execute(TreatmentDetailIntent.DetailData(it[it.size -1]))
+        viewModelScope.launch {
+            repositoryCommon.getSurgeryList()?.let {
+                try {
+                    execute(TreatmentDetailIntent.DetailData(it[id]))
+                } catch (e: IndexOutOfBoundsException) {
+                    execute(TreatmentDetailIntent.DetailData(it[it.size -1]))
+                }
             }
         }
     }

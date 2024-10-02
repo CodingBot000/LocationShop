@@ -1,10 +1,12 @@
 package com.codingbot.shop.viewmodel
 
+import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.data.repository.RepositoryCommon
 import com.codingbot.shop.data.repository.RepositoryProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class HospitalListByRegionUiState(
@@ -25,8 +27,15 @@ class HospitalListByRegionViewModel @Inject constructor(
     val logger = Logger("HospitalListSubViewModel")
 
     fun getHospitalListData(currentRegion: String) {
-        val dataList = repositoryProductData.getHospitalListByLocation(currentRegion)
-        execute(HospitalListByRegionIntent.HospitalInfoList(currentRegion, dataList.toMutableList()))
+        viewModelScope.launch {
+            val dataList = repositoryProductData.getHospitalListByLocation(currentRegion)
+            execute(
+                HospitalListByRegionIntent.HospitalInfoList(
+                    currentRegion,
+                    dataList.toMutableList()
+                )
+            )
+        }
     }
 
     override suspend fun HospitalListByRegionUiState.reduce(intent: HospitalListByRegionIntent): HospitalListByRegionUiState =

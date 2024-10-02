@@ -10,27 +10,27 @@ class RepositoryProductDataImpl @Inject constructor(
     private val dataSource: DataSourceProductData
 ): RepositoryProductData {
 
-    override fun getNewBeautyDatas(): List<ProductData> {
+    override suspend fun getNewBeautyDatas(): List<ProductData> {
         return dataSource.getNewBeautyDatas()
     }
 
-    override fun getProductOriginData(id: Int): ProductData? {
+    override suspend fun getProductOriginData(id: Int): ProductData? {
         return dataSource.getProductOriginData(id)
     }
 
-    override fun getDetailDatasOrigin(id: Int): ProductDetailData? {
+    override suspend fun getDetailDatasOrigin(id: Int): ProductDetailData? {
         return dataSource.getDetailDatasOrigin(id)
     }
 
-    override fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
+    override suspend fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
         return dataSource.getHospitalListByLocation(currentRegion)
     }
 
-    override fun getProductData(id: Int): ProductData? {
+    override suspend fun getProductData(id: Int): ProductData? {
         return dataSource.getProductData(id)
     }
 
-    override fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> {
+    override suspend fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> {
         return dataSource.getHospitalDataListBySurgery(surgeryId)
     }
 

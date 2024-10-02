@@ -8,15 +8,15 @@ class RepositoryEventImpl @Inject constructor(
     private val dataSource: DataSourceEvent
 ): RepositoryEvent {
 
-    override fun getEventDataAllList(): List<EventData> {
+    override suspend fun getEventDataAllList(): List<EventData> {
         return dataSource.getEventDataAllList()
     }
 
-    override fun getEventDataListById(id: Int): List<EventData> {
+    override suspend fun getEventDataListById(id: Int): List<EventData> {
         return dataSource.getEventDataListById(id)
     }
 
-    override fun getEventDataById(id: Int): EventData? {
+    override suspend fun getEventDataById(id: Int): EventData? {
         return dataSource.getEventDataById(id)
     }
 }
