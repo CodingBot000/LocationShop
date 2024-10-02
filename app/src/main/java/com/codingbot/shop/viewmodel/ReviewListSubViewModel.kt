@@ -3,7 +3,7 @@ package com.codingbot.shop.viewmodel
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ReviewData
-import com.codingbot.shop.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryReview
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -19,14 +19,14 @@ sealed interface ReviewListSubIntent {
 
 @HiltViewModel
 class ReviewListSubViewModel @Inject constructor(
-    private val repositoryCommon: RepositoryCommon
+    private val repositoryReview: RepositoryReview
 )
     : BaseViewModel<ReviewListSubSubUiState, ReviewListSubIntent>(ReviewListSubSubUiState())
 {
     val logger = Logger("EventDescViewModel")
 
     fun getReviewListSubListData(id: Int) {
-        repositoryCommon.getReviewDataListBySurgery(id)?.let { reviewList ->
+        repositoryReview.getReviewDataListBySurgery(id)?.let { reviewList ->
             execute(ReviewListSubIntent.ReviewListSubInfoList(reviewList))
         }
     }

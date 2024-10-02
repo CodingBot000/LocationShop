@@ -4,8 +4,9 @@ import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
 import com.codingbot.shop.domain.model.ProductDetailDescData
-import com.codingbot.shop.repository.RepositoryCommon
-import com.codingbot.shop.repository.RepositoryFavorite
+import com.codingbot.shop.data.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryFavorite
+import com.codingbot.shop.data.repository.RepositoryProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ sealed interface DetailIntent {
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repositoryCommon: RepositoryCommon,
+    private val repositoryProductData: RepositoryProductData,
     private val repositoryFavorite: RepositoryFavorite
 )
     : BaseViewModel<DetailUiState, DetailIntent>(DetailUiState())
@@ -33,8 +34,8 @@ class DetailViewModel @Inject constructor(
 
     fun getDetailData(id: Int) {
         println("getDetailData: $id")
-        val productData = repositoryCommon.getProductData(id)
-        val detailData = repositoryCommon.getDetailDatasOrigin(id)
+        val productData = repositoryProductData.getProductData(id)
+        val detailData = repositoryProductData.getDetailDatasOrigin(id)
 
         if (productData == null || detailData == null)
             return
@@ -69,7 +70,7 @@ class DetailViewModel @Inject constructor(
             }
         } ?: run {
             if (isFavorite) {
-                repositoryCommon.getProductOriginData(id)?.let {
+                repositoryProductData.getProductOriginData(id)?.let {
                     repositoryFavorite.addFavoriteStoredData(it)
                 }
             }

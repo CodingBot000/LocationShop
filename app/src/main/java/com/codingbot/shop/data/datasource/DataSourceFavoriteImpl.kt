@@ -1,4 +1,4 @@
-package com.codingbot.shop.datasource
+package com.codingbot.shop.data.datasource
 
 import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.ProductData

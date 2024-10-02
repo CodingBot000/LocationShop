@@ -4,7 +4,8 @@ import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
 import com.codingbot.shop.domain.model.ProductDetailDescData
-import com.codingbot.shop.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ sealed interface HospitalInfoSubIntent {
 
 @HiltViewModel
 class HospitalInfoSubViewModel @Inject constructor(
-    private val repositoryCommon: RepositoryCommon
+    private val repositoryProductData: RepositoryProductData
 )
     : BaseViewModel<HospitalInfoSubUiState, HospitalInfoSubIntent>(HospitalInfoSubUiState())
 {
@@ -28,8 +29,8 @@ class HospitalInfoSubViewModel @Inject constructor(
 
     fun getDetailData(id: Int) {
         println("getDetailData: $id")
-        val productData = repositoryCommon.getProductOriginData(id)
-        val detailData = repositoryCommon.getDetailDatasOrigin(id)
+        val productData = repositoryProductData.getProductOriginData(id)
+        val detailData = repositoryProductData.getDetailDatasOrigin(id)
 
         if (productData == null || detailData == null)
             return

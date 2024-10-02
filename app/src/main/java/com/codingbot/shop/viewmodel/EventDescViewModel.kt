@@ -3,7 +3,9 @@ package com.codingbot.shop.viewmodel
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.domain.model.ProductData
-import com.codingbot.shop.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryEvent
+import com.codingbot.shop.data.repository.RepositoryProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -19,6 +21,8 @@ sealed interface EventIntent {
 
 @HiltViewModel
 class EventDescViewModel @Inject constructor(
+    private val repositoryProductData: RepositoryProductData,
+    private val repositoryEvent: RepositoryEvent,
     private val repositoryCommon: RepositoryCommon
 )
     : BaseViewModel<EventUiState, EventIntent>(EventUiState())
@@ -26,10 +30,10 @@ class EventDescViewModel @Inject constructor(
     val logger = Logger("EventDescViewModel")
 
     fun getEventData(id: Int) {
-        val eventData = repositoryCommon.getEventDataById(id)
+        val eventData = repositoryEvent.getEventDataById(id)
         eventData?.let {
             execute(EventIntent.DetailData(eventData))
-            val productData = repositoryCommon.getProductData(eventData.hospital_id)
+            val productData = repositoryProductData.getProductData(eventData.hospital_id)
             productData?.let {
                 execute(EventIntent.HospitalInfo(productData))
             }

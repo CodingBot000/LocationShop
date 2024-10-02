@@ -5,7 +5,8 @@ import com.codingbot.shop.core.server.InitValue
 import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.HomeBannerData
-import com.codingbot.shop.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryCommon
+import com.codingbot.shop.data.repository.RepositoryProductData
 import com.codingbot.shop.ui.screens.menu.MenuTitle
 import com.codingbot.shop.ui.screens.menu.SectionData
 import com.codingbot.shop.ui.screens.menu.SectionSubData
@@ -31,6 +32,7 @@ sealed interface MainIntent {
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
+    private val repositoryProductData: RepositoryProductData,
     val repositoryCommon: RepositoryCommon
 )
     : BaseViewModel<MainUiState, MainIntent>(MainUiState())
@@ -156,12 +158,12 @@ class MainViewModel @Inject constructor(
     }
 
     fun initNewBeautyDatas() {
-        val list = repositoryCommon.getNewBeautyDatas()
+        val list = repositoryProductData.getNewBeautyDatas()
         execute(MainIntent.NewBeautyDataList(list.toMutableList()))
     }
 
     fun setLocation(currentRegion: String) {
-        val dataList = repositoryCommon.getHospitalListByLocation(currentRegion)
+        val dataList = repositoryProductData.getHospitalListByLocation(currentRegion)
         val locationChipDataList = repositoryCommon.getLocationChipDataList()
         execute(MainIntent.LocationChipDataList(locationChipDataList.toMutableList()))
         execute(MainIntent.SearchingList(currentRegion, dataList.toMutableList()))

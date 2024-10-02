@@ -1,4 +1,4 @@
-package com.codingbot.shop.repository
+package com.codingbot.shop.data.repository
 
 import com.codingbot.shop.domain.model.ProductData
 

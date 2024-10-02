@@ -1,29 +1,29 @@
-package com.codingbot.shop.repository
+package com.codingbot.shop.data.repository
 
-import com.codingbot.shop.datasource.DataSourceFavorite
+import com.codingbot.shop.data.datasource.DataSourceFavorite
 import com.codingbot.shop.domain.model.ProductData
 import javax.inject.Inject
 
 class RepositoryFavoriteImpl @Inject constructor(
-    val dataSourceFavorite: DataSourceFavorite
+    private val dataSource: DataSourceFavorite
 ): RepositoryFavorite {
     override fun removeFavoriteStoredData(id: Int): Boolean {
-        return dataSourceFavorite.removeFavoriteStoredData(id)
+        return dataSource.removeFavoriteStoredData(id)
     }
 
     override fun getFavoriteStoredDatas(): List<ProductData> {
-        return dataSourceFavorite.getFavoriteStoredDatas()
+        return dataSource.getFavoriteStoredDatas()
     }
 
     override fun getFavoriteStoredData(id: Int): ProductData? {
-        return dataSourceFavorite.getFavoriteStoredData(id)
+        return dataSource.getFavoriteStoredData(id)
     }
 
     override fun addFavoriteStoredData(id: Int) {
-        return dataSourceFavorite.addFavoriteStoredData(id)
+        return dataSource.addFavoriteStoredData(id)
     }
 
     override fun addFavoriteStoredData(productData: ProductData) {
-        return dataSourceFavorite.addFavoriteStoredData(productData)
+        return dataSource.addFavoriteStoredData(productData)
     }
 }
