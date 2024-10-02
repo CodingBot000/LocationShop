@@ -1,8 +1,8 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.EventData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -15,13 +15,15 @@ sealed interface EventSubIntent {
 }
 
 @HiltViewModel
-class EventSubViewModel @Inject constructor()
+class EventSubViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<EventSubUiState, EventSubIntent>(EventSubUiState())
 {
     val logger = Logger("DetailViewModel")
     fun getEventData(id: Int) {
         println("getDetailData: $id")
-        val eventList = DumpServer.getEventDataListById(id)
+        val eventList = repositoryCommon.getEventDataListById(id)
         execute(EventSubIntent.EventDataList(eventList.toList()))
     }
 

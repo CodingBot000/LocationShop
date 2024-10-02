@@ -1,9 +1,9 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.domain.model.ProductData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,46 +18,28 @@ sealed interface EventIntent {
 }
 
 @HiltViewModel
-class EventDescViewModel @Inject constructor()
+class EventDescViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<EventUiState, EventIntent>(EventUiState())
 {
     val logger = Logger("EventDescViewModel")
 
     fun getEventData(id: Int) {
-        val eventData = DumpServer.getEventDataById(id)
+        val eventData = repositoryCommon.getEventDataById(id)
         eventData?.let {
             execute(EventIntent.DetailData(eventData))
-            val productData = DumpServer.getProductData(eventData.hospital_id)
+            val productData = repositoryCommon.getProductData(eventData.hospital_id)
             productData?.let {
                 execute(EventIntent.HospitalInfo(productData))
             }
         }
 
-
-
-//        val matchingEvents: List<EventData> = eventDataList?.filter { it.id == id } ?: emptyList()
-
-//        eventDataList?.let { eventList ->
-//            eventList.find { eventData -> eventData.id == id }?.let { eventData ->
-//                execute(EventIntent.DetailData(eventData))
-//
-//                val productData = DumpServer.getProductData(eventData.hospital_id)
-//                productData?.let {
-//                    execute(EventIntent.HospitalInfo(productData))
-//                }
-//
-//            }
-//        }
     }
 
     fun getSurgeryNames(surgeryIds: List<Int>): List<String> {
-        val surgeryNames = mutableListOf<String>()
-        surgeryIds.forEach { surgeryId ->
-            DumpServer.surgeryDataList?.let { surgeryDataList ->
-                surgeryDataList.find { data -> data.id == surgeryId }?.let {
-                    surgeryNames.add(it.surgeryName)
-                }
-            }
+        val surgeryNames: List<String> = surgeryIds.mapNotNull { surgeryId ->
+            repositoryCommon.getSurgeryList().find { data -> data.id == surgeryId }?.surgeryName
         }
         return surgeryNames
     }

@@ -1,8 +1,8 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.SurgeryData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -15,13 +15,15 @@ sealed interface TreatmentDetailIntent {
 }
 
 @HiltViewModel
-class TreatmentDetailDescViewModel @Inject constructor()
+class TreatmentDetailDescViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<TreatmentDetailUiState, TreatmentDetailIntent>(TreatmentDetailUiState())
 {
     val logger = Logger("TreatmentDetailDescViewModel")
 
     fun getDetailData(id: Int) {
-        DumpServer.getSurgeryList()?.let {
+        repositoryCommon.getSurgeryList()?.let {
             try {
                 execute(TreatmentDetailIntent.DetailData(it[id]))
             } catch (e: IndexOutOfBoundsException) {

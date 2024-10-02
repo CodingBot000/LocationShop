@@ -1,8 +1,8 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.EventData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -16,7 +16,9 @@ sealed interface RecommendIntent {
 }
 
 @HiltViewModel
-class RecommendSurgeryViewModel @Inject constructor()
+class RecommendSurgeryViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<RecommendUiState, RecommendIntent>(RecommendUiState())
 {
     val logger = Logger("DetailViewModel")
@@ -26,7 +28,7 @@ class RecommendSurgeryViewModel @Inject constructor()
     }
     fun getEventData(id: Int) {
         println("eventData getDetailData: $id")
-        val eventList = DumpServer.getEventDataListById(id)
+        val eventList = repositoryCommon.getEventDataListById(id)
         execute(RecommendIntent.EventDataList(eventList.toList()))
 
     }

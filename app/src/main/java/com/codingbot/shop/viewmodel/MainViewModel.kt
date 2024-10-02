@@ -1,11 +1,11 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.core.server.InitValue
 import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.HomeBannerData
+import com.codingbot.shop.repository.RepositoryCommon
 import com.codingbot.shop.ui.screens.menu.MenuTitle
 import com.codingbot.shop.ui.screens.menu.SectionData
 import com.codingbot.shop.ui.screens.menu.SectionSubData
@@ -30,7 +30,9 @@ sealed interface MainIntent {
 }
 
 @HiltViewModel
-class MainViewModel @Inject constructor()
+class MainViewModel @Inject constructor(
+    val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<MainUiState, MainIntent>(MainUiState())
 {
     val logger = Logger("SortingViewModel")
@@ -44,7 +46,7 @@ class MainViewModel @Inject constructor()
     }
 
     private fun initRegionDatas() {
-        val initLocationName = DumpServer.initLocationChipDataList()
+        val initLocationName = repositoryCommon.initLocationChipDataList()
         setLocation(initLocationName)
     }
 
@@ -149,41 +151,19 @@ class MainViewModel @Inject constructor()
     }
 
     fun initBannerSlider() {
-        val list = DumpServer.getBannerSlideData()
+        val list = repositoryCommon.getBannerSlideData()
         execute(MainIntent.BannerSliderList(list.toMutableList()))
     }
 
     fun initNewBeautyDatas() {
-        val list = DumpServer.getNewBeautyDatas()
+        val list = repositoryCommon.getNewBeautyDatas()
         execute(MainIntent.NewBeautyDataList(list.toMutableList()))
     }
-//    fun initBannerSliderOld() {        val bannerSliderList = mutableListOf<ProductData>()
-////        for (i in 0..8) {
-////            DumpServer.productDatasOrigin?.let { list ->
-////                bannerSliderList.add(list[i])
-////            }
-////        }
-//
-//
-//        execute(MainIntent.BannerSliderListOld(bannerSliderList.toMutableList()))
-//    }
 
     fun setLocation(currentRegion: String) {
-//        val datas = DumpServer.productDatasOrigin!!.filter {
-//          data -> data.region.equals(currentRegion, true)
-//        }
-//
-//        DumpServer.locationChipDataList.forEachIndexed { index, locationChipData ->
-//            locationChipData.isSelected = (locationChipData.region ==  currentRegion)
-//            DumpServer.locationChipDataList[index] = locationChipData
-//        }
-
-        val dataList = DumpServer.getHospitalListByLocation(currentRegion)
-//        val datas = DumpServer.productDatasOrigin!!.filter {
-//                data -> data.region.equals(currentRegion, true)
-//        }
-
-        execute(MainIntent.LocationChipDataList(DumpServer.getLocationChipDataList().toMutableList()))
+        val dataList = repositoryCommon.getHospitalListByLocation(currentRegion)
+        val locationChipDataList = repositoryCommon.getLocationChipDataList()
+        execute(MainIntent.LocationChipDataList(locationChipDataList.toMutableList()))
         execute(MainIntent.SearchingList(currentRegion, dataList.toMutableList()))
     }
 

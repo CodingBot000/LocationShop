@@ -1,13 +1,8 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
-import com.codingbot.shop.core.server.InitValue
-import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
-import com.codingbot.shop.ui.screens.menu.MenuTitle
-import com.codingbot.shop.ui.screens.menu.SectionData
-import com.codingbot.shop.ui.screens.menu.SectionSubData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,7 +17,9 @@ sealed interface FavoriteIntent {
 }
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor()
+class FavoriteViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<FavoriteUiState, FavoriteIntent>(FavoriteUiState())
 {
     val logger = Logger("SortingViewModel")
@@ -32,8 +29,8 @@ class FavoriteViewModel @Inject constructor()
     }
 
     private fun initFavorite() {
-        val favoriteDatas = DumpServer.getFavoriteStoredDatas()
-        execute(FavoriteIntent.FavoriteDatas(favoriteDatas))
+        val favoriteDatas = repositoryCommon.getFavoriteStoredDatas()
+        execute(FavoriteIntent.FavoriteDatas(favoriteDatas.toMutableList()))
     }
 
     override suspend fun FavoriteUiState.reduce(intent: FavoriteIntent): FavoriteUiState =

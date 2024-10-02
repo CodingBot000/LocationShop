@@ -1,10 +1,10 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
 import com.codingbot.shop.domain.model.ProductDetailDescData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,15 +22,17 @@ sealed interface DetailIntent {
 }
 
 @HiltViewModel
-class DetailViewModel @Inject constructor()
+class DetailViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<DetailUiState, DetailIntent>(DetailUiState())
 {
     val logger = Logger("DetailViewModel")
 
     fun getDetailData(id: Int) {
         println("getDetailData: $id")
-        val productData = DumpServer.getProductData(id)
-        val detailData = DumpServer.getDetailDatasOrigin(id)
+        val productData = repositoryCommon.getProductData(id)
+        val detailData = repositoryCommon.getDetailDatasOrigin(id)
 
         if (productData == null || detailData == null)
             return
@@ -42,34 +44,31 @@ class DetailViewModel @Inject constructor()
     }
 
     fun getFavoriteState(id: Int) {
-        val data = DumpServer.getFavoriteStoredData(id)
+        val data = repositoryCommon.getFavoriteStoredData(id)
         val isWish = data?.wish ?: false
         execute(DetailIntent.FavoriteState(isWish))
     }
 
     fun setFavorite(id: Int, isFavorite: Boolean) {
-        val data = DumpServer.getFavoriteStoredData(id)
+        val data = repositoryCommon.getFavoriteStoredData(id)
 
-//        data?.wish = isFavorite
         data?.let {
             it.wish = isFavorite
-            val test  =DumpServer.getFavoriteStoredDatas()
-            val test2  =DumpServer.getFavoriteStoredData(it.id)
             if (isFavorite) {
-                if (DumpServer.getFavoriteStoredData(it.id) == null) {
-                    DumpServer.addFavoriteStoredData(it)
+                if (repositoryCommon.getFavoriteStoredData(it.id) == null) {
+                    repositoryCommon.addFavoriteStoredData(it)
                 } else {
 
                 }
             } else {
                 if (!isFavorite) {
-                    DumpServer.removeFavoriteStoredData(it.id)
+                    repositoryCommon.removeFavoriteStoredData(it.id)
                 }
             }
         } ?: run {
             if (isFavorite) {
-                DumpServer.getProductOriginData(id)?.let {
-                    DumpServer.addFavoriteStoredData(it)
+                repositoryCommon.getProductOriginData(id)?.let {
+                    repositoryCommon.addFavoriteStoredData(it)
                 }
             }
         }

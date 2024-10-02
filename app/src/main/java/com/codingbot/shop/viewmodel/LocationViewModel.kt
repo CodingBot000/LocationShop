@@ -1,9 +1,9 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.core.server.InitValue
 import com.codingbot.shop.domain.model.ProductData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,7 +18,9 @@ sealed interface LocationIntent {
 }
 
 @HiltViewModel
-class LocationViewModel @Inject constructor()
+class LocationViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<LocationUiState, LocationIntent>(LocationUiState())
 {
     val logger = Logger("LocationViewModel")
@@ -32,10 +34,7 @@ class LocationViewModel @Inject constructor()
     }
 
     fun getHospitalListDataByRegion(currentRegion: String) {
-//        val list = DumpServer.productDatasOrigin
-//            ?.filter { productData -> productData.region == currentRegion }
-//            ?.toMutableList() ?: mutableListOf()
-        val list = DumpServer.getHospitalListByLocation(currentRegion).toMutableList()
+        val list = repositoryCommon.getHospitalListByLocation(currentRegion).toMutableList()
         execute(LocationIntent.HospitalInfoList(list))
     }
 

@@ -1,8 +1,8 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.EventData
+import com.codingbot.shop.repository.RepositoryCommon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -15,14 +15,16 @@ sealed interface EventMenuIntent {
 }
 
 @HiltViewModel
-class EventMenuViewModel @Inject constructor()
+class EventMenuViewModel @Inject constructor(
+    private val repositoryCommon: RepositoryCommon
+)
     : BaseViewModel<EventMenuUiState, EventMenuIntent>(EventMenuUiState())
 {
     val logger = Logger("EventMenuViewModel")
 
     fun getAllEventData() {
         execute(EventMenuIntent.EventDataList(
-            DumpServer.getEventDataAllList().toMutableList()
+            repositoryCommon.getEventDataAllList().toMutableList()
         ))
     }
 
