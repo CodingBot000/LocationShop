@@ -21,7 +21,7 @@ class TreatmentDetailDescViewModel @Inject constructor()
     val logger = Logger("TreatmentDetailDescViewModel")
 
     fun getDetailData(id: Int) {
-        DumpServer.surgeryDataList?.let {
+        DumpServer.getSurgeryList()?.let {
             try {
                 execute(TreatmentDetailIntent.DetailData(it[id]))
             } catch (e: IndexOutOfBoundsException) {

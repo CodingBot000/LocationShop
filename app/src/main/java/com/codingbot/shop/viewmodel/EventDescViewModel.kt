@@ -2,8 +2,6 @@ package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.server.DumpServer
-import com.codingbot.shop.core.server.DumpServer.eventDataList
-import com.codingbot.shop.core.server.DumpServer.productDatasOrigin
 import com.codingbot.shop.domain.model.EventData
 import com.codingbot.shop.domain.model.ProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,18 +24,30 @@ class EventDescViewModel @Inject constructor()
     val logger = Logger("EventDescViewModel")
 
     fun getEventData(id: Int) {
-        eventDataList?.let { eventList ->
-            eventList.find { eventData -> eventData.id == id }?.let { eventData ->
-                execute(EventIntent.DetailData(eventData))
-
-                productDatasOrigin?.let { productList ->
-                    productList.find { productData -> productData.id == eventData.hospital_id }
-                        ?.let { productData ->
-                          execute(EventIntent.HospitalInfo(productData))
-                        }
-                 }
+        val eventData = DumpServer.getEventDataById(id)
+        eventData?.let {
+            execute(EventIntent.DetailData(eventData))
+            val productData = DumpServer.getProductData(eventData.hospital_id)
+            productData?.let {
+                execute(EventIntent.HospitalInfo(productData))
             }
         }
+
+
+
+//        val matchingEvents: List<EventData> = eventDataList?.filter { it.id == id } ?: emptyList()
+
+//        eventDataList?.let { eventList ->
+//            eventList.find { eventData -> eventData.id == id }?.let { eventData ->
+//                execute(EventIntent.DetailData(eventData))
+//
+//                val productData = DumpServer.getProductData(eventData.hospital_id)
+//                productData?.let {
+//                    execute(EventIntent.HospitalInfo(productData))
+//                }
+//
+//            }
+//        }
     }
 
     fun getSurgeryNames(surgeryIds: List<Int>): List<String> {

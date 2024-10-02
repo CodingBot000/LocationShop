@@ -32,10 +32,10 @@ class LocationViewModel @Inject constructor()
     }
 
     fun getHospitalListDataByRegion(currentRegion: String) {
-        val list = DumpServer.productDatasOrigin
-            ?.filter { productData -> productData.region == currentRegion }
-            ?.toMutableList() ?: mutableListOf()
-
+//        val list = DumpServer.productDatasOrigin
+//            ?.filter { productData -> productData.region == currentRegion }
+//            ?.toMutableList() ?: mutableListOf()
+        val list = DumpServer.getHospitalListByLocation(currentRegion).toMutableList()
         execute(LocationIntent.HospitalInfoList(list))
     }
 

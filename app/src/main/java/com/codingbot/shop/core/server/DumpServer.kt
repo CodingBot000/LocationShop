@@ -8,6 +8,7 @@ import com.codingbot.shop.core.server.jsondata.HospitalDetailJson
 import com.codingbot.shop.core.server.jsondata.ReviewDataJson
 import com.codingbot.shop.core.server.jsondata.SurgeryDataJson
 import com.codingbot.shop.domain.model.EventData
+import com.codingbot.shop.domain.model.HomeBannerData
 import com.codingbot.shop.domain.model.LocationChipData
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
@@ -17,14 +18,14 @@ import com.codingbot.shop.domain.model.SurgeryData
 object DumpServer {
 
     /**
-     * 상품리스트 json Data parsing 원본
+     * 상품리스트 json Data parsing 원본 서버에 있는 원시데이터라 가정합니다
      */
-    var productDatasOrigin: List<ProductData>? = null
+    private var productDatasOrigin: List<ProductData> = mutableListOf()
 
     /**
      * 지역 선택 chip 아이콘 데이터
      */
-    var locationChipDataList: MutableList<LocationChipData> = mutableListOf<LocationChipData>()
+    private var locationChipDataList: MutableList<LocationChipData> = mutableListOf<LocationChipData>()
 
     /**
      * 병원 디테일데이터 기본정보 - 전화, SNS등
@@ -39,17 +40,17 @@ object DumpServer {
     /**
      * EventData
      */
-    var eventDataList: List<EventData>? = null
+    private var eventDataList: List<EventData>? = null
 
     /**
      * ReviewData
      */
-    var reviewDataList: List<ReviewData>? = null
+    private var reviewDataList: List<ReviewData>? = null
 
     /**
      * SurgeryData
      */
-    var surgeryDataList: List<SurgeryData>? = null
+    private var surgeryDataList: List<SurgeryData>? = null
 
     fun init() {
         productDatasOrigin = GsonAdapter.parseProductData(HospitalDataJson)
@@ -60,8 +61,37 @@ object DumpServer {
         reviewDataList = GsonAdapter.parseReviewData(ReviewDataJson)
         surgeryDataList = GsonAdapter.parseSurgeryData(SurgeryDataJson)
 
-
     }
+
+    fun getBannerSlideData(): List<HomeBannerData> {
+
+        val bannerSliderList = mutableListOf<HomeBannerData>()
+        for (i in 0..8) {
+            productDatasOrigin?.let { list ->
+                bannerSliderList.add(
+                    HomeBannerData(
+                        id = list[i].id,
+                         name = list[i].productName,
+                         urlImg=  list[i].images[0],
+                        desc = list[i].productName,
+                    ))
+            }
+        }
+        return bannerSliderList
+    }
+
+    fun getNewBeautyDatas() : List<ProductData> {
+        val list = mutableListOf<ProductData>()
+        productDatasOrigin?.let { productDataList ->
+            for (i in 0..8) {
+                list.add(productDataList[i])
+            }
+        }
+        return list
+    }
+
+    fun getSurgeryList() =
+        surgeryDataList
 
     private fun initRegionDatas() {
         locationChipDataList.clear()
@@ -90,6 +120,8 @@ object DumpServer {
         productDatasOrigin?.let {
             it.find { data -> data.id == id}
         }
+    fun getDetailDatasOrigin(id: Int) =
+        detailDatasOrigin?.find { it.id == id }
 
     fun getFavoriteStoredDatas() = favoriteStoredDatas
     fun getFavoriteStoredData(id: Int) = favoriteStoredDatas.find { it -> it.id == id}
@@ -98,6 +130,31 @@ object DumpServer {
             favoriteStoredDatas.add(data)
         }
     }
+
+    fun getHospitalListByLocation(currentRegion: String): List<ProductData> {
+        setLocationPosition(currentRegion)
+        return productDatasOrigin.filter { data ->
+            data.region.equals(currentRegion, true)
+        }.toList()
+    }
+
+    fun getEventDataAllList() = eventDataList ?: emptyList()
+
+    fun getEventDataListById(id: Int): List<EventData> {
+        val eventList = mutableListOf<EventData>()
+        eventDataList?.forEach { eventData ->
+            eventData.surgeryIds.find {
+                    surgeryId -> surgeryId == id
+            }?.let {
+                eventList.add(eventData)
+            }
+        }
+        return eventList
+    }
+
+    fun getEventDataById(id: Int) =
+        eventDataList?.find { it.id == id }
+
     fun addFavoriteStoredData(productData: ProductData) {
         favoriteStoredDatas.add(productData)
     }
@@ -113,12 +170,35 @@ object DumpServer {
         reviewDataList?.forEach { reviewData ->
             reviewData.surgeryId.find { id -> id == surgeryId }
                 ?.let {
-                 DumpServer.getProductData(surgeryId)?.let {data ->
+                 getProductData(surgeryId)?.let {data ->
                      reviewData.productData = data
                      newReviewDatas.add(reviewData)
                 }
             }
         }
         return newReviewDatas.toList()
+    }
+
+    fun getHospitalDataListBySurgery(surgeryId: Int): List<ProductData> =
+        productDatasOrigin
+            ?.filter { productData ->
+                productData.surgeries
+                    .any { surgery_Id -> surgery_Id == surgeryId }
+            }?.toMutableList() ?: mutableListOf()
+
+    fun getLocationChipDataList() = locationChipDataList
+
+    fun initLocationChipDataList(): String {
+        val initLocationName = InitValue.LocationNames.APGUJEONG.value
+        setLocationPosition(initLocationName)
+        return initLocationName
+    }
+
+    fun setLocationPosition(currentRegion: String): List<LocationChipData>{
+        locationChipDataList.forEachIndexed { index, locationChipData ->
+            locationChipData.isSelected = (locationChipData.region ==  currentRegion)
+            locationChipDataList[index] = locationChipData
+        }
+        return locationChipDataList
     }
 }

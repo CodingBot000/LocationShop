@@ -46,7 +46,7 @@ fun Grid2ItemsByRowCell(
                 .aspectRatio(1f)
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
-            error = painterResource(R.drawable.load_waiting)
+            error = painterResource(R.drawable.default_hospital)
         )
         Text(
             modifier = Modifier

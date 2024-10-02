@@ -51,7 +51,7 @@ fun EventCell(
                 .clip(shape = RoundedCornerShape(10.dp))
                 .padding(end = 10.dp),
             contentScale = ContentScale.Crop,
-            error = painterResource(R.drawable.load_waiting)
+            error = painterResource(R.drawable.default_hospital)
         )
 
         Column(modifier = Modifier.fillMaxWidth()) {

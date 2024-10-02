@@ -13,8 +13,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 data class MainUiState(
-    val bannerSliderListOld: MutableList<ProductData> = mutableListOf(),
     val bannerSliderList: MutableList<HomeBannerData> = mutableListOf(),
+    val newBeautyDataList: MutableList<ProductData> = mutableListOf(),
     val menuList: MutableList<SectionData> = mutableListOf(),
     val searchingList: MutableList<ProductData> = mutableListOf(),
     val locationChipDataList: MutableList<LocationChipData> = mutableListOf(),
@@ -23,7 +23,7 @@ data class MainUiState(
 
 sealed interface MainIntent {
     data class BannerSliderList(val bannerList: MutableList<HomeBannerData>): MainIntent
-    data class BannerSliderListOld(val bannerListOld: MutableList<ProductData>): MainIntent
+    data class NewBeautyDataList(val beautyDataList: MutableList<ProductData>): MainIntent
     data class MenuList(val menuList: MutableList<SectionData>): MainIntent
     data class SearchingList(val region: String, val searchingList: MutableList<ProductData>): MainIntent
     data class LocationChipDataList(val list: MutableList<LocationChipData>): MainIntent
@@ -38,14 +38,14 @@ class MainViewModel @Inject constructor()
 
     init {
         initBannerSlider()
-        initBannerSliderOld()
+        initNewBeautyDatas()
         initRegionDatas()
         initMenuData()
     }
 
     private fun initRegionDatas() {
-        DumpServer.locationChipDataList[0].isSelected = true
-        setRegion(DumpServer.locationChipDataList[0].region)
+        val initLocationName = DumpServer.initLocationChipDataList()
+        setLocation(initLocationName)
     }
 
     private fun initMenuData(headerText: String = "", isOpened: Boolean = false) {
@@ -149,38 +149,49 @@ class MainViewModel @Inject constructor()
     }
 
     fun initBannerSlider() {
-        execute(MainIntent.BannerSliderList(InitValue.getSurgeryList()))
-    }
-    fun initBannerSliderOld() {
-        val bannerSliderList = mutableListOf<ProductData>()
-        for (i in 0..8) {
-            DumpServer.productDatasOrigin?.let { list ->
-                bannerSliderList.add(list[i])
-            }
-        }
-
-        execute(MainIntent.BannerSliderListOld(bannerSliderList.toMutableList()))
+        val list = DumpServer.getBannerSlideData()
+        execute(MainIntent.BannerSliderList(list.toMutableList()))
     }
 
-    fun setRegion(currentRegion: String) {
-        val datas = DumpServer.productDatasOrigin!!.filter {
-          data -> data.region.equals(currentRegion, true)
-        }
+    fun initNewBeautyDatas() {
+        val list = DumpServer.getNewBeautyDatas()
+        execute(MainIntent.NewBeautyDataList(list.toMutableList()))
+    }
+//    fun initBannerSliderOld() {        val bannerSliderList = mutableListOf<ProductData>()
+////        for (i in 0..8) {
+////            DumpServer.productDatasOrigin?.let { list ->
+////                bannerSliderList.add(list[i])
+////            }
+////        }
+//
+//
+//        execute(MainIntent.BannerSliderListOld(bannerSliderList.toMutableList()))
+//    }
 
-        DumpServer.locationChipDataList.forEachIndexed { index, locationChipData ->
-            locationChipData.isSelected = (locationChipData.region ==  currentRegion)
-            DumpServer.locationChipDataList[index] = locationChipData
-        }
+    fun setLocation(currentRegion: String) {
+//        val datas = DumpServer.productDatasOrigin!!.filter {
+//          data -> data.region.equals(currentRegion, true)
+//        }
+//
+//        DumpServer.locationChipDataList.forEachIndexed { index, locationChipData ->
+//            locationChipData.isSelected = (locationChipData.region ==  currentRegion)
+//            DumpServer.locationChipDataList[index] = locationChipData
+//        }
 
-        execute(MainIntent.LocationChipDataList(DumpServer.locationChipDataList.toMutableList()))
-        execute(MainIntent.SearchingList(currentRegion, datas.toMutableList()))
+        val dataList = DumpServer.getHospitalListByLocation(currentRegion)
+//        val datas = DumpServer.productDatasOrigin!!.filter {
+//                data -> data.region.equals(currentRegion, true)
+//        }
+
+        execute(MainIntent.LocationChipDataList(DumpServer.getLocationChipDataList().toMutableList()))
+        execute(MainIntent.SearchingList(currentRegion, dataList.toMutableList()))
     }
 
     override suspend fun MainUiState.reduce(intent: MainIntent): MainUiState =
         when (intent) {
-            is MainIntent.LocationChipDataList -> copy(locationChipDataList = intent.list)
             is MainIntent.BannerSliderList -> copy(bannerSliderList = intent.bannerList)
-            is MainIntent.BannerSliderListOld -> copy(bannerSliderListOld = intent.bannerListOld)
+            is MainIntent.NewBeautyDataList -> copy(newBeautyDataList = intent.beautyDataList)
+            is MainIntent.LocationChipDataList -> copy(locationChipDataList = intent.list)
             is MainIntent.MenuList -> copy(menuList = intent.menuList)
             is MainIntent.SearchingList -> copy(region = intent.region, searchingList = intent.searchingList)
         }

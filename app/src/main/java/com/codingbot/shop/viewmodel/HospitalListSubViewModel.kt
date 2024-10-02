@@ -1,7 +1,7 @@
 package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
-import com.codingbot.shop.core.server.DumpServer.productDatasOrigin
+import com.codingbot.shop.core.server.DumpServer
 import com.codingbot.shop.domain.model.ProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -21,11 +21,12 @@ class HospitalListSubViewModel @Inject constructor()
     val logger = Logger("HospitalListSubViewModel")
 
     fun getHospitalListData(id: Int) {
-        val list = productDatasOrigin
-            ?.filter { productData ->
-                productData.surgeries
-                    .any { surgeryId -> surgeryId == id }
-            }?.toMutableList() ?: mutableListOf()
+//        val list = productDatasOrigin
+//            ?.filter { productData ->
+//                productData.surgeries
+//                    .any { surgeryId -> surgeryId == id }
+//            }?.toMutableList() ?: mutableListOf()
+        val list = DumpServer.getHospitalDataListBySurgery(id)
         execute(HospitalSubIntent.HospitalInfoList(list))
     }
 

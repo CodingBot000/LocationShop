@@ -21,9 +21,9 @@ class EventMenuViewModel @Inject constructor()
     val logger = Logger("EventMenuViewModel")
 
     fun getAllEventData() {
-        DumpServer.eventDataList?.let {
-            execute(EventMenuIntent.EventDataList(it.toList()))
-        }
+        execute(EventMenuIntent.EventDataList(
+            DumpServer.getEventDataAllList().toMutableList()
+        ))
     }
 
     override suspend fun EventMenuUiState.reduce(intent: EventMenuIntent): EventMenuUiState =

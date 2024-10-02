@@ -6,6 +6,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -152,7 +153,7 @@ fun MainScreen(
             }
             item {
                 NewBeautyHorizontalList(
-                   list = uiState.value.bannerSliderListOld,
+                   list = uiState.value.newBeautyDataList,
                    onClick = { data ->
                        navController.navigate(
                            Screen.DetailScreen.route(
@@ -194,7 +195,7 @@ fun MainScreen(
                 RegionChipSelectionSection(
                     locationChipDataList = uiState.value.locationChipDataList,
                     onChipClick = { region ->
-                        mainViewModel.setRegion(region)
+                        mainViewModel.setLocation(region)
                     }
                 )
             }
@@ -204,11 +205,13 @@ fun MainScreen(
             }
 
             item {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 10.dp, end = 10.dp),
+                    contentAlignment = Alignment.CenterEnd) {
                 Text(
                     text = "See All >",
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 10.dp, end = 10.dp)
                         .clickableSingle {
                             navController.navigate(
                                 Screen.HospitalListByRegionScreen.route(uiState.value.region)
@@ -218,6 +221,7 @@ fun MainScreen(
                     style = CustomTheme.typography.title3Bold,
                     textAlign = TextAlign.End
                 )
+                }
 
             }
             item {
@@ -275,6 +279,7 @@ private fun NewBeautyHorizontalList(
             AsyncImage(
                 model = ImageRequest
                     .Builder(context)
+                    .placeholder(R.drawable.default_hospital)
                     .data(data.images[0])
                     .build(),
 
@@ -287,7 +292,7 @@ private fun NewBeautyHorizontalList(
                     },
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
-                error = painterResource(R.drawable.load_waiting)
+                error = painterResource(R.drawable.default_hospital)
             )
         }
     }

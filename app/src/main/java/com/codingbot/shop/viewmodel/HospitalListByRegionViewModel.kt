@@ -2,7 +2,6 @@ package com.codingbot.shop.viewmodel
 
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.server.DumpServer
-import com.codingbot.shop.core.server.DumpServer.productDatasOrigin
 import com.codingbot.shop.domain.model.ProductData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -23,16 +22,8 @@ class HospitalListByRegionViewModel @Inject constructor()
     val logger = Logger("HospitalListSubViewModel")
 
     fun getHospitalListData(currentRegion: String) {
-        val datas = DumpServer.productDatasOrigin!!.filter {
-                data -> data.region.equals(currentRegion, true)
-        }
-
-        DumpServer.locationChipDataList.forEachIndexed { index, locationChipData ->
-            locationChipData.isSelected = (locationChipData.region ==  currentRegion)
-            DumpServer.locationChipDataList[index] = locationChipData
-        }
-
-        execute(HospitalListByRegionIntent.HospitalInfoList(currentRegion, datas.toMutableList()))
+        val dataList = DumpServer.getHospitalListByLocation(currentRegion)
+        execute(HospitalListByRegionIntent.HospitalInfoList(currentRegion, dataList.toMutableList()))
     }
 
     override suspend fun HospitalListByRegionUiState.reduce(intent: HospitalListByRegionIntent): HospitalListByRegionUiState =

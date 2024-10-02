@@ -21,14 +21,7 @@ class EventSubViewModel @Inject constructor()
     val logger = Logger("DetailViewModel")
     fun getEventData(id: Int) {
         println("getDetailData: $id")
-        val eventList = mutableListOf<EventData>()
-        DumpServer.eventDataList?.forEach { eventData ->
-            eventData.surgeryIds.find {
-                    surgeryId -> surgeryId == id
-            }?.let {
-                eventList.add(eventData)
-            }
-        }
+        val eventList = DumpServer.getEventDataListById(id)
         execute(EventSubIntent.EventDataList(eventList.toList()))
     }
 

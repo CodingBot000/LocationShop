@@ -53,7 +53,7 @@ fun HospitalInfoCell(
                 .clip(shape = RoundedCornerShape(15.dp)),
             contentScale = ContentScale.Crop,
             contentDescription = null,
-            error = painterResource(R.drawable.load_waiting)
+            error = painterResource(R.drawable.default_hospital)
         )
         Text(
             modifier = Modifier

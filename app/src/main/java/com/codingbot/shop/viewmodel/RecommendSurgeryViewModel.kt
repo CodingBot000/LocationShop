@@ -26,15 +26,7 @@ class RecommendSurgeryViewModel @Inject constructor()
     }
     fun getEventData(id: Int) {
         println("eventData getDetailData: $id")
-        val eventList = mutableListOf<EventData>()
-        DumpServer.eventDataList?.forEach { eventData ->
-            println("eventData:${eventData.id} eventData.surgeryIds:${eventData.surgeryIds.joinToString()}")
-            eventData.surgeryIds.find {
-                    surgeryId -> surgeryId == id
-            }?.let {
-                eventList.add(eventData)
-            }
-        }
+        val eventList = DumpServer.getEventDataListById(id)
         execute(RecommendIntent.EventDataList(eventList.toList()))
 
     }

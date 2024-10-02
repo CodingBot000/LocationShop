@@ -1,9 +1,7 @@
 package com.codingbot.shop.viewmodel
 
-import com.codingbot.shop.core.server.DumpServer.detailDatasOrigin
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.server.DumpServer
-import com.codingbot.shop.core.server.DumpServer.productDatasOrigin
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
 import com.codingbot.shop.domain.model.ProductDetailDescData
@@ -28,8 +26,8 @@ class HospitalInfoSubViewModel @Inject constructor()
 
     fun getDetailData(id: Int) {
         println("getDetailData: $id")
-        val productData = productDatasOrigin?.find { it.id == id }
-        val detailData = detailDatasOrigin?.find { it.id == id }
+        val productData = DumpServer.getProductOriginData(id)
+        val detailData = DumpServer.getDetailDatasOrigin(id)
 
         if (productData == null || detailData == null)
             return
