@@ -27,8 +27,8 @@ import kotlinx.coroutines.launch
 typealias ComposableFun = @Composable () -> Unit
 
 sealed class TabItem(val fromScreen: Screen, val id: Int, val navController: NavController, var icon: Int, var title: String, var screen: ComposableFun) {
-    class HospitalInfo(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_youtube, "Info", { HospitalInfoSubScreen(navController = navController, id = id) })
-    class Event(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_youtube, "Event", { EventListSubScreen(navController = navController, id = id) })
+    class HospitalInfo(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.icon_sns_youtube, "Info", { HospitalInfoSubScreen(navController = navController, id = id) })
+    class Event(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.icon_sns_youtube, "Event", { EventListSubScreen(navController = navController, id = id) })
     class Reviews(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_homepage, "Reviews", { ReviewListSubScreen(navController = navController, id = id)  })
     class Hospitals(fromScreen: Screen, id: Int, navController: NavController) : TabItem(fromScreen, id, navController, R.drawable.sns_map, "Hospitals", { HospitalListSubScreen(navController = navController, id = id) })
 }

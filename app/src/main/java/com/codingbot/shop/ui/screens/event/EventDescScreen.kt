@@ -88,6 +88,7 @@ fun EventDescScreen(
                     model = ImageRequest
                         .Builder(context)
                         .data(it.eventImg)
+                        .placeholder(R.drawable.default_beauty_surgery)
                         .build(),
                     modifier = Modifier
                         .fillMaxWidth()

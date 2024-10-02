@@ -227,6 +227,7 @@ private fun getSNSInfo(
 {
     var hyperText = ""
     var linkType = SNSIconType.NONE
+
     if (snsType == SNSIconType.KAKAOTALK && data.kakaotalk.isNotEmpty()) {
         hyperText = data.kakaotalk
         linkType = SNSIconType.KAKAOTALK

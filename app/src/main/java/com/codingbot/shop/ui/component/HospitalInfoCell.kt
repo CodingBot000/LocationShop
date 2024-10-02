@@ -45,6 +45,7 @@ fun HospitalInfoCell(
             model = ImageRequest
                 .Builder(context)
                 .data(imgUrl)
+                .placeholder(R.drawable.default_hospital)
                 .build(),
             modifier = Modifier
                 .fillMaxWidth()

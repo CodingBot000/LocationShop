@@ -43,6 +43,7 @@ fun EventCell(
             model = ImageRequest
                 .Builder(context)
                 .data(data.eventImg)
+                .placeholder(R.drawable.default_beauty_surgery)
                 .build(),
             contentDescription = null,
             modifier = Modifier

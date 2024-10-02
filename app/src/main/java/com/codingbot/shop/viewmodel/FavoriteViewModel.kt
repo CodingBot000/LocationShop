@@ -36,21 +36,6 @@ class FavoriteViewModel @Inject constructor()
         execute(FavoriteIntent.FavoriteDatas(favoriteDatas))
     }
 
-    private fun initRecommendData() {
-//        val recommendList  = arrayListOf<ProductData>()
-//
-//        ?.find { it ->
-//
-//            DumpServer.getFavoriteStoredDatas().forEach {
-//            }
-//            if () {
-//                it.id
-//            } else {
-//
-//            }
-//        }
-    }
-
     override suspend fun FavoriteUiState.reduce(intent: FavoriteIntent): FavoriteUiState =
         when (intent) {
             is FavoriteIntent.FavoriteDatas -> copy(favoriteDatas = intent.favoriteDatas)

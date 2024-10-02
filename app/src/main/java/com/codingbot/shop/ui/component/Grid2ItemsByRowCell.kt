@@ -38,6 +38,7 @@ fun Grid2ItemsByRowCell(
             model = ImageRequest
                 .Builder(context)
                 .data(imgUrl)
+                .placeholder(R.drawable.default_hospital)
                 .build(),
             contentDescription = null,
             modifier = Modifier

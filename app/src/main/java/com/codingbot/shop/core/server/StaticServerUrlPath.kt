@@ -1,8 +1,10 @@
 package com.codingbot.shop.core.server
 
 object StaticServerUrlPath {
-    val imgOnlinePath_Prefix = "https://afsfroagcvtulsttshvc.supabase.co/storage/v1/object/public/hospitalstatic"
-    val subpath_images_path = "/staticdata/images/"
+//    val imgOnlinePath_Prefix = "https://tqyarvckzieoraneohvv.supabase.co/storage/v1/object/public/hospitalstatic"
+val imgOnlinePath_Prefix = "https://tqyarvckzieoraneohvv.supabase.co/storage/v1/object/public"
+//    val subpath_images_path = "/staticdata/images/"
+    val subpath_images_path = "/images/"
     val surgeryImgPath = imgOnlinePath_Prefix + subpath_images_path + "surgery"
     val hospitalImgPath = imgOnlinePath_Prefix + subpath_images_path + "hospitalimg"
     val eventsImgPath = imgOnlinePath_Prefix + subpath_images_path + "events"
@@ -50,7 +52,7 @@ object StaticServerUrlPath {
             "reone2" to "${this}/hospital_reone2.png",
             "reone3" to "${this}/hospital_reone3.png",
             "reone4" to "${this}/hospital_reone4.png",
-            "chungdam_ace" to "${this}/hospital_chungdamace.png",
+            "chungdam_ace" to "${this}/hospital_chungdam_ace.png",
             "wanna" to "${this}/hospital_wanna_plastic_surgery.png",
             "youjins" to "${this}/hospital2_youjins.png",
             "hospital1" to "${this}/hospital1.png",
