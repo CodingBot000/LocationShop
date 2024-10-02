@@ -2,8 +2,12 @@ package com.codingbot.shop.di
 
 import com.codingbot.shop.datasource.DataSourceCommon
 import com.codingbot.shop.datasource.DataSourceCommonImpl
+import com.codingbot.shop.datasource.DataSourceFavorite
+import com.codingbot.shop.datasource.DataSourceFavoriteImpl
 import com.codingbot.shop.repository.RepositoryCommon
 import com.codingbot.shop.repository.RepositoryCommonImpl
+import com.codingbot.shop.repository.RepositoryFavorite
+import com.codingbot.shop.repository.RepositoryFavoriteImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,5 +26,13 @@ interface DataModule {
     @Binds
     @Singleton
     fun bindDataSourceCommon(dataSourceCommon: DataSourceCommonImpl): DataSourceCommon
+
+    @Binds
+    @Singleton
+    fun bindRepositoryFavorite(repositoryFavorite: RepositoryFavoriteImpl): RepositoryFavorite
+
+    @Binds
+    @Singleton
+    fun bindDataSourceFavorite(dataSourceFavorite: DataSourceFavoriteImpl): DataSourceFavorite
 
 }

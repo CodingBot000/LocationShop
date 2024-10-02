@@ -37,10 +37,6 @@ class RepositoryCommonImpl @Inject constructor(
         return dataSourceCommon.getEventDataById(id)
     }
 
-    override fun removeFavoriteStoredData(id: Int): Boolean {
-        return dataSourceCommon.removeFavoriteStoredData(id)
-    }
-
     override fun getProductData(id: Int): ProductData? {
         return dataSourceCommon.getProductData(id)
     }
@@ -75,22 +71,6 @@ class RepositoryCommonImpl @Inject constructor(
 
     override fun getDetailDatasOrigin(id: Int): ProductDetailData? {
         return dataSourceCommon.getDetailDatasOrigin(id)
-    }
-
-    override fun getFavoriteStoredDatas(): List<ProductData> {
-        return dataSourceCommon.getFavoriteStoredDatas()
-    }
-
-    override fun getFavoriteStoredData(id: Int): ProductData? {
-        return dataSourceCommon.getFavoriteStoredData(id)
-    }
-
-    override fun addFavoriteStoredData(id: Int) {
-        return dataSourceCommon.addFavoriteStoredData(id)
-    }
-
-    override fun addFavoriteStoredData(productData: ProductData) {
-        return dataSourceCommon.addFavoriteStoredData(productData)
     }
 
     override fun test(testData: Int): Int {

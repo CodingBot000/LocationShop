@@ -5,6 +5,7 @@ import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.domain.model.ProductDetailData
 import com.codingbot.shop.domain.model.ProductDetailDescData
 import com.codingbot.shop.repository.RepositoryCommon
+import com.codingbot.shop.repository.RepositoryFavorite
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -23,7 +24,8 @@ sealed interface DetailIntent {
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repositoryCommon: RepositoryCommon
+    private val repositoryCommon: RepositoryCommon,
+    private val repositoryFavorite: RepositoryFavorite
 )
     : BaseViewModel<DetailUiState, DetailIntent>(DetailUiState())
 {
@@ -44,31 +46,31 @@ class DetailViewModel @Inject constructor(
     }
 
     fun getFavoriteState(id: Int) {
-        val data = repositoryCommon.getFavoriteStoredData(id)
+        val data = repositoryFavorite.getFavoriteStoredData(id)
         val isWish = data?.wish ?: false
         execute(DetailIntent.FavoriteState(isWish))
     }
 
     fun setFavorite(id: Int, isFavorite: Boolean) {
-        val data = repositoryCommon.getFavoriteStoredData(id)
+        val data = repositoryFavorite.getFavoriteStoredData(id)
 
         data?.let {
             it.wish = isFavorite
             if (isFavorite) {
-                if (repositoryCommon.getFavoriteStoredData(it.id) == null) {
-                    repositoryCommon.addFavoriteStoredData(it)
+                if (repositoryFavorite.getFavoriteStoredData(it.id) == null) {
+                    repositoryFavorite.addFavoriteStoredData(it)
                 } else {
 
                 }
             } else {
                 if (!isFavorite) {
-                    repositoryCommon.removeFavoriteStoredData(it.id)
+                    repositoryFavorite.removeFavoriteStoredData(it.id)
                 }
             }
         } ?: run {
             if (isFavorite) {
                 repositoryCommon.getProductOriginData(id)?.let {
-                    repositoryCommon.addFavoriteStoredData(it)
+                    repositoryFavorite.addFavoriteStoredData(it)
                 }
             }
         }

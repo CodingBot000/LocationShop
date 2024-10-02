@@ -3,6 +3,7 @@ package com.codingbot.shop.viewmodel
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.domain.model.ProductData
 import com.codingbot.shop.repository.RepositoryCommon
+import com.codingbot.shop.repository.RepositoryFavorite
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ sealed interface FavoriteIntent {
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val repositoryCommon: RepositoryCommon
+    private val repositoryFavorite: RepositoryFavorite
 )
     : BaseViewModel<FavoriteUiState, FavoriteIntent>(FavoriteUiState())
 {
@@ -29,7 +30,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     private fun initFavorite() {
-        val favoriteDatas = repositoryCommon.getFavoriteStoredDatas()
+        val favoriteDatas = repositoryFavorite.getFavoriteStoredDatas()
         execute(FavoriteIntent.FavoriteDatas(favoriteDatas.toMutableList()))
     }
 
