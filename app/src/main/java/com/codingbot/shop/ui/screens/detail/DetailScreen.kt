@@ -109,14 +109,18 @@ fun DetailScreen(
             )
 
             if (uiState.value.detailData == null) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    text = "Failed Show Data",
-                    color = CustomTheme.colors.black,
-                    style = CustomTheme.typography.title1Bold,
-                    textAlign = TextAlign.Center
-                    )
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    , contentAlignment = Alignment.Center)
+                {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        text = "Failed Show Data",
+                        color = CustomTheme.colors.black,
+                        style = CustomTheme.typography.title1Bold,
+                        )
+                }
                 return
             }
 

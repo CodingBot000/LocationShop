@@ -3,8 +3,6 @@ package com.codingbot.shop.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.codingbot.shop.core.common.Logger
 import com.codingbot.shop.core.server.InitValue
-import com.codingbot.shop.data.repository.RepositoryCommon
-import com.codingbot.shop.data.repository.RepositoryProductData
 import com.codingbot.shop.ui.screens.menu.MenuTitle
 import com.codingbot.shop.ui.screens.menu.SectionData
 import com.codingbot.shop.ui.screens.menu.SectionSubData

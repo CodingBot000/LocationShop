@@ -27,10 +27,11 @@ object DumpServer {
      */
     private var locationChipDataList: MutableList<LocationChipData> = mutableListOf<LocationChipData>()
 
+
     /**
      * 병원 디테일데이터 기본정보 - 전화, SNS등
      */
-    var detailDatasOrigin: List<ProductDetailData>? = null
+    private var detailDatasOrigin: List<ProductDetailData>? = null
 
     /**
      * 프로덕트 찜목록
@@ -95,6 +96,7 @@ object DumpServer {
 
     private fun initRegionDatas() {
         locationChipDataList.clear()
+
         InitValue.MENU_SUB_LOCATIONS.forEach {
             locationChipDataList.add(LocationChipData(region = it))
         }

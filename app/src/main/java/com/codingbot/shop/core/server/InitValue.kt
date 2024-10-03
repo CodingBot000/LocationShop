@@ -5,22 +5,6 @@ import com.codingbot.shop.domain.model.HomeBannerData
 import com.codingbot.shop.ui.screens.menu.SectionSubData
 
 object InitValue {
-
-    fun getSurgeryList(): MutableList<HomeBannerData> {
-        val homeBannerData = mutableListOf<HomeBannerData>()
-        SURGER_RES_LIST.entries.forEachIndexed { index, surgeryRes ->
-            homeBannerData.add(
-                HomeBannerData(
-                    id = index,
-                    urlImg = surgeryRes.value,
-                    name = surgeryRes.name,
-                    desc = ""
-                )
-            )
-        }
-        return homeBannerData
-    }
-
     enum class SURGER_RES_LIST(val value: String) {
         ACNE(StaticServerUrlPath.surgeryImgMaps["surgery_acne"]!!),
         BODY(StaticServerUrlPath.surgeryImgMaps["surgery_body"]!!),
@@ -29,32 +13,7 @@ object InitValue {
         PIGMENTATION(StaticServerUrlPath.surgeryImgMaps["surgery_pigmentation"]!!),
         PORE(StaticServerUrlPath.surgeryImgMaps["surgery_pore"]!!),
         SKINBOOSTER(StaticServerUrlPath.surgeryImgMaps["surgery_skinbooster"]!!),
-//        ACNE(R.drawable.surgery_acne),
-//        BODY(R.drawable.surgery_body),
-//        BOTOX(R.drawable.surgery_botox),
-//        LIFTING(R.drawable.surgery_lifting),
-//        PIGMENTATION(R.drawable.surgery_pigmentation),
-//        PORE(R.drawable.surgery_pore),
-//        SKINBOOSTER(R.drawable.surgery_skinbooster),
     }
-
-    enum class RECOMMEND_MENU(val value: String) {
-        EVENT("Event"),
-        REVIEW("Review"),
-        Hospital("Hospital"),
-    }
-    val BANNER_SLIDERS = arrayOf(
-//        1,2,3,1001,1002,1003,1004,1005
-        R.drawable.surgery_acne,
-        R.drawable.surgery_body,
-        R.drawable.surgery_botox,
-        R.drawable.surgery_lifting,
-        R.drawable.surgery_pigmentation,
-        R.drawable.surgery_pore,
-        R.drawable.surgery_skinbooster,
-    )
-
-
     val MENU_MAIN_CATEGORIES =
         arrayListOf(
             MAIN_MENU_NAME.SURGICAL_PROCEDURE,
